@@ -1,0 +1,14 @@
+@import  'color';
+
+#us-all-list--wrapper {
+  margin: 0 auto;
+  nav {
+    display: inline-block;
+    width: 50%;
+  }
+  .us-all-list--element {
+    display: inline-block;
+    padding: 6px;
+    color: $black;
+  }
+}

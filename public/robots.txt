@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://position-strategy.ffab0.com/sitemap.xml

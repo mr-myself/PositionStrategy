@@ -1,0 +1,121 @@
+== javascript_include_tag "vendor/scroll"
+== render 'layouts/mobile/navbar'
+.all-wrapper
+  .industry-nav
+    a.scroll href="#Company_area" = t('us.companies.show_smart_phone.menu.all_performance')
+    a.scroll href="#Company_margin_area" = t('us.companies.common.unit.profit_rate')
+    a.scroll href="#Company_sale_area" = t('common.bases.sale')
+    a.scroll href="#Company_operating_profit_area" = t('common.bases.operating_profit')
+    a.scroll href="#Company_net_income_area" = t('common.bases.net_income')
+    a.scroll href="#Recomend-area" = t('us.companies.show_smart_phone.menu.recommendation')
+  .company-welcome
+      #Company_area
+      p = @company_repository.company.name
+      a.back-list href="#{us_industry_path(id: @company_repository.company.sector_id)}" (#{t('us_industries.ja')[@company_repository.company.sector_id]})
+  .company
+    .company-title
+      p #{image_tag "bar-chart.png", class: "list-image"} #{@company_repository.latest_period}
+      .company-info
+        li
+          |#{t('common.bases.market_value')}
+          br
+          |#{@company_repository.company.market_value}
+      .company-bar-graph
+        .btn-wrapper
+          .btn.black-bg = t('us.companies.show_smart_phone.period_performance', period: @company_repository.latest_period)
+          .btn.yellow-bg = t('us.companies.show_smart_phone.industry_average')
+          br
+        .graph-area
+          p （#{t('common.unit.million')}）
+          #chart
+            canvas#myChart width="320" height="160"
+      .number-detail--wrapper
+        ul.number-detail#Company_margin_area
+          li #{t('common.bases.sale')}　#{t('common.bases.million_with_value_html', value: check_minus(comma(@company_repository.achievements.last.sale)))}
+          li #{t('common.bases.operating_profit')}　#{t('common.bases.million_with_value_html', value: check_minus(comma(@company_repository.achievements.last.operating_profit)))}
+          li #{t('common.bases.net_income')}　#{t('common.bases.million_with_value_html', value: check_minus(comma(@company_repository.achievements.last.net_income)))}
+  .circle-chart--wrapper--smart-phone
+    .operating-profit-margin--chart.circle-chart
+      canvas#canvas--operating-profit-margin width="90" height="90" z-index="1"
+      .count
+        em = @company_repository.achievements.last.operating_profit_margin
+        span.caption %
+        span.label-name = t('us.companies.common.unit.operating_profit_rate')
+    .roe--chart.circle-chart
+      canvas#canvas--roe width="90" height="90"
+      .count
+        em = @company_repository.achievements.last.roe
+        span.caption %
+        span.label-name roe
+    .roa--chart.circle-chart
+      canvas#canvas--roa width="90" height="90"
+      .count
+        em = @company_repository.achievements.last.roa
+        span.caption %
+        span.label-name roa
+  .company
+    .company-title
+      p
+        | #{image_tag "line-chart.png", class: "list-image"} #{@company_repository.oldest_period}〜#{@company_repository.latest_period}
+    .company-line-graph#Company_sale_area
+      p = t('common.bases.sale')
+      .graph-area
+        #ch160
+          p （#{t('common.unit.million')}）
+          canvas#Company_sale width="320" height="160"
+      .number-detail--wrapper
+        - @company_repository.achievements.each do |achievement|
+          ul.number-detail
+            li.publish-day #{achievement.publish_day}
+            li = t('common.unit.million_with_value_html', value: check_minus(comma(achievement.sale)))
+    .company-line-graph#Company_operating_profit_area
+      p = t('common.bases.operating_profit')
+      .graph-area
+      .graph-area
+        #ch160
+          p （#{t('common.unit.million')}）
+          canvas#Company_operating_profit width="320" height="160"
+      .number-detail--wrapper
+        - @company_repository.achievements.each do |achievement|
+          ul.number-detail
+            li.publish-day #{achievement.publish_day}
+            li = t('common.unit.million_with_value_html', value: check_minus(comma(achievement.operating_profit)))
+    .company-line-graph#Company_net_income_area
+      p = t('common.bases.net_income')
+      .graph-area
+      .graph-area
+        #ch160
+          p （#{t('common.unit.million')}）
+          canvas#Company_net_income width="320" height="160"
+      .number-detail--wrapper
+        - @company_repository.achievements.each do |achievement|
+          ul.number-detail
+            li.publish-day #{achievement.publish_day}
+            li = t('common.unit.million_with_value_html', value: check_minus(comma(achievement.net_income)))
+    ul.dot-separater.mobile-dot-separater#Recomend-area
+      li
+      li
+      li
+    .wrapper--company--reco-box
+      - if @competitors.present?
+        .reco-list.wrapper--company--reco-box__competitor
+          h2 = t('us.companies.common.competitor', company: @company_repository.company.name)
+          - @competitors.each do |competitor|
+            .reco-item
+              a.similar-name href="#{us_path(symbol: competitor[:symbol])}" = competitor[:name]
+        ul.dot-separater
+          li
+          li
+          li
+      .reco-list
+        h2 = t('us.companies.common.recommendation', company: @company_repository.company.name)
+        - @similar_companies.each do |similar|
+          .reco-item
+            a.similar-name href="#{us_path(symbol: similar[:symbol])}" = similar[:name]
+
+== javascript_include_tag "common/favorite"
+== javascript_include_tag "smart_phone/us/company/barchart-m"
+== javascript_include_tag "smart_phone/us/company/linechart-m"
+== javascript_include_tag "us/company/circlechart"
+javascript:
+  PS.COMPANY_SYMBOL = "#{params[:symbol]}"

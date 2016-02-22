@@ -1,0 +1,62 @@
+== include_gon
+== javascript_include_tag "us/industry/industry_graph"
+== javascript_include_tag "vendor/scroll"
+== render 'layouts/navbar'
+
+.container-mini.industry-wrapper
+  ol.breadcrumb.breadcrumb--industry
+    li: a href="#{root_path}" #{t('us.industries.common.menu.top')}
+    li: a href="#{search_index_path}" #{t('us.industries.common.menu.search')}
+    li: a href="#{us_industries_path}" #{t('us.industries.common.menu.industry_list')}
+    li.active = t('us_industries.ja')[params[:id].to_i]
+  .industry-name
+    h1 = t('us.industries.show.ranking', industry: t('us_industries.ja')[params[:id].to_i])
+    br
+    li.back: a.scroll href="#next-rank" #{t('us.industries.show.sales_top_ten')}
+    li.back ｜
+    li.back: a.scroll href="#{companies_us_industry_path(id: params[:id])}" #{t('us.industries.show.list')}
+  .company.industry
+    .company-title.heading__h2--industry
+      h2 #{image_tag "bar-chart.png", class: "list-image"}#{t('us.industries.show.ranking_top_five', period: @period, industry: t('us_industries.ja')[params[:id].to_i])}
+    .industry-menu
+      .industry-menu-item
+        .industry-menu-name
+          a.js-sale = t('common.bases.sale')
+      .industry-menu-item
+        .industry-menu-name
+          a.js-operating_profit = t('common.bases.operating_profit')
+      .industry-menu-item
+        .industry-menu-name
+          a.js-net_income = t('common.bases.net_income')
+    .company-graph
+      .btn.black = t('us.industries.show.industry_top_five', industry: t('us_industries.ja')[params[:id].to_i])
+      - unless request.smart_phone?
+        button.btn.yellow = t('us.industries.show.compare_with_average')
+      .graph-area.graph-area-wide
+        .chart.js-barchart
+          p.js-barchart-unit （#{t('common.unit.million')}）
+          canvas#Industry width="1140" height="300"
+
+  ul.dot-separater.dot-separater--wide
+    li
+    li
+    li
+
+  h2.rank-title = t('us.industries.show.industry_sales_top_ten', industry: t('us_industries.ja')[params[:id].to_i])
+  #next-rank
+    - @best_ten.each do |company|
+      nav
+        = link_to us_path(symbol: company.symbol) do
+          h2 = company.name
+          table
+            tr
+              td #{t('common.bases.sale')}: #{t('common.unit.million_with_value_html', value: dollar_to_yen(check_minus(company.sale)))}
+              td #{t('common.bases.operating_profit')}: #{t('common.unit.million_with_value_html', value: dollar_to_yen(check_minus(company.operating_profit)))}
+            tr
+              td #{t('common.bases.net_income')}: #{t('common.unit.million_with_value_html', value: dollar_to_yen(check_minus(company.net_income)))}
+
+  a.to-all-companies.pull-right href="#{companies_us_industry_path(id: params[:id])}" = t('us.industries.show.to_list')
+
+
+javascript:
+  PS.INDUSTRY_ID = "#{params[:id]}"

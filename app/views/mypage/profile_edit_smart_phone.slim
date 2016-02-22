@@ -1,0 +1,61 @@
+.navbar-m.navbar-m-absolute: a href="#{root_path}" #{image_tag("PositionStrategy-m.png", class: "nav-logo")}
+#slidemenu
+  input#open type="radio" name="text" value="1"
+  label#button_open.button_open-absolute for="open" #{image_tag("menu.png", class: "menu-icon")}
+  input#close type="radio" name="text" value="1"
+  label#button_close.button_close-absolute for="close" #{image_tag("menu.png", class: "menu-icon")}
+  #menu
+    ul
+      li: a href="#{root_path}" home
+      li: a href="#{jpn_industries_path}" industry
+      - if logged_in?
+        li: a href="#{mypage_path}" my page
+        li: a href="#{logout_sessions_path}" log out
+      - else
+        li: a href="#{new_session_path}" log in
+        li: a href="#{new_user_path}" sign up
+
+#slidemenu-left
+  input#open-left type="radio" name="text" value="1"
+  label#button_open-left.button_open-left-absolute for="open-left" #{image_tag("search.png", class: "menu-icon")}
+  input#close-left type="radio" name="text" value="1"
+  label#button_close-left.button_close-left-absolute for="close-left" #{image_tag("search.png", class: "menu-icon")}
+
+  #menu-left
+    = form_tag search_index_path do
+      input#suggest_form.form-controll type="text" name="name" autocomplete="off" placeholder="#{t('placeholder.company_name')}"
+      #suggest.suggest-home style="display:none;"
+      br
+      input.search-btn type="submit" class="confirm-button btn" value="#{t('placeholder.search.search')}"
+.all-wrapper
+
+  #login-form
+    = form_tag user_path(id: current_user.id), method: :put do
+      label name
+      input type="text" name="name" value==current_user.name
+      br
+      label pass
+      input type="password" name="password" placeholder="#{t('placeholder.password')}"
+      br
+      label pass*
+      input type="password" name="password_confirmation" placeholder="#{t('placeholder.password')}"
+      br
+      label email
+      input type="email" name="email" value==current_user.email
+      br
+      label = t('profile_edit_modal.my_company')
+      input#belong_suggest_form.form-controll type="text" name="my_company" autocomplete="off" placeholder="#{t('placeholder.company_name')}"
+      br
+      - if current_user.my_company
+        p.current_company #{t('profile_edit_modal.current_company')}: #{@company_repository.company.name}
+      #belong_suggest.suggest-edit style="display:none;"
+
+      input.btn.black-bg type="submit" value="UPDATE"
+
+  .back-to-mypage
+    = link_to 'BACK TO MYPAGE', mypage_path
+
+== include_gon
+== javascript_include_tag "vendor/suggest"
+== javascript_include_tag "common/search_jpn"
+== javascript_include_tag "smart_phone/blur"

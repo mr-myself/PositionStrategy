@@ -1,0 +1,69 @@
+== javascript_include_tag "vendor/scroll"
+== render 'layouts/mobile/navbar'
+
+.all-wrapper#Industry_sale_area
+  .industry-name
+    = t('jpn_industries.ja')[params[:id].to_i]
+  .industry-nav
+    a.scroll href="#Industry_sale_area" = t('common.bases.sale')
+    a.scroll href="#Industry_operating_profit_area" = t('common.bases.operating_profit')
+    a.scroll href="#Industry_ordinary_profit_area" = t('common.bases.ordinary_profit')
+    a.scroll href="#Industry_net_income_area" = t('common.bases.net_income')
+    a.scroll href="#top-ten" = t('jpn.industries.show_smart_phone.menu.sales_top_ten')
+    a.scroll href="#{companies_jpn_industry_path(id: params[:id])}" = t('jpn.industries.show_smart_phone.menu.list')
+  .company.industry
+    .company-graph
+      p.rank-title #{image_tag "bar-chart.png", class: "icon-mini"}#{t('jpn.industries.show.top_five', industry: t('jpn_industries.ja')[params[:id].to_i])}
+      .graph-grid.graph-grid-top
+        .graph-area
+          .chart
+            h3 = t('common.bases.sale')
+            p.js-barchart-unit （#{t('common.unit.million')}）
+            canvas#Industry_sale width="320" height="160"
+      .graph-label-wrapper
+        - @sale.each.with_index do |company , i|
+          li: a href="#{jpn_path(number: company[:company_number])}" #{i+1}. #{company[:name]}
+      .graph-grid#Industry_operating_profit_area
+        .graph-area
+          .chart
+            h3 = t('common.bases.operating_profit')
+            p.js-barchart-unit （#{t('common.unit.million')}）
+            canvas#Industry_operating_profit width="320" height="160"
+      .graph-label-wrapper
+        - @operating_profit.each.with_index do |company, i|
+          li: a href="#{jpn_path(number: company[:company_number])}" #{i+1}. #{company[:name]}
+      .graph-grid#Industry_ordinary_profit_area
+        .graph-area
+          .chart
+            h3 = t('common.bases.ordinary_profit')
+            p.js-barchart-unit （#{t('common.unit.million')}）
+            canvas#Industry_ordinary_profit width="320" height="160"
+      .graph-label-wrapper
+        - @ordinary_profit.each.with_index do |company, i|
+          li: a href="#{jpn_path(number: company[:company_number])}" #{i+1}. #{company[:name]}
+      .graph-grid#Industry_net_income_area
+        .graph-area
+          .chart
+            h3 = t('common.bases.net_income')
+            p.js-barchart-unit （#{t('common.unit.million')}）
+            canvas#Industry_net_income width="320" height="160"
+      .graph-label-wrapper
+        - @net_income.each.with_index do |company, i|
+          li: a href="#{jpn_path(number: company[:company_number])}" #{i+1}. #{company[:name]}
+  p.rank-title#top-ten = t('jpn.industries.show.industry_sales_top_ten', industry: t('jpn_industries.ja')[params[:id].to_i])
+  #next-rank
+    - @best_ten.each do |company|
+      .grid: a href="#{jpn_path(number: company.company_number)}"
+        h2 #{company.name} #{image_tag("arrow-right.png", class: "icon")}
+        table
+          tr
+            td #{t('common.bases.sale')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(zero_to_hyphen company.sale)))}
+            td #{t('common.bases.operating_profit')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(zero_to_hyphen company.operating_profit)))}
+          tr
+            td #{t('common.bases.ordinary_profit')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(zero_to_hyphen company.ordinary_profit)))}
+            td #{t('common.bases.net_income')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(zero_to_hyphen company.net_income)))}
+
+
+== javascript_include_tag "smart_phone/industry/industry_graph_m"
+javascript:
+  PS.INDUSTRY_ID = "#{params[:id]}"

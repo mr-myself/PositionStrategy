@@ -1,0 +1,204 @@
+@import  'color';
+@import  'width';
+
+.mypage-wrapper {
+  padding-left: 0;
+}
+
+.mypage-welcome {
+  width: 100%;
+  height: 40px;
+  margin: 20px 0 40px 400px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.mypage-menu {
+  width: $max-width;
+  margin: 40px 0 0 0;
+  text-align: center;
+}
+
+.mypage-menu-item {
+  width: 143.2px;
+  height: 90px;
+  display: inline-block;
+  .menu-name {
+    width: 143.2px;
+    height: 40px;
+    text-align: center;
+    &:hover {
+      text-decoration: underline;
+    }
+    > a {
+      line-height: 40px;
+      text-transform: uppercase;
+      color: #000;
+      text-decoration: none;
+    }
+    .popover-content {
+      width: 300px;
+      > a {
+        color: #000;
+        font-size: 12px;
+        margin: 0 5px;
+      }
+    }
+  }
+}
+
+.mypage-menu {
+  .active {
+  border-bottom: 2px solid #000;
+  }
+}
+
+.company {
+  width: $max-width;
+  height: 500px;
+  .company-title {
+    width: $max-width;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-bottom: 1px solid rgba(#000, .1);
+    box-shadow: rgba(255,255,255,1) 0 1px 0;
+  }
+  .company-info {
+    height: 40px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(#000, .1);
+    box-shadow: rgba(255,255,255,1) 0 1px 0;
+    ul {
+      margin-top: 10px;
+    }
+    > ul li {
+      list-style-type: none;
+      display: inline;
+      margin-left: 20px;
+      line-height: 30px;
+    }
+  }
+  button {
+    width: auto;
+    margin: 20px 10px 20px 10px;
+    color: #fff;
+  }
+}
+
+.company-item {
+  margin-bottom: -40px;
+  margin-top: 5px;
+  height: 40px;
+}
+
+.company-graph {
+  width: $max-width;
+  height: 420px;
+}
+
+
+.graph-area {
+  width: $max-width;
+  height: 400px;
+  p {
+    position: relative;
+    top: 50px;
+    right: 20px;
+    font-size: 12px;
+    float: right;
+  }
+}
+
+.mypage-favorite {
+  width: $max-width;
+  height: 130px;
+  margin: 60px 0 20px 0;
+}
+
+#blank {
+  margin-top: 80px;
+  width: 940px;
+}
+
+
+.no_my_company {
+  text-align: center;
+  width: auto;
+  height: 50px;
+  float: center;
+  p, a {
+    display: inline;
+    float: center;
+    text-align: center;
+  }
+}
+
+#HowToUse {
+  .how-to-use-dialog {
+    width: 700px!important;
+    height: 1250px!important;
+    z-index: 1049!important;
+    .modal-title {
+      margin: 20px 0;
+    }
+    .item {
+      width: 700px;
+      height: 150px;
+      margin-bottom: 20px;
+      .item-left {
+        width: 200px;
+        height: 150px;
+        float: left;
+        .how-to-image {
+          width: 200px;
+          height: 150px;
+          border: 1px solid #ccc;
+        }
+      }
+      .item-right {
+        width: 400px;
+        height: 150px;
+        float: left;
+        h2 {
+          font-size: 13px;
+          font-family: 'Futura', hiragino maru go;
+          margin: 0.1em 0 0.5em 20px;
+          font-weight: bold;
+        }
+        p {
+          font-family: 'hiragino kaku go';
+          font-size: 12px;
+          line-height: 1.5em;
+        }
+        a {
+          font-family: 'hiragino kaku go';
+          font-size: 12px;
+          float: right;
+          line-height: 12px;
+        }
+      }
+    }
+  }
+}
+
+#EditProfile {
+  label {
+    text-transform: uppercase;
+  }
+  input {
+    height: 43px;
+    padding: 10px 15px;
+    line-height: 1.428571429;
+    vertical-align: middle;
+    border: 1px solid #dce4ec;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
+  }
+}

@@ -1,0 +1,18 @@
+== render 'layouts/navbar'
+
+.container
+  ol.breadcrumb.breadcrumb--industry-list
+    li: a href="#{root_path}" #{t('us.industries.common.menu.top')}
+    li: a href="#{search_index_path}" #{t('us.industries.common.menu.search')}
+    li.active #{t('us.industries.common.menu.industry_list')}
+
+  h1.heading--industry-list = t('us.industries.index.all_industry_list')
+  h2.heading__h2--industry-list = t('us.industries.index.explanation_about_ranking')
+
+  #list-wrapping
+    - t('us_industries.ja').reverse_each do |key, value|
+      nav.cl-effect-12
+        = link_to us_industry_path(id: key) do
+          .list-wrapping--element
+            h2 = value
+            p = t('us.industries.index.industry_name', industry: t('us_industries.en')[key])

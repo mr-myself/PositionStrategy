@@ -1,0 +1,54 @@
+/var/log/position_strategy/app/*.log
+/var/log/position_strategy/supervisor/*.log
+/var/log/position_strategy/unicorn/*.log
+/var/log/position_strategy/nginx/*.log {
+    notifempty
+    daily
+    rotate 30
+    missingok
+    sharedscripts
+    postrotate
+        today=`date '+%Y%m%d'`
+        yesterday=`date '+%Y%m%d' -d '1days ago'`
+        for dir in 'app' 'nginx';
+        do
+            for file in `ls /var/log/position_strategy/${dir} | grep ${today}`;
+            do
+                if [ $dir == 'supervisor']; then
+                    [ ! -f /var/run/supervisord.pid ] || kill -USR2 `cat /var/run/supervisord.pid`
+                fi
+                if [ $dir == 'unicorn' ]; then
+                    [ ! -f /home/user-name/positionstrategy/pids/unicorn.pid ] || kill -USR1 `cat /home/user-name/positionstrategy/pids/unicorn.pid`
+                fi
+                if [ $dir == 'nginx' ]; then
+                    [ ! -f /var/run/nginx.pid ] || kill -USR1 `cat /var/run/nginx.pid`
+                fi
+                /bin/mv /var/log/position_strategy/${dir}/${file} /var/log/position_strategy/${dir}/${file%%-*}_${yesterday}
+            done
+        done
+    endscript
+}
+
+/var/log/mysql_general.log
+/var/log/mysql_slow_query.log {
+    notifempty
+    daily
+    dateext
+    rotate 30
+    missingok
+    sharedscripts
+    postrotate
+        if test -x /usr/bin/mysqladmin && \
+            /usr/bin/mysqladmin ping &>/dev/null
+        then
+            /usr/bin/mysqladmin flush-logs
+        fi
+
+        today=`date '+%Y%m%d'`
+        yesterday=`date '+%Y%m%d' -d '1days ago'`
+        for type in 'general' 'slow_query';
+        do
+          /bin/mv /var/log/mysql_${type}.log-${today} /var/log/mysql_${type}.log-${yesterday}
+        done
+    endscript
+}

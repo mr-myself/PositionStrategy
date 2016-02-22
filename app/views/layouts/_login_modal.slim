@@ -1,0 +1,21 @@
+.modal.fade#loginModal tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" area-hidden="ture"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-hidden="ture" &times;
+        h3.modal-title log in
+        .modal-body
+          = form_tag sessions_path do
+            label name
+            input type="name" name="name"
+            br
+            label pass
+            input type="password" name="password"
+            input.btn type="submit" value="LOG IN"
+            br
+            a.social-login href="/auth/twitter" #{image_tag 'twitter-g.png', class: 'list-image'}#{t('login_modal.login_via')}
+            a.social-login href="/auth/facebook" #{image_tag 'facebook-g.png', class: 'list-image'}#{t('login_modal.login_via')}
+          .modal-footer
+            = link_to t('login_modal.to_forgot_password'), forgot_password_path
+            span |
+            = link_to t('login_modal.to_signup'), new_user_path

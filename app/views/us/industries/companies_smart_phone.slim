@@ -1,0 +1,12 @@
+== render 'layouts/mobile/navbar'
+
+.all-wrapper
+  .industry-name#top
+    = t('us_industries.ja')[params[:id].to_i]
+  p.rank-title#all-companies = t('us.industries.common.menu.industry_companies', industry: t('us_industries.ja')[params[:id].to_i])
+  #all-companies-list
+    - @companies.each do |company|
+      .grid: a href="#{us_path(symbol: company.symbol)}"
+        h2 #{company.name} #{image_tag("arrow-right.png", class: "icon")}
+  .paginate--wrapper
+    = paginate @companies, window: 3

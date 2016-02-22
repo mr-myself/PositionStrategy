@@ -1,0 +1,135 @@
+== include_gon
+== javascript_include_tag "vendor/suggest"
+== javascript_include_tag "common/search_jpn"
+== javascript_include_tag "common/favorite"
+== javascript_include_tag "company/barchart"
+== javascript_include_tag "company/linechart"
+== render 'layouts/navbar'
+
+.container
+  == render 'breadcrumb'
+  .row
+    .col-xs-9
+      .company-welcome.jpn
+        -if logged_in?
+          - if @has_favorites_flag
+            h1 #{image_tag "heart.png", class: "list-image js-heart"} #{@company_repository.company.name}
+          - else
+            h1 #{image_tag "heart.png", class: "list-image js-heart", style: "display:none;"} #{@company_repository.company.name}
+          h1  ／ #{@compare_company.company.name}
+          br
+          a.back-list href="#{jpn_industry_path(id: @company_repository.detail.industry_id)}" （#{t('jpn_industries.ja')[@company_repository.detail.industry_id]}）
+          br
+          - if @has_favorites_flag
+            button.btn.favorite.remove data-id="#{params[:number]}" = t('jpn.companies.common.favorite.remove')
+          - else
+            button.btn.favorite.add data-id="#{params[:number]}" = t('jpn.companies.common.favorite.add')
+          .favorite_message
+            .success style="display:none;"
+              p = t('jpn.companies.common.favorite.done_add')
+            .error style="display:none;"
+              p
+        - else
+          h1 #{@company_repository.company.name}
+          h1  ／ #{@compare_company.company.name}
+          br
+          a.back-list href="#{jpn_industry_path(id: @company_repository.detail.industry_id)}" （#{t('jpn_industries.ja')[@company_repository.detail.industry_id]}）
+          br
+          a.before-login href="#loginModal" data-toggle="modal" = t('jpn.companies.common.favorite.explanation')
+
+      == render 'layouts/social', url: request.original_url
+
+      .company-p
+        .company-info-p
+          p #{image_tag "bar-chart.png", class: "list-image"} #{@company_repository.latest_period}
+        .company-bar-graph
+          .btn.black #{@company_repository.company.name}（#{@company_repository.latest_period}）
+          .btn.compare #{@compare_company.company.name}（#{@compare_company.latest_period}）
+          .graph-area-p
+            p （#{t('common.unit.million')}）
+            #chart.js-brachart
+              canvas#myChart width="825" height="300"
+
+      table.bar-spread-sheet
+        tr
+          th
+          - indexes.each do |key, value|
+            th = value
+        tr.company-first
+          td = @company_repository.company.name
+          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.sale)))
+          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.operating_profit)))
+          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.ordinary_profit)))
+          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.net_income)))
+        tr.company-second
+          td = @compare_company.company.name
+          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @compare_company.achievements.last.sale)))
+          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @compare_company.achievements.last.operating_profit)))
+          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @compare_company.achievements.last.ordinary_profit)))
+          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @compare_company.achievements.last.net_income)))
+      br
+
+      #blank
+      ul.dot-separater
+        li
+        li
+        li
+      .company-p
+        .company-info-p
+          p #{image_tag "line-chart.png", class: "list-image"} #{t('jpn.companies.compare.transition')}
+        .company-menu
+          - indexes.each do |key, value|
+            .company-menu-item
+              .company-menu-name
+                a class="js-#{key}" = value
+        .company-line-graph
+          .btn.black #{@company_repository.company.name}
+          .btn.compare #{@compare_company.company.name}
+          .graph-area-p
+            #chart.js-linechart
+              p （#{t('common.unit.million')}）
+              canvas#myChart2 width="825" height="300"
+
+      br
+      span.black-sp #{@company_repository.company.name}
+      br
+      table.bar-spread-sheet
+        tr
+          th
+          - indexes.each do |key, value|
+            th = value
+        - @company_repository.achievements.each do |achievement|
+          tr
+            td.publish_day = achievement.publish_day
+            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.sale)))
+            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.operating_profit)))
+            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.ordinary_profit)))
+            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.net_income)))
+
+      br
+      span.compare-sp #{@compare_company.company.name}
+      br
+      table.bar-spread-sheet
+        tr
+          th
+          - indexes.each do |key, value|
+            th = value
+        - @compare_company.achievements.each do |achievement|
+          tr
+            td.publish_day = achievement.publish_day
+            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.sale)))
+            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.operating_profit)))
+            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.ordinary_profit)))
+            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.net_income)))
+
+      br
+      .copy-right
+        p = t('common.confidential.name')
+        p.sub = t('common.confidential.explanation')
+
+    == render 'sidebar'
+  == render 'footer'
+
+javascript:
+  PS.COMPANY_NUMBER = "#{params[:number]}"
+  PS.COMPARE_NUMBER = "#{params[:compare]}"

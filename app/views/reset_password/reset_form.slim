@@ -1,0 +1,12 @@
+== render 'layouts/navbar'
+
+.container
+  .password-reset
+    h2 = t('reset_password.reset_form.title')
+    = form_tag reset_password_path do
+      label pass
+      input type="password" name="password"
+      label pass*
+      input type="password" name="password_confirmation"
+      br
+      input.confirm-button.btn type="submit" value="reset"

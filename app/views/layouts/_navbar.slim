@@ -1,0 +1,26 @@
+header.navigation-menu.first-clingy.nav-persistent
+  ul
+    li.navi-item.navi-center
+      = link_to t('navbar.menu.search'), search_index_path
+    li.navi-item.navi-center
+      = link_to t('navbar.menu.jpn_industry'), jpn_industries_path
+    li.navi-item.navi-center
+      = link_to t('navbar.menu.us_industry'), us_industries_path
+      - if logged_in?
+        li.navi-item.navi-center
+          = link_to t('navbar.menu.logout'), logout_sessions_path
+        li.navi-item.navi-center.last-item
+          = link_to t('navbar.menu.mypage'), mypage_path
+      - else
+        li.navi-item
+          a data-toggle="modal" href="#loginModal" onClick="_gaq.push(['_trackEvent', 'navbar', 'login_at_navbar', , 1, true]);" = t('navbar.menu.login')
+          == render 'layouts/login_modal'
+        li.navi-item
+          a href='#HowToUse' data-toggle="modal" onClick="_gaq.push(['_trackEvent', 'navbar', 'how_to_use_at_navbar', , 1, true]);" = t('navbar.menu.how_to_use')
+          == render 'layouts/how_to_use_modal'
+    li.navi-item.last-item
+      .language-selection
+        = link_to "#{request.path}?lang=en" do
+          = image_tag 'flag_en.png'
+        = link_to "#{request.path}?lang=ja" do
+          = image_tag 'flag_jp.png'

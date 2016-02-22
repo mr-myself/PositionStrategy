@@ -1,0 +1,50 @@
+@import  'color';
+
+/* ---------- nabigation-menu ---------- */
+
+.navigation-menu {
+  width: 100%;
+  height: 40px;
+  z-index: 999;
+  background-color: rgba(#fff, .95);
+  position: fixed;
+  top: 0;
+  box-shadow: rgba(#ccc, 1) 0 0 5px;
+  border-bottom: 1px solid $green;
+
+  ul {
+    width: 960px;
+    min-width: 700px;
+    margin: auto;
+  }
+
+  .language-selection {
+    line-height: 38px;
+    img {
+      height: 25px;
+    }
+    img:first-child {
+      margin-right: 12px;
+    }
+  }
+}
+
+li.navi-item {
+  display: inline-block;
+  width: 16.5%;
+  height: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  float: left;
+  line-height: 40px;
+  font-size: 16px;
+  a {
+    color: $green;
+    font-weight: 200;
+    letter-spacing: .05em;
+    &:hover {
+      text-decoration: none;
+      color: $black;
+    }
+  }
+}

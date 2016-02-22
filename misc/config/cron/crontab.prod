@@ -1,0 +1,27 @@
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+HOME=/home/user-name
+LOG_DIR=/var/log/position_strategy/batch
+APP_DIR=/home/user-name/positionstrategy/current
+
+# For details see man 4 crontabs
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+
+00 4 * * * user-name bash -lc "cd ${APP_DIR}; bundle exec rake reset_token:delete RAILS_ENV=production" >> ${LOG_DIR}/reset_token_`date +\%Y\%m\%d`.log 2>&1
+
+00 4 5 1,4,7,10 * user-name bash -lc "cd ${APP_DIR}; bundle exec rake jp_market_data:create market=tosho_first RAILS_ENV=production" >> ${LOG_DIR}/tosho_first_`date +\%Y\%m\%d`.log 2>&1
+00 4 5 1,4,7,10 * user-name bash -lc "cd ${APP_DIR}; bundle exec rake jp_market_data:create market=tosho_second RAILS_ENV=production" >> ${LOG_DIR}/tosho_second_`date +\%Y\%m\%d`.log 2>&1
+00 4 5 1,4,7,10 * user-name bash -lc "cd ${APP_DIR}; bundle exec rake jp_market_data:create market=mothers RAILS_ENV=production" >> ${LOG_DIR}/mothers_`date +\%Y\%m\%d`.log 2>&1
+
+00 4 10 1,4,7,10 * user-name bash -lc "cd ${APP_DIR}; bundle exec rake us_market_data:create market=nyse RAILS_ENV=production" >> ${LOG_DIR}/nyse_`date +\%Y\%m\%d`.log 2>&1
+00 4 10 1,4,7,10 * user-name bash -lc "cd ${APP_DIR}; bundle exec rake us_market_data:create market=nasdaq RAILS_ENV=production" >> ${LOG_DIR}/nasdaq_`date +\%Y\%m\%d`.log 2>&1
+30 5 10 1,4,7,10 * user-name bash -lc "cd ${APP_DIR}; bundle exec rake us_market_data:create_average RAILS_ENV=production" >> ${LOG_DIR}/us_average_`date +\%Y\%m\%d`.log 2>&1

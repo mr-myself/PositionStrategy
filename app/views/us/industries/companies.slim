@@ -1,0 +1,25 @@
+== render 'layouts/navbar'
+
+.container-mini
+  ol.breadcrumb.breadcrumb--all-company-list
+    li: a href="#{root_path}" #{t('us.industries.common.menu.top')}
+    li: a href="#{search_index_path}" #{t('us.industries.common.menu.search')}
+    li: a href="#{us_industries_path}" #{t('us.industries.common.menu.industry_list')}
+    li: a href="#{us_industry_path(id: params[:id])}"  #{t('us_industries.ja')[params[:id].to_i]}
+    li.active = t('us.industries.common.menu.industry_companies', industry: t('us_industries.ja')[params[:id].to_i])
+
+  h1.rank-title = t('us.industries.common.menu.industry_companies', industry: t('us_industries.ja')[params[:id].to_i])
+  #us-all-list--wrapper
+    - @companies.each do |company|
+      nav.cl-effect-12
+        = link_to us_path(symbol: company.symbol) do
+          .us-all-list--element
+            p = company.name
+
+  = paginate @companies
+  .list-back-wrapper
+    li: a href="#{us_industry_path(id: params[:id])}" #{t('us.industries.companies.to_industry_top', industry: t('us_industries.ja')[params[:id].to_i])}
+    li ｜
+    li: a href="#{us_industries_path}" #{t('us.industries.companies.to_list')}
+
+== include_gon

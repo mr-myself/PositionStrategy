@@ -1,0 +1,28 @@
+@import  'color';
+
+.list-back-wrapper {
+  padding-bottom: 10px;
+  text-align: center;
+  li {
+    list-style: none;
+    font-size: 14px;
+    display: inline-block;
+    margin: 0 2px 0 2px;
+  }
+  a {
+    color: $green;
+  }
+}
+
+#all-list {
+  margin: 0 auto;
+  nav {
+    display: inline-block;
+    width: 49%;
+  }
+  .all-list--element {
+    display: inline-block;
+    padding: 6px;
+    color: $black;
+  }
+}

@@ -1,0 +1,12 @@
+== render 'layouts/mobile/navbar'
+
+.all-wrapper
+  .btn-group.list-btn
+    p = t('us.industries.index_smart_phone.list')
+
+  #list-wrapping
+    - t('us_industries.ja').reverse_each do |key, value|
+      .list-item: a href="#{us_industry_path(id: key)}"
+        p.jpn = value
+        p.en = t('us.industries.index.industry_name', industry: t('us_industries.en')[key.to_i])
+        p.round-button #{image_tag("arrow-right.png", class: "icon")}

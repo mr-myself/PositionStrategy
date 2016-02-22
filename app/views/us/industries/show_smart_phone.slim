@@ -1,0 +1,57 @@
+== javascript_include_tag "vendor/scroll"
+== render 'layouts/mobile/navbar'
+
+.all-wrapper#Industry_sale_area
+  .industry-name
+    = t('us_industries.ja')[params[:id].to_i]
+  .industry-nav
+    a.scroll href="#Industry_sale_area" = t('common.bases.sale')
+    a.scroll href="#Industry_operating_profit_area" = t('common.bases.operating_profit')
+    a.scroll href="#Industry_net_income_area" = t('common.bases.net_income')
+    a.scroll href="#top-ten" = t('us.industries.common.menu.sales_top_ten')
+    a.scroll href="#{companies_us_industry_path(id: params[:id])}" = t('us.industries.common.menu.all_companies')
+  .company.industry
+    .company-graph
+      p.rank-title #{image_tag "bar-chart.png", class: "icon-mini"}#{t('us.industries.show.industry_top_five', industry: t('us_industries.ja')[params[:id].to_i])}
+      .graph-grid.graph-grid-top
+        .graph-area
+          .chart
+            h3 = t('common.bases.sale')
+            p.js-barchart-unit （#{t('common.unit.million')}）
+            canvas#Industry_sale width="320" height="160"
+      .graph-label-wrapper
+        - @sale.each.with_index(1) do |company, i|
+          li: a href="#{us_path(symbol: company[:symbol])}" #{i}. #{company[:name]}
+      .graph-grid#Industry_operating_profit_area
+        .graph-area
+          .chart
+            h3 = t('common.bases.operating_profit')
+            p.js-barchart-unit （#{t('common.unit.million')}）
+            canvas#Industry_operating_profit width="320" height="160"
+      .graph-label-wrapper
+        - @operating_profit.each.with_index(1) do |company, i|
+          li: a href="#{us_path(symbol: company[:symbol])}" #{i}. #{company[:name]}
+      .graph-grid#Industry_net_income_area
+        .graph-area
+          .chart
+            h3 = t('common.bases.net_income')
+            p.js-barchart-unit （#{t('common.unit.million')}）
+            canvas#Industry_net_income width="320" height="160"
+      .graph-label-wrapper
+        - @net_income.each.with_index(1) do |company, i|
+          li: a href="#{us_path(symbol: company[:symbol])}" #{i}. #{company[:name]}
+  p.rank-title#top-ten = t('us.industries.show.industry_sales_top_ten', industry: t('us_industries.ja')[params[:id].to_i])
+
+  #next-rank
+    - @best_ten.each do |company|
+      .grid: a href="#{us_path(symbol: company.symbol)}"
+        h2 #{company.name} #{image_tag("arrow-right.png", class: "icon")}
+        ul
+          li #{t('common.bases.sale')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(company.sale)))}
+          li #{t('common.bases.operating_profit')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(company.operating_profit)))}
+          li #{t('common.bases.net_income')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(company.net_income)))}
+
+
+== javascript_include_tag "smart_phone/us/industry/industry_graph_m"
+javascript:
+  PS.INDUSTRY_ID = "#{params[:id]}"

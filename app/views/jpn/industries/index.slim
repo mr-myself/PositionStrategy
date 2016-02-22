@@ -1,0 +1,16 @@
+== render 'layouts/navbar'
+.container
+  ol.breadcrumb.breadcrumb--industry-list
+    li: a href="#{root_path}" #{t('jpn.companies.common.menu.top')}
+    li: a href="#{search_index_path}" #{t('jpn.companies.common.menu.search')}
+    li.active = t('jpn.companies.common.menu.industry_list')
+  h1.heading--industry-list = t('jpn.industries.index.all_industries')
+  h2.heading__h2--industry-list = t('jpn.industries.index.description')
+
+  #list-wrapping
+    - t('jpn_industries.ja').each do |key, value|
+      nav.cl-effect-12
+        = link_to jpn_industry_path(id: key) do
+          .list-wrapping--element
+            h2.effect = value
+            p #{t('jpn_industries.en')[key]} Industry

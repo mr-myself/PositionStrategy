@@ -1,0 +1,20 @@
+box: wercker/ruby
+services:
+    - wercker/mysql
+build:
+    steps:
+        - bundle-install
+        - rails-database-yml:
+            service: mysql
+        - script:
+            name: echo ruby information
+            code: |
+                echo "ruby version $(ruby --version) running"
+                echo "from location $(which ruby)"
+                echo -p "gem list: $(gem list)"
+        - script:
+            name: Set up database
+            code: RAILS_ENV=test bundle exec rake db:schema:load
+        - script:
+            name: Run rspec
+            code: bundle exec rspec

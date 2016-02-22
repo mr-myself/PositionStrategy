@@ -1,0 +1,35 @@
+doctype html
+html lang="ja" prefix="og: http://ogp.me/ns#"
+  head
+    = render 'layouts/page_title'
+    == stylesheet_link_tag "application", "data-turbolinks-track" => true
+    == javascript_include_tag "application", "data-turbolinks-track" => true
+    == csrf_meta_tags
+    meta name="robots" content="follow"
+    meta property="og:title" content="Position Strategy"
+    meta property="og:type" content="website"
+    meta property="og:url" content="#{request.original_url}"
+    meta property="og:image" content="#{PSConfig.host}/images/ogp-image.png"
+    - if @company and @compare_company
+      meta property="og:description" content="#{t('meta.og.description.compare', company_1: @company[:name], company_2: @compare_company.name)}"
+    - elsif @company
+      meta property="og:description" content="#{t('meta.og.description.company', company: @company[:name])}"
+    - else
+      meta property="og:description" content="#{t('meta.og.description.default')}"
+
+    - if @company
+      meta name="description" content="#{t('meta.description.company', company: @company[:name])}"
+    - elsif controller.controller_name.match(/industry/)
+      meta name="description" content="#{t('meta.description.industry', industry: t('jpn_industries.ja')[params[:id].to_i])}"
+    - else
+      meta name="description" content="#{t('meta.description.default')}"
+
+    link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,700' rel='stylesheet' type='text/css'
+    == favicon_link_tag('favicon.ico')
+
+  body data-twttr-rendered="true"
+    == render 'layouts/error'
+    == yield
+    == render 'layouts/footer'
+    - if Rails.env.production?
+      == render 'layouts/ga'

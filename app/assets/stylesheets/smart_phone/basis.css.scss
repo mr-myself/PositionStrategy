@@ -1,0 +1,438 @@
+@import  "color";
+
+body {
+  padding-top: 60px;
+  font-family: 'Helvetica Neue', 'hiragino mincho pro', meirio!important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+span {
+  font-family: 'Helvetica Neue', 'hiragino mincho pro', meirio!important;
+  font-weight: 300;
+  letter-spacing: .05em;
+}
+
+.all-wrapper.dialog {
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
+  -webkit-transition: all ease;
+  -webkit-transition-delay: 0.3s;
+  -moz-transition: all ease 0.3s;
+  -o-transition: all ease 0.3s;
+  transition: all ease 0.3s;
+}
+
+
+.all-wrapper.dialog + #menu {
+  background-color: rgba(#fff, .3);
+}
+
+.grid-flame-m {
+  width: 100%;
+}
+
+.iphone-grid {
+  height: 263px;
+}
+
+.navbar-m {
+  z-index: 990;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 1px 1px 1px #ccc;
+}
+
+.nav-logo {
+  width: 100px;
+  height: 40px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+
+/****************************************
+右側のスライドメニュー
+****************************************/
+#slidemenu input{
+    display: none;
+}
+#button_open,
+#button_close {
+    position: fixed;
+    color: #fff;
+    top: 5px;
+    right: 5px;
+    width: auto;
+    padding: 10px;
+    height: auto;
+    text-align: right;
+    cursor: pointer;
+    z-index: 999;
+    border-radius: 4px;
+}
+#button_open {
+    display: block;
+    background-color: #fff;
+}
+#button_close {
+    display: none;
+    background-color: $gray;
+}
+
+#button_open span,
+#button_close span {
+    margin: 0 auto;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    position: relative;
+    background: #000000;
+}
+#button_open span:after,
+#button_close span:after {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 8px;
+    width: 16px;
+    border-top: 3px solid #FFFFFF;
+}
+#button_open span:after {
+    box-shadow: 0 6px 0 #CACACA, 0 -6px 0 #FFFFFF;
+}
+#menu {
+    margin: 0;
+    padding: 0;
+    width: 0; /* 初期値は横幅が0で見えない状態 */
+    height: 100%;
+    position: fixed;
+    top: 50px;
+    right: 0px;
+    color: #FFFFFF;
+    z-index: 999;
+    overflow: hidden;
+    border-top: 1px solid $green;
+    -webkit-transition: all ease;
+    -webkit-transition-delay: 0.3s;
+    -moz-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+
+.menu-icon {
+  width: 20px;
+  height: 20px;
+}
+#menu ul {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    border-top: #CACACA;
+    text-align: left;
+    list-style: none inside;
+    height: 100%;
+}
+
+.menu-bg {
+  background: rgba(#fff,.85);
+}
+
+.menu-bg-after {
+  background: rgba(#fff,.95)!important;
+}
+#menu li {
+    margin: 0;
+    padding: 0 0 5px 0;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+}
+#menu li a {
+    margin: 0;
+    padding: 10px 0 10px 0;
+    overflow: hidden;
+    display: block;
+    line-height: 34px;
+    text-decoration: none;
+    color: $green;
+    font-weight: 300;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+#menu li a:hover {
+    background: rgba($green,.5);
+    color: #fff;
+}
+#open:checked ~ #button_open {
+    display: none;
+}
+#open:checked ~ #button_close {
+    display: inline;
+}
+#open:checked ~ #menu {
+    width: 100%;
+}
+
+
+
+/****************************************
+左側のスライドメニュー
+****************************************/
+
+#slidemenu-left {
+  > input {
+  display: none;
+  }
+  #button_open-left,
+  #button_close-left {
+    position: fixed;
+    color: #fff;
+    top: 5px;
+    left: 5px;
+    width: auto;
+    padding: 10px;
+    height: auto;
+    text-align: right;
+    cursor: pointer;
+    z-index: 999;
+    border-radius: 4px;
+  }
+  #button_open-left {
+    display: block;
+    background-color: #fff;
+  }
+  #button_close-left {
+    display: none;
+    background-color: $gray;
+  }
+}
+
+#menu-left {
+    margin: 0;
+    padding: 0;
+    width: 0; /* 初期値は横幅が0で見えない状態 */
+    height: 1000px;
+    position: fixed;
+    top: 50px;
+    left: 0px;
+    color: #000;
+    border-top: 1px solid $green;
+    border-bottom: 1px solid $green;
+    z-index: 999;
+    overflow: hidden;
+    -webkit-transition: all ease;
+    -webkit-transition-delay: 0.3s;
+    -moz-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+  ul {
+      margin: 0;
+      padding: 0;
+      color: #000;
+      border-top: #CACACA;
+      text-align: left;
+      list-style: none inside;
+      height: 100%;
+  }
+  li {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+      text-align: right;
+  }
+  li a {
+      margin: 0;
+      padding: 5px;
+      overflow: hidden;
+      display: block;
+      height: 34px;
+      line-height: 34px;
+      text-decoration: none;
+      color: #FFFFFF;
+      text-transform: uppercase;
+  }
+  li a:hover {
+      background: #454545;
+  }
+}
+#open-left:checked ~ #button_open-left {
+    display: none;
+}
+#open-left:checked ~ #button_close-left {
+    display: inline;
+}
+#open-left:checked ~ #menu-left {
+    width: 100%;
+}
+
+/****************************************
+サジェスト
+****************************************/
+
+#mobile_suggest_form {
+  width: 80%;
+  margin: 20px 10% 0 10%;
+  padding: 1em 0.5em;
+  background-color: #fff;
+  border: 1px solid $green;
+  font-size: 16px;
+}
+
+#mobile_suggest {
+  margin-left: 10%;
+  margin-top: 10px;
+
+}
+
+#mobile_suggest div {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 80%;
+  font-size: 16px;
+  margin: 1em 0;
+}
+
+#mobile_suggest div.select {
+  color: #fff;
+  background-color: $darkblue;
+}
+
+.search-btn {
+  margin-left: 10%;
+  height: 36px;
+  background-color: $green;
+  line-height: 25px;
+  padding: 6px 12px!important;
+  color: #fff;
+  position: relative;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+
+/****************************************
+ボタン
+****************************************/
+
+.button {
+  width: auto;
+  border-radius: 5px;
+  background-color: #ccc;
+  color: #fff;
+  font-size: 12px;
+}
+.black-bg {
+  border: 1px solid $darkblue;
+  color: $darkblue;
+}
+.yellow-bg {
+  border: 1px solid $yellow;
+  color: $yellow;
+}
+.pink-bg {
+  border: 1px solid $pink;
+  color: $pink;
+}
+
+.footer {
+  width: 100%;
+  height: 280px;
+  text-align: center;
+  background-color: $green;
+  color: #fff;
+  .logo-m {
+    background-color: $green;
+    width: 100%;
+  }
+  .team-m {
+    width: 20%;
+    display: inline;
+  }
+  a {
+    color: #fff;
+    font-size: 10px;
+    font-weight: 100;
+  }
+  a:hover {
+    text-decoration: none;
+    color: #ccc;
+  }
+}
+
+#social-button-wrap {
+  display: table;
+  margin: auto;
+  .fb-like {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  iframe {
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+    left: 18px;
+  }
+}
+
+.dot-separater {
+  width: 100%;
+  height: 30px;
+  margin: 0px 0 0px 0;
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  li {
+    background-color: $green;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 10px;
+  }
+}
+
+.dot-separater-mini {
+  width: 100%;
+  height: 30px;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  li {
+    background-color: $green;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 10px;
+  }
+}
+
+.paginate--wrapper {
+  width: 100%;
+  margin-bottom: 60px;
+  text-align: center;
+  .pagination {
+    .page {
+      font-size: 18px;
+      margin: 0 3px;
+      a {
+        color: $green;
+      }
+    }
+  }
+}

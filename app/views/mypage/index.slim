@@ -1,0 +1,89 @@
+== include_gon
+== javascript_include_tag "mypage/mypage_average"
+== javascript_include_tag "mypage/mypage_favorite"
+== javascript_include_tag "vendor/scroll"
+== render 'layouts/navbar'
+
+.container-mini.mypage-wrapper
+  .mypage-menu
+    .mypage-menu-item
+      .menu-icon data-toggle="modal" href="#EditProfile"
+      .menu-name
+        a data-toggle="modal" href="#EditProfile" #{image_tag "settings.png", class: "list-image"}edit profile
+        == render 'layouts/profile_edit_modal'
+    .mypage-menu-item
+      .menu-icon href="#MyCompany"
+      .menu-name
+        - if current_user.my_company
+          a.scroll href="#MyCompany" #{image_tag "my_company.png", class: "list-image"}my company
+        - else
+          a href="#" role="button" rel="popover" data-html="true" data-trigger="hover" data-placement="bottom" data-content="#{t('mypage.index.no_my_company')}" #{image_tag "my_company.png", class: "list-image"}my company
+    .mypage-menu-item
+      .menu-icon href="#MyFavorite"
+      .menu-name
+        a.scroll href="#blank" #{image_tag "heart.png", class: "list-image"}favorite
+
+  - if current_user.my_company
+    .company#MyCompany
+      .company-title
+        p #{image_tag "bar-chart.png", class: "list-image"} #{t('mypage.index.what_is_shown', publish_day: @my_company.detail[:publish_day], company_name: (link_to @my_company.company[:name], jpn_path(number: @my_company.company[:company_number])), name: current_user.name)}
+        .company-info
+          ul
+            li #{t('mypage.index.number_of_employees')}: #{comma(@my_company.detail[:employee])}#{t('common.unit.people')}
+            li #{t('mypage.index.publish_day')}: #{@my_company.achievements.last[:publish_day]}
+            li #{t('mypage.index.market_value')}: #{t('common.unit.million_with_value_html', value: comma(@my_company.detail[:market_value]))}
+            li #{t('mypage.index.average_age')}: #{@my_company.detail[:age]}#{t('common.unit.age')}
+            li #{t('mypage.index.average_salary')}: #{t('common.unit.thousand_with_value', value: comma(@my_company.detail[:annual_income]))}
+        .company-graph
+          .btn.black = t('mypage.index.performance', company: @my_company.company[:name])
+          - unless request.smart_phone?
+            button.btn.yellow = t('mypage.index.compare_with_average')
+          .graph-area
+            p （#{t('common.unit.million')}）
+            .chart.js-average-barchart
+              canvas#MyPageAverage width="940" height="300"
+        .copy-right
+          p = t('common.confidential.name')
+  - else
+    .no_my_company
+      p #{image_tag "bar-chart.png", class: "list-image"}#{t('mypage.index.my_company.description_1')}
+      a data-toggle="modal" href="#EditProfile" = t('common.actions.register')
+      p = t('mypage.index.my_company.description_2')
+
+  - if @favorite_companies.blank?
+    .no_my_company
+      p #{image_tag "bar-chart.png", class: "list-image"}#{t('mypage.index.favorite.description')} #{link_to t('mypage.actions.search'), search_index_path}
+  - else
+    ul.dot-separater.dot-separater--wide
+      li
+      li
+      li
+    .mypage-menu#blank
+      p #{image_tag "my_company.png", class: "list-image"} #{t('mypage.index.favorite.company_for_you', name: current_user.name)}
+    - @favorite_companies.each.with_index(1) do |company, i|
+      .company#MyFavorite
+        .company-title
+          p
+            | #{bimage_tag "bar-chart.png", class: "list-image"} #{t('mypage.index.favorite.shown_company', publish_day: company.publish_day, company: (link_to company.name, jpn_path(number: company.company_number)))}
+          .company-info
+            ul
+              li #{t('mypage.index.number_of_employees')}: #{comma(company.employee)}#{t('common.unit.people')}
+              li #{t('mypage.index.publish_day')}: #{company.publish_day}
+              li #{t('mypage.index.market_value')}: #{t('common.unit.million', value: comma(company.market_value))}
+              li #{t('mypage.index.average_age')}: #{company.age}#{t('common.unit.age')}
+              li #{t('mypage.index.average_salary')}: #{t('common.unit.thousand_with_value', value: comma(company.annual_income))}
+          div class="company-favorite-graph"
+            .btn.black = t('mypage.index.performance', company: company.name)
+            - unless request.smart_phone?
+              - if @company_repository
+                button.btn.pink value="#{i}" = t('mypage.index.compare_with_company', company: @company_repository.company[:name])
+            .graph-area
+              p （#{common.unit.million}）
+              .chart class="js-favorite-barchart#{i}"
+                canvas id="MyPageFavorite#{i}" width="940" height="300"
+      .copy-right
+        p = t('common.confidential.name')
+      ul.dot-separater.dot-separater--wide
+        li
+        li
+        li

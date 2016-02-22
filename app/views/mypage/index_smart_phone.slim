@@ -1,0 +1,100 @@
+== render 'layouts/mobile/navbar'
+
+.all-wrapper
+  .mypage-menu
+    .mypage-menu-item
+      .menu-icon data-toggle="modal" href="#EditProfile"
+      .menu-name
+        = link_to t('mypage.index_smart_phone.menu.settings'), profile_edit_smart_phone_path
+    .mypage-menu-item
+      .menu-icon href="#MyCompany"
+      .menu-name
+        - if current_user.my_company
+          a.scroll href="#MyCompany" = t('mypage.index_smart_phone.menu.my_company')
+        - else
+          a href="#" role="button" rel="popover" data-html="true" data-trigger="hover" data-placement="bottom" data-content="#{t('mypage.index.no_my_company')}" = t('mypage.index_smart_phone.menu.my_company')
+    .mypage-menu-item
+      .menu-icon href="#MyFavorite"
+      .menu-name
+        a.scroll href="#blank" = t('mypage.index_smart_phone.menu.favorite')
+
+  - if current_user.my_company
+    .company#MyCompany
+      .company-title
+        p
+          |#{image_tag "bar-chart.png", class: "list-image"} #{t('mypage.index_smart_phone.what_is_shown_html', publish_day: @my_company.achievements.last[:publish_day], company_name: (link_to @my_company.company[:name], jpn_path(number: @my_company.company[:company_number])))}
+          br
+          |#{t('mypage.index_smart_phone.my_company', name: current_user.name)}
+        .company-info-jpn
+          li
+            |#{t('mypage.index.number_of_employees')}
+            br
+            |#{comma(@my_company.detail[:employee])}#{t('common.unit.people')}
+          li
+            |#{t('mypage.index.market_value')}
+            br
+            |#{t('common.unit.million_with_value_html', value: comma(@my_company.detail[:market_value]))}
+          li
+            |#{t('mypage.index.average_age')}
+            br
+            |#{@my_company.detail[:age]}#{t('common.unit.age')}
+          li
+            |#{t('mypage.index.average_salary')}
+            br
+            |#{t('common.unit.thousand_with_value', value: comma(@my_company.detail[:annual_income]))}
+        .company-graph
+          .graph-area
+            p （#{t('common.unit.million')}）
+            .chart
+              canvas#MyPageAverage width="320" height="160"
+  - else
+    .no_my_company
+      p
+        |#{image_tag "bar-chart.png", class: "list-image"}#{t('mypage.index.my_company.description_1')}
+        a href="/mypage/profile_edit_smart_phone" = t('common.actions.register')
+        |#{t('mypage.index.my_company.description_2')}
+
+  - if @favorite_companies.blank?
+    .no_my_company
+      p
+        | #{image_tag "bar-chart.png", class: "list-image"}#{t('mypage.index_smart_phone.favorite.description')}
+        br
+        | #{t('mypage.index_smart_phone.favorite.max')}
+        br
+        | >> #{link_to t('mypage.actions.search'), jpn_industries_path}
+  - else
+    #blank
+    .mypage-meu
+    - @favorite_companies.each.with_index(1) do |company, i|
+      .company#MyFavorite
+        .company-title
+          p
+            | #{image_tag "bar-chart.png", class: "list-image"} #{t('mypage.index_smart_phone.what_is_shown_html', publish_day: company.achievements.first[:publish_day], company_name: (link_to company.name, jpn_path(number: company.company_number)))}
+            br
+            |(#{t('mypage.index.favorite.company_for_you', name: current_user.name)})
+          .company-info-jpn
+            li
+              |#{t('mypage.index.number_of_employees')}
+              br
+              |#{comma(company.employee)}#{t('common.unit.people')}
+            li
+              |#{t('mypage.index.market_value')}
+              br
+              |#{t('common.unit.million_with_value_html', value: comma(company.market_value))}
+            li
+              |#{t('mypage.index.average_age')}
+              br
+              |#{company.age}#{t('common.unit.age')}
+            li
+              |#{t('mypage.index.average_salary')}
+              br
+              |#{t('common.unit.thousand_with_value', value: comma(company.annual_income))}
+          div class="company-favorite-graph"
+            .graph-area
+              p （#{t('common.unit.million')}）
+              .chart
+                canvas id="MyPageFavorite#{i}" width="320" height="160"
+
+== javascript_include_tag "mypage/mypage_average"
+== javascript_include_tag "mypage/mypage_favorite"
+== javascript_include_tag "vendor/scroll"

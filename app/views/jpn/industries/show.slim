@@ -1,0 +1,76 @@
+== include_gon
+== javascript_include_tag "industry/industry_graph"
+== javascript_include_tag "vendor/scroll"
+== render 'layouts/navbar'
+
+.container-mini.industry-wrapper
+  ol.breadcrumb.breadcrumb--industry
+    li: a href="#{root_path}" #{t('jpn.companies.common.menu.top')}
+    li: a href="#{search_index_path}" #{t('jpn.companies.common.menu.search')}
+    li: a href="#{jpn_industries_path}" #{t('jpn.companies.common.menu.industry_list')}
+    li.active = t('jpn_industries.ja')[params[:id].to_i]
+  .industry-name
+    h1 = t('jpn.industries.show.ranking', industry: t('jpn_industries.ja')[params[:id].to_i])
+    li.back: a.scroll href="#next-rank" #{t('jpn.industries.show.sales_top_ten')}
+    li.back ｜
+    li.back: a.scroll href="#{companies_jpn_industry_path(id: params[:id])}" #{t('jpn.industries.show.list')}
+  .company.industry
+    .company-title.heading__h2--industry
+      h2 #{image_tag "bar-chart.png", class: "list-image"}#{t('jpn.industries.show.year_top_five', year: last_year, industry: t('jpn_industries.ja')[params[:id].to_i])}
+    .industry-menu
+      .industry-menu-item
+        .industry-menu-name
+          a class="js-sale" = t('common.bases.sale')
+      .industry-menu-item
+        .industry-menu-name
+          a class="js-operating_profit" = t('common.bases.operating_profit')
+      .industry-menu-item
+        .industry-menu-name
+          a class="js-ordinary_profit" = t('common.bases.ordinary_profit')
+      .industry-menu-item
+        .industry-menu-name
+          a class="js-net_income" = t('common.bases.net_income')
+      .industry-menu-item
+        .industry-menu-name
+          a class="js-market_value" = t('common.bases.market_value')
+      .industry-menu-item
+        .industry-menu-name
+          a class="js-employee" = t('jpn.industries.show.number_of_employees')
+      .industry-menu-item
+        .industry-menu-name
+          a class="js-annual_income" = t('jpn.industries.show.average_salary')
+      .industry-menu-item
+        .industry-menu-name
+          a class="js-age" = t('jpn.industries.show.average_age')
+    .company-graph
+      .btn.black = t('jpn.industries.show.top_five', industry: t('jpn_industries.ja')[params[:id].to_i])
+      - unless request.smart_phone?
+        button.btn.yellow = t('jpn.industries.show.compare_with_average')
+      .graph-area
+        .chart.js-barchart
+          p.js-barchart-unit （#{t('common.unit.million')}）
+          canvas#Industry width="940" height="300"
+
+  ul.dot-separater
+    li
+    li
+    li
+  h2.rank-title = t('jpn.industries.show.industry_sales_top_ten', industry: t('jpn_industries.ja')[params[:id].to_i])
+  #next-rank
+    - @best_ten.each do |company|
+      nav
+        = link_to jpn_path(number: company.company_number) do
+          h3 = company.name
+          table
+            tr
+              td #{t('common.bases.sale')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(zero_to_hyphen company.sale)))}
+              td #{t('common.bases.operating_profit')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(zero_to_hyphen company.operating_profit)))}
+            tr
+              td #{t('common.bases.ordinary_profit')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(zero_to_hyphen company.ordinary_profit)))}
+              td #{t('common.bases.net_income')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(zero_to_hyphen company.net_income)))}
+
+  a.to-all-companies.pull-right href = "#{companies_jpn_industry_path(id: params[:id])}" = t('jpn.industries.show.to_list')
+
+
+javascript:
+  PS.INDUSTRY_ID = "#{params[:id]}"

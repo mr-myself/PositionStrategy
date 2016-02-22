@@ -1,0 +1,127 @@
+@import  "color";
+
+.industry-name {
+  font-size: 20px;
+  text-align: center;
+}
+.industry-nav {
+  box-shadow: 1px -1px 1px #ccc;
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  line-height: 30px;
+  z-index: 99;
+  a {
+    color: $green;
+    border: 1px solid $green;
+    border-radius: 4px;
+    width: 33.3% - 4%;
+    height: 30px;
+    display: inline-block;
+    margin: 5px 2%;
+  }
+  a:hover {
+    text-decoration: none;
+    background-color: $green;
+    color: #fff;
+  }
+  .nav-icon {
+    width: 14px;
+    height: 14px;
+    position: relative;
+    bottom: 2px;
+  }
+}
+
+
+.company {
+  margin-bottom: 50px;
+  .company-title {
+    font-size: 12px;
+    text-align: center;
+    p {
+      text-align: center;
+    }
+  }
+  .company-graph {
+    > p {
+      text-align: center;
+    }
+  }
+  .icon-mini {
+    width: 14px;
+    height: 14px;
+    margin-right: 3px;
+  }
+  .graph-grid {
+    height: 240px;
+    padding-top: 20px;
+  }
+  .graph-grid-top {
+    padding-top: 0px!important;
+    height: 210px;
+  }
+  .graph-area {
+    h3 {
+      font-size: 12px;
+      padding: 0.5em 0;
+      text-align: center;
+      color: $darkblue;
+    }
+    p {
+      font-size: 8px;
+      margin-left: 10%;
+    }
+  }
+  .graph-label-wrapper {
+    padding: 0 20px;
+    margin-top: 30px;
+    li {
+      list-style: none;
+      font-size: 16px;
+      margin: 5px 0;
+      a {
+        color: $green;
+      }
+    }
+  }
+}
+
+.rank-title {
+  margin: 40px 0;
+  text-align: center;
+  width: 100%;
+  color: $darkblue;
+  border-top: 1px solid $darkblue;
+  border-bottom: 1px solid $darkblue;
+  height: 30px;
+  line-height: 30px;
+  margin: 20px 0;
+}
+
+#next-rank, #all-companies-list{
+  margin-bottom: 50px;
+  .grid {
+    width: 90%;
+    margin: 0 auto;
+  }
+  h2 {
+    font-size: 14px;
+    color: $green;
+  }
+  td {
+    font-size: 12px;
+  }
+  a {
+    color: #000;
+  }
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}

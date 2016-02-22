@@ -1,0 +1,22 @@
+- detail = case params[:controller]
+- when /companies/
+  - if @company_repository and @compare_company
+    - t('page_title.compare', company_1: @company_repository.company.name, company_2: @compare_company.company.name)
+  - else
+    - t('page_title.transition', company: @company_repository.company.name)
+- when 'jpn/industries'
+  - case params[:action]
+  - when 'index'
+    - t('page_title.list.tosho_mothers')
+  - when 'show'
+    - t('page_title.list.industry_top_company', industry: t('jpn_industries.ja')[params[:id].to_i])
+- when 'us/industries'
+  - case params[:action]
+  - when 'index'
+    - t('page_title.list.nyse_nasdaq')
+  - when 'show'
+    - t('page_title.list.industry_top_company', industry: t('us_industries.ja')[params[:id].to_i])
+- else
+  - t('common.sub_title_3')
+
+= content_tag(:title, "#{detail} - PositionStrategy")

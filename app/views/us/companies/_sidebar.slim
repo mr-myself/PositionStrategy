@@ -1,0 +1,29 @@
+.col-xs-3#sidebar
+  .wrapper--company--reco-box
+    - if @competitors.present?
+      .reco-list.wrapper--company--reco-box__competitor
+        h2 = t('us.companies.common.competitor', company: @company_repository.company.name)
+        - @competitors.try(:each) do |competitor|
+          .reco-item
+            h3.similar-name href="#{us_path(symbol: competitor[:symbol])}" = competitor[:name]
+            a.go-new href="#{us_path(symbol: competitor[:symbol])}" = t('us.companies.common.menu.see_graph')
+            a.go-compare href="#{us_compare_path(symbol: params[:symbol], compare: competitor[:symbol])}" = t('us.companies.common.menu.compare')
+      ul.dot-separater.dot-separater--us-company__side
+        li
+        li
+        li
+    .reco-list
+      h2 = t('us.companies.common.recommendation', company: @company_repository.company.name)
+      - @similar_companies.try(:each) do |similar|
+        .reco-item
+          h3.similar-name href="#{us_path(symbol: similar[:symbol])}" = similar[:name]
+          a.go-new href="#{us_path(symbol: similar[:symbol])}" = t('us.companies.common.menu.see_graph')
+          a.go-compare href="#{us_compare_path(symbol: params[:symbol], compare: similar[:symbol])}" = t('us.companies.common.menu.compare')
+          br
+    .search-box.company-suggest
+      = form_tag us_search_for_compare_path do
+        input#second_suggest_form.form-controll type="text" name="name" value="" autocomplete="off" placeholder="#{t('placeholder.search.compare')}"
+        input.search-btn type="submit" class="confirm-button btn" value="SEARCH"
+        br
+        input type="hidden" name="symbol" value="#{params[:symbol]}"
+        #second_suggest.suggest-home style="display:none;"

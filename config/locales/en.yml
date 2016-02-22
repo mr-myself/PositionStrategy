@@ -1,0 +1,517 @@
+en:
+  common:
+    sub_title: 'Visualizing Company Performances With Beautiful Chart'
+    sub_title_2: 'All Companies in Japanese and U.S. Market'
+    sub_title_3: 'Comparing and Analyzing Company Performances'
+    bases:
+      sale: 'Sales'
+      operating_profit: 'Operating Profit'
+      ordinary_profit: 'Ordinary Profit'
+      net_income: 'Net income'
+      market_value: 'Market Value'
+    actions:
+      login: 'Log ing'
+      share: 'Share'
+      register: 'Register'
+    unit:
+      people: 'people'
+      age: 'age'
+      million: 'million'
+      million_with_value_html: '$%{value}M'
+      thousand_with_value: '$%{value} thousand'
+    confidential:
+      name: '©PositionStrategy'
+      explanation: 'Feel free to use graph in documents and so on.'
+
+  errors:
+    format: "%{attribute}%{message}"
+
+  meta:
+    og:
+      description:
+        company: "Visualizing %{company}'s account settlement. Comparing and analyzing company performances service. You can get to know sales, profit and market value etc easily."
+        compare: "Comparing %{company_1} and %{company_2}'s account settlemtn with charts. Comparing and analyzing company performances service. You can get to know sales, profit and market value etc easily."
+        default: 'Comparing and analyzing company performances service. You can get to know sales, profit and market value etc easily.'
+    description:
+      company: "Visualizing %{company}'s account settlement. Comparing and analyzing company performances service. You can get to know sales, profit and market value etc easily."
+      industry: "Visualizing companies account settlements in %{industry} industry. Comparing and analyzing company performances service. You can get to know sales, profit and market value etc easily."
+      default: 'Comparing and analyzing company performances service. You can get to know sales, profit and market value etc easily.'
+
+  navbar:
+    menu:
+      top: 'TOP'
+      jpn_industry: 'JPN Industry'
+      us_industry: 'U.S. Industry'
+      mypage: 'MyPage'
+      logout: 'Log out'
+      login: 'Log in'
+      signup: 'Signup for free'
+
+  page_title:
+    compare: 'Comparing Performance of %{company_1} and %{company_2}'
+    transition: "Trend of %{company}'s performances"
+    list:
+      tosho_mothers: 'Industries in Tokyo Stock Exchange'
+      nyse_nasdaq: 'Industries in NYSE and NASDAQ'
+      industry_top_company: 'Top-class companies in %{industry} industry'
+
+  flash:
+    no_company_data: 'No data about the company'
+    failed_signin: 'Failed to log in'
+
+  logger:
+    errors:
+      smtp: 'Cannot connect to SMTP'
+      sending_mail: 'Sending Mail Error'
+
+  home:
+    index:
+      recommendation:
+        title: '[Recommend Companies]'
+        jpn: 'Japanese companies'
+        us: 'U.S. companies'
+      industry:
+        jpn: 'Japanese Industries'
+        us: 'U.S. Industries'
+
+  jpn:
+    companies:
+      common:
+        menu:
+          top: 'TOP'
+          search: 'Search'
+          industry_list: 'Japanese Industries'
+        recommendation_company: 'Recommendation for people who checked %{company}'
+        show_graph: 'See graph'
+        compare: 'Compare'
+        favorite:
+          add: 'Add to favorite'
+          remove: 'Remove from favorite'
+          done_add: ''
+          explanation: 'You can add to favorite it if you log in'
+      compare:
+        transition: 'Trend of performance'
+      show:
+        number_of_employees: 'Employees'
+        settling_day: 'Settlement Date'
+        market_value: 'Market Value'
+        average_age: 'Average Age'
+        average_salary: 'Annual Income'
+        compare_with_average: 'Compare with Average'
+        compare_with_company: 'Compare with %{company}'
+        transition: 'Trend of performance'
+      show_smart_phone:
+        all_performance: 'All'
+        recommendation_company: 'Recommend'
+        performance: 'Settlement on %{period}'
+        industry_average: 'Industry Average'
+        recommendation_for_you: 'Recommendation for people who checked %{company}'
+    industries:
+      index:
+        all_industries: 'All 33 Industries (The first and second sections of the Tokyo Stock Exchange, Mothers)'
+        description: 'You can see the top 5 sales, profits etc in each industries.'
+      index_smart_phone:
+        all_industries: 'Japanese Industries (All 33)'
+      companies:
+        back_to_list: 'Back to Industry list'
+        back_to_industry: 'Back to %{industry}'
+        list: 'All companies in %{industry} industry'
+        all: 'Companies in %{industry} industry'
+      companies_smart_phone:
+        all: 'Companies in %{industry} industry'
+      show:
+        ranking: 'Ranking in %{industry} industry'
+        sales_top_ten: 'Sales Top 10 Companies'
+        industry_sales_top_ten: 'Sales Top 10 in %{industry} industry'
+        list: 'Companies in this industry'
+        to_list: 'Back to Companies in this industry'
+        year_top_five: 'Top 5 companies in %{industry} industry in %{year}'
+        top_five: 'Top 5 companies in %{industry} industry'
+        number_of_employees: 'Employees'
+        average_age: 'Average Age'
+        average_salary: 'Annual Income'
+        compare_with_average: 'Compare with Average'
+      show_smart_phone:
+        menu:
+          sales_top_ten: 'Sales TOP 10'
+          list: 'All Companies'
+
+  us:
+    industries:
+      common:
+        menu:
+          top: 'TOP'
+          search: 'Search'
+          industry_list: 'Industries in U.S.'
+          industry_companies: 'All Companies in %{industry} industry'
+          sales_top_ten: 'Sales TOP 10'
+          all_companies: 'All Companies'
+      companies:
+        to_industry_top: 'Back to %{industry} industry'
+        to_list: 'Back to Industry List'
+      index:
+        all_industry_list: 'All 10 Industries (NYSE, NASDAQ)'
+        explanation_about_ranking: 'You can see the top 5 sales, profits etc in each industries.'
+        industry_name: '%{industry} Industry'
+      index_smart_phone:
+        list: 'Industries in U.S.(All 10)'
+      show:
+        ranking: 'Ranking in %{industry}'
+        sales_top_ten: 'Sales TOP 10'
+        industry_sales_top_ten: 'Sales TOP 10 companies in %{industry}'
+        list: 'Companies in this industry'
+        to_list: 'Back to Companies in this industry'
+        ranking_top_five: 'Top 5 Companies in %{industry} industry on %{period}'
+        industry_top_five: 'TOP 5 in %{industry} industry'
+        compare_with_average: 'Compare with Average'
+
+    companies:
+      common:
+        menu:
+          top: 'TOP'
+          search: 'Search'
+          industry_list: 'Industries in U.S.'
+          see_graph: 'See graph'
+          compare: 'Compare'
+        competitor: 'Competitor of %{company}'
+        recommendation: 'Recommendation for people who checked %{company}'
+        unit:
+          operating_profit_rate: 'Operating Profit Rate'
+          profit_rate: 'Profit Rate'
+      compare:
+        latest_period: 'Latest Period'
+        transition: 'Trend of Performance'
+      show:
+        latest_period: 'Latest Period'
+        compare_with_average: 'Compare with Average'
+      show_smart_phone:
+        menu:
+          all_performance: 'All'
+          recommendation: 'Recommend'
+        period_performance: 'Settlement on %{period}'
+        industry_average: 'Industry Average'
+
+  mypage:
+    actions:
+      search: 'Search for a company'
+    index:
+      no_my_company: "Not yet registered company you work"
+      what_is_shown: "%{company_name}'s performance on %{publish_day}. (%{name}'s company)"
+      number_of_employees: 'Employees'
+      publish_day: 'Settlement Date'
+      market_value: 'Market Value'
+      average_age: 'Average Age'
+      average_salary: 'Annual Income'
+      performance: "%{company}'s performance"
+      compare_with_average: 'Compare with Average'
+      compare_with_company: 'Compare with %{company}'
+      my_company:
+        description_1: 'If you register your company, '
+        description_2: "it'll be shown here."
+      favorite:
+        description: "If you add companies as favorite, they'll be shown here. >>"
+        company_for_you: "%{name}'s favorite company"
+        shown_company: "%{company}'s performance on %{publish_day}"
+    index_smart_phone:
+      menu:
+        settings: 'Settings'
+        my_company: 'MyCompany'
+        favorite: 'Favorite'
+      what_is_shown_html: "%{company_name}'s performance on %{publish_day}"
+      my_company: "(%{name}'s company)"
+      favorite:
+        description: "If you add companies as favorite, they'll be shown here. >>"
+        max: '(Maximum is 5)'
+
+  reset_password:
+    forgot_form:
+      title: 'PASSWORD RESET'
+      please_confirm: 'Check your mail box, please.'
+    reset_form:
+      title: 'PASSWORD RESET'
+
+  search:
+    actions:
+      search: 'Search for a company'
+    index:
+      top: 'TOP'
+      search: 'Search'
+      jpn_companies: 'Japanese Recommend Companies'
+      compare_jpn_companies: 'Comparing in Japanese Stock Market'
+      us_companies: 'U.S. Recommend Companies'
+      compare_us_companies: 'Comparing in U.S. Stock Market'
+
+  users:
+    new:
+      my_company: 'Your Company'
+      terms:
+        title: 'Terms'
+        accept: 'accept'
+        content_html: '
+                | 第６条　個人情報について
+                <br>
+                | １．会員になろうとする方は、当社所定の情報を当社に登録する必要があります。
+                <br>
+                | ２．会員の本サービスの利用履歴は、会員が当社に届け出たニックネームとともにウェブサイト上で当社が定める期間、公開されます。
+                <br>
+                | ３．当社は、会員の個人情報を以下の目的で利用することができるものとします。
+                <br>
+                | a.本人確認、認証サービスのため
+                <br>
+                | b.アフターサービス、問い合わせ、苦情対応のため
+                <br>
+                | c.マーケティングデータの調査、統計、分析のため
+                <br>
+                | d.懸賞、キャンペーンの実施のため
+                <br>
+                | e.アンケートの実施のため
+                <br>
+                | f.アフィリエイト、ポイントサービスの提供のため
+                <br>
+                | g.新サービス、新機能の開発のため
+                <br>
+                | h.システムの維持、不具合対応のため
+                <br>
+                | i.会員記述情報の掲載のため
+                <br>
+                | j.料金請求、課金計算のため
+                <br>
+                | k.コンテンツその他の情報提供サービス、システム利用サービス、オークション、ショッピングモールの提供のため
+                <br>
+                | l.当社及び第三者の商品等（旅行、保険その他の金融商品を含む。以下同じ。）の販売、販売の勧誘、発送、サービス提供のため
+                <br>
+                | m.当社及び第三者の商品等の広告又は宣伝（ダイレクトメールの送付、電子メールの送信を含む。）のため
+                <br>
+                | n.決済サービス、物流サービスの提供のため
+                <br>
+                |
+                <br>
+                | ４．当社は、以下に定める場合には、会員の個人情報を第三者に提供することができるものとします。
+                <br>
+                |
+                <br>
+                | a.会員の同意がある場合
+                <br>
+                | b.裁判所、検察庁、警察、税務署、弁護士会又はこれらに準じた権限を有する機関から開示を求められた場合
+                <br>
+                | c.会員が当社に対し支払うべき料金その他の金員の決済を行うために、金融機関、クレジットカード会社、回収代行業者その他の決済又はその代行を行う事業者に開示する場合
+                <br>
+                | d.当社が行う業務の全部又は一部を第三者に委託する場合
+                <br>
+                | e.当社に対して秘密保持義務を負う者に対して開示する場合
+                <br>
+                | f.当社の権利行使に必要な場合
+                <br>
+                | g.合併、営業譲渡その他の事由による事業の承継の際に、事業を承継する者に対して開示する場合
+                <br>
+                | h.個人情報保護法その他の法令により認められた場合
+                <br>
+                |
+                <br>
+                | ５．当社は、会員に対し、第三者の広告又は宣伝等のために電子メールその他の広告宣伝物を送信できるものとし、会員はこれを予め承諾するものとします。
+                <br>
+                |
+                <br>
+                | ６．会員は個人情報保護法に違反する行為を行ってはならないものとします。'
+      signup:
+        twitter: 'sign up with twitter'
+        facebook: 'sign up with facebook'
+        via: 'signup'
+    new_smart_phone:
+      create: 'create your account'
+      label:
+        home: 'home'
+        industry: 'industry'
+        mypage: 'my page'
+        logout: 'log out'
+        login: 'log in'
+        signup: 'sign up'
+      actions:
+        close: 'CLOSE'
+        signup: 'SIGN UP'
+
+  navbar:
+    menu:
+      search: 'Search'
+      jpn_industry: 'JPN Industries'
+      us_industry: 'U.S. Industries'
+      logout: 'Log out'
+      mypage: 'MyPage'
+      login: 'Log in'
+      how_to_use: 'How to use'
+
+  login_modal:
+    to_forgot_password: 'Forgot your password?'
+    to_signup: 'Signup'
+    login_via: 'log in'
+
+  profile_edit_modal:
+    my_company: 'MyCompany'
+    current_company: 'Current company'
+
+  how_to_use_modal:
+    search_company:
+      title: 'How to search for a company'
+      descriptioan: 'You can see companies data from Japanese Stock Market(The first and second sections of the Tokyo Stock Exchange, Mothers) and U.S. Stock Market(NYSE and NASDAQ).'
+      search: '>> Search for a company'
+    search_from_industry:
+      title: 'How to search for a company from an industry'
+      description: "On the menu 'Japanese Industries' or 'U.S. Industries', you can seach for a company from industry. If you go to industry page, you can compare top 5 companies in the industry. You can see all companies in the industry."
+      search: '>> Search from a industry'
+    graph:
+      title: 'How to use graph'
+      description: "The graph has 2 buttons which are pink and yellow. Click the 'Compare with Average' or 'Compare with your company' buttons. Graphs will be shown and you can compare easily."
+      see: ">> See the Demo of company's graph"
+    my_company:
+      title: "Explanation of company which you're working for"
+      description: "To use 'Compare with your company' button, you need to add the company you're working for from edit your profile page. If you signup, you can use the button. You can check your company on 'MyPage'"
+      signup: '>> Signup'
+    favorite:
+      title: 'How to use favorite function'
+      description: 'At company page, you can add the company as a favorite. If you add it, you can check the company anytime on MyPage. Using this function, you need to signup. (Maximum is 5 companies)'
+
+  error_404:
+    title_1: 'Not Found'
+    title_2: 'No pages found. Check the URL, please.'
+
+  error_500:
+    title_1: 'Something, wrong'
+    title_2: "We're so sorry. Errors happend."
+
+  placeholder:
+    input_company_name: 'Fill in the company name, please'
+    search:
+      search: 'Search'
+      compare: 'Type the company name you want to compare'
+      company: 'Type the company name you want to search for'
+    password: "No need to type if you don't need to change password"
+    password_text_length: 'Over 8 characters'
+    password_confirmation: 'Type the password again.'
+    company_name: 'Fill in the company name, please'
+
+  mail:
+    password_reset:
+      send_mail:
+        subject: '[PositionStrategy] Reset Password'
+        hello: "Hello! We're PositionStrategy."
+        password_link: 'Click under the link and reset the password, please.'
+        thanks: "We're looknig forward to seeing you again on PositionStrategy."
+        throw_away: "If you don't know about this mail, delete this, please."
+
+  jpn_industries:
+    ja:
+      1: 'Agriculture'
+      2: 'Mining'
+      3: 'Building'
+      4: 'Groceries'
+      5: 'Texitle goods'
+      6: 'Pulp/Paper'
+      7: 'Chemistry'
+      8: 'Nostrum'
+      9: 'Petroleum/Coal products'
+      10: 'Rubber goods'
+      11: 'Glass/Ceramic products'
+      12: 'Steel'
+      13: 'Nonferrous Metal'
+      14: 'Metal goods'
+      15: 'Machinery'
+      16: 'Electronic goods'
+      17: 'Transport Equipment'
+      18: 'Precision Machine'
+      19: 'Other products'
+      20: 'Electricity,gas supply'
+      21: 'Land Transportation'
+      22: 'Shipping'
+      23: 'Air Transportation'
+      24: 'Other Transportation'
+      25: 'Telecommunications'
+      26: 'Wholesale Business'
+      27: 'Retail Trade'
+      28: 'Banking Business'
+      29: 'Securities Business'
+      30: 'Insurance'
+      31: 'Other Finantial Business'
+      32: 'Real Estate Business'
+      33: 'Service'
+    en:
+      1: 'Agriculture'
+      2: 'Mining'
+      3: 'Building'
+      4: 'Groceries'
+      5: 'Texitle goods'
+      6: 'Pulp/Paper'
+      7: 'Chemistry'
+      8: 'Nostrum'
+      9: 'Petroleum/Coal products'
+      10: 'Rubber goods'
+      11: 'Glass/Ceramic products'
+      12: 'Steel'
+      13: 'Nonferrous Metal'
+      14: 'Metal goods'
+      15: 'Machinery'
+      16: 'Electronic goods'
+      17: 'Transport Equipment'
+      18: 'Precision Machine'
+      19: 'Other products'
+      20: 'Electricity,gas supply'
+      21: 'Land Transportation'
+      22: 'Shipping'
+      23: 'Air Transportation'
+      24: 'Other Transportation'
+      25: 'Telecommunications'
+      26: 'Wholesale Business'
+      27: 'Retail Trade'
+      28: 'Banking Business'
+      29: 'Securities Business'
+      30: 'Insurance'
+      31: 'Other Finantial Business'
+      32: 'Real Estate Business'
+      33: 'Service'
+
+  us_industries:
+    ja:
+      1: 'Other'
+      2: 'Basic Materials'
+      3: 'Conglomerates'
+      4: 'Consumer Goods'
+      5: 'Financial'
+      6: 'Healthcare'
+      7: 'Industrial Goods'
+      8: 'Services'
+      9: 'Technology'
+      10: 'Utilities'
+    en:
+      1: 'Other'
+      2: 'Basic Materials'
+      3: 'Conglomerates'
+      4: 'Consumer Goods'
+      5: 'Financial'
+      6: 'Healthcare'
+      7: 'Industrial Goods'
+      8: 'Services'
+      9: 'Technology'
+      10: 'Utilities'
+
+  views:
+    pagination:
+      truncate: '...'
+      next: ' > '
+      last: ' >> '
+      previous: ' < '
+      first: ' << '
+
+  activerecord:
+    models:
+      user: 'User'
+    attributes:
+      user:
+        name: 'Name'
+        email: 'Email'
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              taken: 'is taken.'
+            email:
+              taken: 'is taken.'

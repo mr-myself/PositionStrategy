@@ -1,0 +1,24 @@
+@import  'color';
+
+.breadcrumb {
+  li {
+    padding: 0 5px;
+    margin: 0;
+  }
+  a {
+    color: $green
+  }
+}
+
+.breadcrumb--search {
+}
+
+.breadcrumb--company,
+.breadcrumb--industry-list {
+  margin: 10px 0 30px 0;
+}
+
+.breadcrumb--industry,
+.breadcrumb--all-company-list {
+  margin: 10px 0 30px 0;
+}

@@ -1,0 +1,517 @@
+ja:
+  common:
+    sub_title: '見ていて飽きない、企業情報グラフ化サービス'
+    sub_title_2: '日米マーケット上場企業データ対象'
+    sub_title_3: '業績比較＆グラフ化サービス'
+    bases:
+      sale: '売上高'
+      operating_profit: '営業利益'
+      ordinary_profit: '経常利益'
+      net_income: '当期利益'
+      market_value: '時価総額'
+    actions:
+      login: 'ログイン'
+      share: 'シェア'
+      register: '登録'
+    unit:
+      people: '人'
+      age: '歳'
+      million: '百万円'
+      million_with_value_html: '%{value}百万円'
+      thousand_with_value: '%{value}千円'
+    confidential:
+      name: '©PositionStrategy'
+      explanation: 'グラフはご自由に資料などにお使いください。'
+
+  errors:
+    format: "%{attribute}%{message}"
+
+  meta:
+    og:
+      description:
+        company: '%{company}の決算をグラフで可視化。企業データグラフ化＆比較サービス。売上高や時価総額を直感的に分析・理解できます。東証、マザーズなどの市場に対応しています。'
+        compare: '%{company_1}と%{company_2}の決算をグラフで比較。企業データグラフ化＆比較サービス。売上高や時価総額を直感的に分析・理解できます。東証、マザーズなどの市場に対応しています。'
+        default: '企業データグラフ化＆比較サービス。上場企業の決算を、売上高や時価総額で直感的にグラフで理解できます。東証、マザーズなどの市場に対応しています。'
+    description:
+      company: '企業データグラフ化＆比較サービス。%{company}の決算をグラフで可視化。売上高や時価総額を直感的に分析・理解できます。東証、マザーズなどの市場に対応しています。'
+      industry: '企業データグラフ化＆比較サービス。%{industry}業界の上場企業の決算を分析しましょう。売上高や時価総額を直感的にグラフで理解できます。東証、マザーズなどの市場に対応しています。'
+      default: '企業データグラフ化＆比較サービス。上場企業の決算を、売上高や時価総額で直感的にグラフで理解できます。東証、マザーズなどの市場に対応しています。'
+
+  navbar:
+    menu:
+      top: 'トップ'
+      jpn_industry: '日本の業界一覧'
+      us_industry: '米国の業界一覧'
+      mypage: 'マイページ'
+      logout: 'ログアウト'
+      login: 'ログイン'
+      signup: '登録（無料）'
+
+  page_title:
+    compare: '%{company_1}と%{company_2}の業績比較'
+    transition: '%{company}の業績推移'
+    list:
+      tosho_mothers: '東証・マザーズ上場企業の業界一覧'
+      nyse_nasdaq: 'NY証券・NASDAQ上場企業の業界一覧'
+      industry_top_company: '%{industry}のトップ企業の業績'
+
+  flash:
+    no_company_data: 'その企業のデータはありません'
+    failed_signin: 'ログインに失敗しました'
+
+  logger:
+    errors:
+      smtp: 'SMTPに接続できません'
+      sending_mail: 'メール送信エラーです'
+
+  home:
+    index:
+      recommendation:
+        title: '【おすすめ企業】'
+        jpn: '日本のおすすめ'
+        us: '米国のおすすめ'
+      industry:
+        jpn: '日本の業界'
+        us: '米国の業界'
+
+  jpn:
+    companies:
+      common:
+        menu:
+          top: 'トップ'
+          search: '検索'
+          industry_list: '日本の業界一覧'
+        recommendation_company: '%{company}を見た人におすすめの企業'
+        show_graph: 'グラフを見る'
+        compare: '比較する'
+        favorite:
+          add: 'お気に入りに追加'
+          remove: 'お気に入りから削除'
+          done_add: ''
+          explanation: 'ログインするとお気に入りに登録できます'
+      compare:
+        transition: '業績推移'
+      show:
+        number_of_employees: '従業員数'
+        settling_day: '決算日'
+        market_value: '時価総額'
+        average_age: '平均年齢'
+        average_salary: '平均年収'
+        compare_with_average: '業界平均と比べる'
+        compare_with_company: '%{company}と比較'
+        transition: '業績推移'
+      show_smart_phone:
+        all_performance: '全業績'
+        recommendation_company: 'おすすめ企業'
+        performance: '%{period}の業績'
+        industry_average: '業界平均'
+        recommendation_for_you: '%{company}を見た人におすすめの企業'
+    industries:
+      index:
+        all_industries: '全33業界一覧 （東証一部、二部、マザーズ）'
+        description: '各業界の売上高や平均年収などのランキングトップ5のグラフが見ることができます。'
+      index_smart_phone:
+        all_industries: '日本の業界リスト（全３３業界）'
+      companies:
+        back_to_list: '業界リスト一覧に戻る'
+        back_to_industry: '%{industry}のトップに戻る'
+        list: '%{industry}の上場企業一覧'
+        all: '%{industry}業界の企業一覧（東証一部、東証二部、マザーズ）'
+      companies_smart_phone:
+        all: '%{industry}業界の企業一覧'
+      show:
+        ranking: '%{industry}のランキング'
+        sales_top_ten: '売上トップ10の企業'
+        industry_sales_top_ten: '%{industry}業界の売上トップ10の企業'
+        list: 'この業界の企業一覧'
+        to_list: 'この業界の企業一覧へ'
+        year_top_five: '%{year}年の%{industry}業界トップ5の業績'
+        top_five: '%{industry}業界トップ5の業績'
+        number_of_employees: '従業員数'
+        average_age: '平均年齢'
+        average_salary: '平均年収'
+        compare_with_average: '業界平均と比べる'
+      show_smart_phone:
+        menu:
+          sales_top_ten: '売上TOP10'
+          list: '企業一覧'
+
+  us:
+    industries:
+      common:
+        menu:
+          top: 'トップ'
+          search: '検索'
+          industry_list: '米国の業界一覧'
+          industry_companies: '%{industry}業界の企業一覧'
+          sales_top_ten: '売上TOP10'
+          all_companies: '企業一覧'
+      companies:
+        to_industry_top: '%{industry}のトップに戻る'
+        to_list: '業界リスト一覧に戻る'
+      index:
+        all_industry_list: '全10業界一覧 (ニューヨーク証券、NASDAQ)'
+        explanation_about_ranking: '各業界の売上高や平均年収などのランキングトップ5のグラフが見ることができます。'
+        industry_name: '%{industry} Industry'
+      index_smart_phone:
+        list: '米国の業界リスト（全10業界）'
+      show:
+        ranking: '%{industry}のランキング'
+        sales_top_ten: '売上トップ10の企業'
+        industry_sales_top_ten: '%{industry}業界の売上トップ10の企業'
+        list: 'この業界の企業一覧'
+        to_list: 'この業界の企業一覧へ'
+        ranking_top_five: '%{period}の%{industry}業界ランキングトップ5の業績'
+        industry_top_five: '%{industry}業界トップ5の業績'
+        compare_with_average: '業界平均と比べる'
+
+    companies:
+      common:
+        menu:
+          top: 'トップ'
+          search: '検索'
+          industry_list: '米国の業界一覧'
+          see_graph: 'グラフを見る'
+          compare: '比較する'
+        competitor: '%{company}の競合企業'
+        recommendation: '%{company}を見た人におすすめの企業'
+        unit:
+          operating_profit_rate: '営業利益率'
+          profit_rate: '利益率'
+      compare:
+        latest_period: '最新期'
+        transition: '業績推移'
+      show:
+        latest_period: '最新期'
+        compare_with_average: '業界平均と比べる'
+      show_smart_phone:
+        menu:
+          all_performance: '全業績'
+          recommendation: 'おすすめ企業'
+        period_performance: '%{period}の業績'
+        industry_average: '業界平均'
+
+  mypage:
+    actions:
+      search: '企業を検索する'
+    index:
+      no_my_company: '勤務先の企業はまだ登録していません。'
+      what_is_shown: '%{publish_day}の%{company_name}の業績を表示しています。（%{name}さんの勤務先企業）'
+      number_of_employees: '従業員数'
+      publish_day: '決算日'
+      market_value: '時価総額'
+      average_age: '平均年齢'
+      average_salary: '平均年収'
+      performance: '%{company}の業績'
+      compare_with_average: '業界平均と比べる'
+      compare_with_company: '%{company}と比べる'
+      my_company:
+        description_1: 'ご自身の勤務先を'
+        description_2: 'すれば、企業情報がこちらに表示されます。'
+      favorite:
+        description: 'ストックしておきたい企業をお気に入りに登録すれば、ここにその企業情報が表示されます。>>'
+        company_for_you: '%{name}さんのお気に入り企業'
+        shown_company: '%{publish_day}の%{company}の業績を表示しています'
+    index_smart_phone:
+      menu:
+        settings: '設定'
+        my_company: '勤務先'
+        favorite: 'お気に入り'
+      what_is_shown_html: '%{publish_day}の%{company_name}の業績'
+      my_company: '（%{name}さんの勤務先企業）'
+      favorite:
+        description: 'ストックしておきたい企業をお気に入りに登録すれば、ここにその企業情報が表示されます。'
+        max: '（最大5社まで）'
+
+  reset_password:
+    forgot_form:
+      title: 'PASSWORD RESET'
+      please_confirm: '送信されるメールをご確認ください'
+    reset_form:
+      title: 'PASSWORD RESET'
+
+  search:
+    actions:
+      search: '企業を検索'
+    index:
+      top: 'トップ'
+      search: '検索'
+      jpn_companies: '日本市場おすすめの企業'
+      compare_jpn_companies: '日本市場　おすすめ2社比較'
+      us_companies: '米国市場おすすめの企業'
+      compare_us_companies: '米国市場　おすすめ2社比較'
+
+  users:
+    new:
+      my_company: '勤務先'
+      terms:
+        title: '利用規約'
+        accept: 'に同意する'
+        content_html: '
+                | 第６条　個人情報について
+                <br>
+                | １．会員になろうとする方は、当社所定の情報を当社に登録する必要があります。
+                <br>
+                | ２．会員の本サービスの利用履歴は、会員が当社に届け出たニックネームとともにウェブサイト上で当社が定める期間、公開されます。
+                <br>
+                | ３．当社は、会員の個人情報を以下の目的で利用することができるものとします。
+                <br>
+                | a.本人確認、認証サービスのため
+                <br>
+                | b.アフターサービス、問い合わせ、苦情対応のため
+                <br>
+                | c.マーケティングデータの調査、統計、分析のため
+                <br>
+                | d.懸賞、キャンペーンの実施のため
+                <br>
+                | e.アンケートの実施のため
+                <br>
+                | f.アフィリエイト、ポイントサービスの提供のため
+                <br>
+                | g.新サービス、新機能の開発のため
+                <br>
+                | h.システムの維持、不具合対応のため
+                <br>
+                | i.会員記述情報の掲載のため
+                <br>
+                | j.料金請求、課金計算のため
+                <br>
+                | k.コンテンツその他の情報提供サービス、システム利用サービス、オークション、ショッピングモールの提供のため
+                <br>
+                | l.当社及び第三者の商品等（旅行、保険その他の金融商品を含む。以下同じ。）の販売、販売の勧誘、発送、サービス提供のため
+                <br>
+                | m.当社及び第三者の商品等の広告又は宣伝（ダイレクトメールの送付、電子メールの送信を含む。）のため
+                <br>
+                | n.決済サービス、物流サービスの提供のため
+                <br>
+                |
+                <br>
+                | ４．当社は、以下に定める場合には、会員の個人情報を第三者に提供することができるものとします。
+                <br>
+                |
+                <br>
+                | a.会員の同意がある場合
+                <br>
+                | b.裁判所、検察庁、警察、税務署、弁護士会又はこれらに準じた権限を有する機関から開示を求められた場合
+                <br>
+                | c.会員が当社に対し支払うべき料金その他の金員の決済を行うために、金融機関、クレジットカード会社、回収代行業者その他の決済又はその代行を行う事業者に開示する場合
+                <br>
+                | d.当社が行う業務の全部又は一部を第三者に委託する場合
+                <br>
+                | e.当社に対して秘密保持義務を負う者に対して開示する場合
+                <br>
+                | f.当社の権利行使に必要な場合
+                <br>
+                | g.合併、営業譲渡その他の事由による事業の承継の際に、事業を承継する者に対して開示する場合
+                <br>
+                | h.個人情報保護法その他の法令により認められた場合
+                <br>
+                |
+                <br>
+                | ５．当社は、会員に対し、第三者の広告又は宣伝等のために電子メールその他の広告宣伝物を送信できるものとし、会員はこれを予め承諾するものとします。
+                <br>
+                |
+                <br>
+                | ６．会員は個人情報保護法に違反する行為を行ってはならないものとします。'
+      signup:
+        twitter: 'sign up with twitter'
+        facebook: 'sign up with facebook'
+        via: 'で登録'
+    new_smart_phone:
+      create: 'create your account'
+      label:
+        home: 'home'
+        industry: 'industry'
+        mypage: 'my page'
+        logout: 'log out'
+        login: 'log in'
+        signup: 'sign up'
+      actions:
+        close: 'CLOSE'
+        signup: 'SIGN UP'
+
+  navbar:
+    menu:
+      search: '検索'
+      jpn_industry: '日本の業界一覧'
+      us_industry: '米国の業界一覧'
+      logout: 'ログアウト'
+      mypage: 'マイページ'
+      login: 'ログイン'
+      how_to_use: '使い方'
+
+  login_modal:
+    to_forgot_password: 'パスワードを忘れた場合'
+    to_signup: '登録がまだの方はこちら'
+    login_via: 'でログイン'
+
+  profile_edit_modal:
+    my_company: '勤務先'
+    current_company: '現在の勤務先'
+
+  how_to_use_modal:
+    search_company:
+      title: '企業検索の方法'
+      descriptioan: '東証一部上場企業、マザーズ上場企業のデータを検索する事が可能です。企業名の一部を検索フォームに入力すれば、変換候補が表示されるので見たい企業名をクリックしてください。企業名をご自身で入力される際には、正しい企業名を入力することにご注意ください。'
+      search: '>> 企業を検索してみる'
+    search_from_industry:
+      title: '業界からの検索の方法'
+      description: 'メニューバーの「日本の業界一覧」または「米国の業界一覧」をクリックすると、業界からの検索が可能です。業界から検索をした場合、その業界のトップ５の企業を比較することが可能です。トップ５を選ぶ指標は、「売上高」「営業利益」「経常利益」「当期利益」「従業員数」「時価総額」「平均年収」「平均年齢」です。また、その業界に属する企業一覧も見ることができます。'
+      search: '>> 業界から検索してみる'
+    graph:
+      title: 'グラフの使い方'
+      description: 'グラフにはそれぞれピンクと黄色のボタンがついています。「業界平均と比べる」「勤務先の企業と比べる」を押してみてください。グラフが２本、３本と表示され、容易に比較することが可能になります。'
+      see: '>> グラフのデモを見てみる'
+    my_company:
+      title: '自分の勤務先の説明'
+      description: '「勤務先の企業と比べる」というボタンを使うためには、ご自身の勤務先の企業を登録情報編集より登録する必要があります。ユーザー登録（SIGNUP）すれば、そのボタンを使用することが可能になります。また、ユーザー登録の際に勤務先の企業を登録すれば、マイページで常に勤務先企業のデータを見ることが可能になります。'
+      signup: '>> ユーザー登録する'
+    favorite:
+      title: 'お気に入り機能の使い方'
+      description: '企業のデータが表示されるページでは、その企業をお気に入りに登録する事ができます。お気に入りに登録すると、マイページにてそのお気に入り企業が常に確認できるため、再度検索する必要がありません。ユーザー登録をすればお気に入り機能を使うことができます。（お気に入りは最大５社まで）'
+
+  error_404:
+    title_1: 'Not Found'
+    title_2: 'ページが見つかりません。'
+
+  error_500:
+    title_1: 'Something, wrong'
+    title_2: '申し訳ございません。エラーが発生しました。'
+
+  placeholder:
+    input_company_name: 'データを見たい企業名を入力'
+    search:
+      search: '検索'
+      compare: '比較したい企業を検索'
+      company: '検索したい企業の企業名を入力'
+    password: '変更しない場合は入力不要'
+    password_text_length: '8文字以上'
+    password_confirmation: 'もう一度入力してください'
+    company_name: '企業名を入力'
+
+  mail:
+    password_reset:
+      send_mail:
+        subject: '【PositionStrategy】パスワード再設定'
+        hello: 'こんにちは！PositionStrategyです。'
+        password_link: '下記リンクよりパスワード再設定を行ってください。'
+        thanks: '今後ともPositionStrategyをよろしくおねがい致します。'
+        throw_away: 'このメールに心当たりの無い場合は申し訳ございませんが処分をお願い致します。'
+
+  jpn_industries:
+    ja:
+      1: '水産・農林業'
+      2: '鉱業'
+      3: '建設業'
+      4: '食料品'
+      5: '繊維製品'
+      6: 'パルプ・紙'
+      7: '化学'
+      8: '医薬品'
+      9: '石油・石炭製品'
+      10: 'ゴム製品'
+      11: 'ガラス・土石製品'
+      12: '鉄鋼'
+      13: '非鉄金属'
+      14: '金属製品'
+      15: '機械'
+      16: '電気機器'
+      17: '輸送用機器'
+      18: '精密機器'
+      19: 'その他製品'
+      20: '電気・ガス業'
+      21: '陸運業'
+      22: '海運業'
+      23: '空運業'
+      24: '倉庫・運輸関連業'
+      25: '情報・通信'
+      26: '卸売業'
+      27: '小売業'
+      28: '銀行業'
+      29: '証券業'
+      30: '保険業'
+      31: 'その他金融業'
+      32: '不動産業'
+      33: 'サービス業'
+    en:
+      1: 'Agriculture'
+      2: 'Mining'
+      3: 'Building'
+      4: 'Groceries'
+      5: 'Texitle goods'
+      6: 'Pulp/Paper'
+      7: 'Chemistry'
+      8: 'Nostrum'
+      9: 'Petroleum/Coal products'
+      10: 'Rubber goods'
+      11: 'Glass/Ceramic products'
+      12: 'Steel'
+      13: 'Nonferrous Metal'
+      14: 'Metal goods'
+      15: 'Machinery'
+      16: 'Electronic goods'
+      17: 'Transport Equipment'
+      18: 'Precision Machine'
+      19: 'Other products'
+      20: 'Electricity,gas supply'
+      21: 'Land Transportation'
+      22: 'Shipping'
+      23: 'Air Transportation'
+      24: 'Other Transportation'
+      25: 'Telecommunications'
+      26: 'Wholesale Business'
+      27: 'Retail Trade'
+      28: 'Banking Business'
+      29: 'Securities Business'
+      30: 'Insurance'
+      31: 'Other Finantial Business'
+      32: 'Real Estate Business'
+      33: 'Service'
+
+  us_industries:
+    ja:
+      1: 'その他'
+      2: '素材産業'
+      3: 'Conglomerates'
+      4: '消費財'
+      5: '金融'
+      6: 'ヘルスケア'
+      7: '産業財・工業製品'
+      8: 'サービス業'
+      9: 'テクノロジー'
+      10: '公益事業'
+    en:
+      1: 'Other'
+      2: 'Basic Materials'
+      3: 'Conglomerates'
+      4: 'Consumer Goods'
+      5: 'Financial'
+      6: 'Healthcare'
+      7: 'Industrial Goods'
+      8: 'Services'
+      9: 'Technology'
+      10: 'Utilities'
+
+  views:
+    pagination:
+      truncate: '...'
+      next: ' > '
+      last: ' >> '
+      previous: ' < '
+      first: ' << '
+
+  activerecord:
+    models:
+      user: 'ユーザー'
+    attributes:
+      user:
+        name: '名前'
+        email: 'メールアドレス'
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              taken: 'は既に使われています。'
+            email:
+              taken: 'は既に使われています。'

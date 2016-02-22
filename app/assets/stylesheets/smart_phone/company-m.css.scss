@@ -1,0 +1,213 @@
+@import  "color";
+
+.company-welcome {
+   text-align: center;
+   font-size: 12px;
+   margin-bottom: 30px;
+   > p {
+    font-size: 20px;
+  }
+}
+
+.list-image {
+  width: 12px;
+  height: 12px;
+}
+
+.company {
+  clear: both;
+  .btn {
+    font-size: 9px;
+    padding: 4px;
+    float: left;
+    margin-left: 5px;
+    margin-bottom: 0px;
+  }
+  .btn-wrapper {
+    margin-left: 20px;
+  }
+  .company-title {
+    .company-info {
+      padding: 10px 30px;
+      li {
+        display: inline-block;
+        list-style: none;
+        font-size: 11px;
+        text-align: center;
+        width: 100%;
+        height: 50px;
+        vertical-align: middle;
+      }
+    }
+    .company-info-jpn {
+      padding: 10px 30px;
+      li {
+        display: inline-block;
+        list-style: none;
+        font-size: 11px;
+        text-align: center;
+        width: 25%;
+        height: 50px;
+        vertical-align: middle;
+      }
+    }
+    .number-detail--wrapper {
+      margin: 20px 20px 0 20px;
+      padding-top: 10px;
+      text-align: center;
+      .number-detail {
+        list-style: none;
+        padding: 0;
+        font-size: 14px;
+        .publish-day {
+          margin-right: 10px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  .graph-area {
+    height: auto;
+    margin-top: 30px;
+    p {
+      float: left;
+    }
+  }
+  .company-line-graph {
+    padding-top: 55px;
+    > p {
+      font-size: 14px;
+      text-align: center;
+      margin: 0px;
+    }
+    .graph-area {
+      margin-top: 0px;
+      text-align: center;
+      margin-left: -20px;
+    }
+    .number-detail--wrapper {
+      margin: 20px 20px 0 20px;
+      padding-top: 10px;
+      text-align: center;
+      .number-detail {
+        list-style: none;
+        padding: 0;
+        li {
+          display: inline-block;
+        }
+        .publish-day {
+          margin-right: 10px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  .company-title > p {
+    border-top: 1px solid $darkblue;
+    border-bottom: 1px solid $darkblue;
+    color: $darkblue;
+    padding: 10px 0;
+  }
+}
+
+.favorite {
+  font-size: 10px;
+  margin-top: 10px;
+  border-radius: 20px;
+}
+
+.favorite_message {
+  font-size: 10px;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: $pink;
+}
+
+.circle-chart--wrapper--smart-phone {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  width: 100%;
+  height: 120px;
+  .roe--chart,
+  .roa--chart {
+    position: relative;
+  }
+  .circle-chart {
+    position: relative;
+    float: left;
+    width: 33.3%;
+    z-index: 1;
+    .count {
+      position: absolute;
+      top: 0;
+      right: 18px;
+      border-radius: 50%;
+      height: 74px;
+      width: 90px;
+    }
+    em,
+    span {
+      font-weight: bold;
+      width: 100%;
+      text-align: center;
+      z-index: -1;
+    }
+    em {
+      display: block;
+      font-size: 20px;
+      font-style: normal;
+      color: #000;
+      margin-top: 30px;
+      z-index: -1;
+    }
+    .caption {
+      position: absolute;
+      color: #000;
+      z-index: -1;
+      top: 22px;
+      left: 19px;
+    }
+    .label-name {
+      display: block;
+      z-index: -1;
+      text-transform: uppercase;
+      font-weight: normal;
+      margin-top: 33px;
+    }
+  }
+}
+
+.separater-company {
+  margin-bottom: 120px!important;
+}
+
+.wrapper--company--reco-box {
+  .reco-list {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    h2 {
+      font-size: 18px;
+      padding: 0 20px;
+      margin-bottom: 10px;
+    }
+    .reco-item {
+      a {
+        display: block;
+        color: $green;
+        width: 100%;
+        padding: 5px 20px;
+        font-size: 16px;
+        &:hover {
+          color: #fff;
+          background-color: rgba($green, .5);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.mobile-dot-separater {
+  margin-top: 20px!important;
+}

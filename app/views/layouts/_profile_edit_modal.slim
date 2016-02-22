@@ -1,0 +1,30 @@
+.modal.fade#EditProfile tabindex="-1" role="dialog" aria-labelledby="EditProfileLabel" area-hidden="ture"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-hidden="ture" &times;
+          h3.modal-title edit profile
+          .modal-body
+            = form_tag user_path(id: current_user.id), method: :put do
+              label name
+              input type="text" name="name" value==current_user.name
+              br
+              label pass
+              input type="password" name="password" placeholder="#{t('placeholder.password')}"
+              br
+              label pass*
+              input type="password" name="password_confirmation" placeholder="#{t('placeholder.password')}"
+              br
+              label email
+              input type="email" name="email" value==current_user.email
+              br
+              label = t('profile_edit_modal.my_company')
+              input#belong_suggest_form.form-controll type="text" name="my_company" autocomplete="off" placeholder="#{t('placeholder.company_name')}"
+              #belong_suggest.suggest-edit style="display:none;"
+              - if current_user.my_company
+                p #{t('profile_edit_modal.current_company')}: #{@my_company.company.name}
+
+              input.btn type="submit" value="UPDATE"
+
+== javascript_include_tag "vendor/suggest"
+== javascript_include_tag "common/search_jpn"

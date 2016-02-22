@@ -1,0 +1,63 @@
+.index-title
+== render 'layouts/navbar'
+
+.container-mini
+  == image_tag 'posi-thin.png'
+  .signup-form-wrap
+    .signup-form
+      p create your account
+      - if @user.try(:errors).try(:any?)
+        ul.error
+          - @user.errors.full_messages.each do |msg|
+            li = msg
+      = form_tag users_path do
+        = label_tag :name
+        = text_field_tag :name
+        br
+        = label_tag 'pass'
+        = password_field_tag :password
+        br
+        = label_tag 'pass*'
+        = password_field_tag :password_confirmation
+        br
+        = label_tag :email
+        = text_field_tag :email
+        br
+        = label_tag t('users.new.my_company')
+        = text_field_tag 'suggest_form', nil, class: 'form-controll', name: "my_company", autocomplete: "off", placeholder: t('placeholder.company_name')
+        #suggest.suggest-signup style="display:none;"
+        .checkbox
+          label
+            = check_box_tag 'accept'
+            a data-toggle="modal" href="#acceptModal" = t('users.new.terms.title')
+            span = t('users.new.terms.accept')
+        br
+        = submit_tag 'SIGN UP', class: 'confirm-button btn'
+    .signup-facebook.twitter
+      p = t('users.new.signup.twitter')
+      .twitter-mark
+        p t
+      a href="/auth/twitter"
+        button.btn = t('users.new.signup.twitter')
+    .signup-facebook.facebook
+      p = t('users.new.signup.facebook')
+      .facebook-mark
+        p f
+      a href="/auth/facebook"
+        button.btn = t('users.new.signup.facebook')
+
+  .modal.fade#acceptModal tabindex="-1" role="dialog" area-hidden="ture"
+    .modal-dialog.accept-modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+          h3.modal-tile = t('users.new.terms.title')
+          .modal-body
+            p = t('users.new.terms.content_html')
+
+          .modal-footer
+            button.btn.pull-right data-dismiss="modal" CLOSE
+
+== include_gon
+== javascript_include_tag "vendor/suggest"
+== javascript_include_tag "common/search_jpn"

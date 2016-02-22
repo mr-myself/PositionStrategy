@@ -1,0 +1,20 @@
+- unless request.smart_phone?
+  #social-button-wrap
+    - if request.path_info == '/'
+      .home
+        == render 'layouts/social_btn/fb_like'
+        a href="https://twitter.com/share" class="twitter-share-button" data-url="#{url}" data-via="ffab0public" data-lang="ja"
+    - else
+      .with-fb-share
+        == render 'layouts/social_btn/fb_share', url: url
+        a href="https://twitter.com/share" class="twitter-share-button" data-url="#{url}" data-via="ffab0public" data-lang="ja"
+
+javascript:
+  !function(d,s,id) {
+    var js, fjs = d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+    if (!d.getElementById(id)) {
+        js=d.createElement(s);
+        js.id=id;
+        js.src=p+'://platform.twitter.com/widgets.js';
+        fjs.parentNode.insertBefore(js,fjs);
+      }}(document, 'script', 'twitter-wjs');

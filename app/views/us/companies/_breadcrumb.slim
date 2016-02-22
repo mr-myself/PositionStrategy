@@ -1,0 +1,6 @@
+ol.breadcrumb.breadcrumb--company
+  li: a href="#{root_path}" #{t('us.companies.common.menu.top')}
+  li: a href="#{search_index_path}" #{t('us.companies.common.menu.search')}
+  li: a href="#{us_industries_path}" #{t('us.companies.common.menu.industry_list')}
+  li: a href="#{us_industry_path(id: @company_repository.company.sector_id)}" #{t('us_industries.ja')[@company_repository.company.sector_id]}
+  li.active = @company_repository.company.name

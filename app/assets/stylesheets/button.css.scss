@@ -1,0 +1,151 @@
+@import  'color';
+
+/**************************************
+ IndustryPage, MyPage, CompanyPage(BarChart)
+ **************************************/
+
+.company-bar-graph button {
+  width: auto;
+  margin: 20px 10px 20px 10px;
+  color: #fff;
+}
+
+.company .black, 
+.company-bar-graph .black {
+  background-color: inherit;
+  border: 1px solid $black;
+  color: $black;
+  width: auto;
+  margin: 20px 10px 20px 10px;
+  &:hover {
+    color: $black!important;
+    opacity: 1;
+    cursor: default;
+  }
+}
+
+.company-bar-graph .compare {
+  background-color: inherit;
+  border: 1px solid $compare;
+  color: $compare;
+  width: auto;
+  margin: 20px 10px 20px 10px;
+  &:hover {
+    color: $compare!important;
+    opacity: 1;
+    cursor: default;
+  }
+}
+
+.company-line-graph .compare {
+  background-color: inherit;
+  border: 1px solid $compare;
+  color: $compare;
+  width: auto;
+  margin: 20px 10px 20px 10px;
+  &:hover {
+    color: $compare!important;
+    opacity: 1;
+    cursor: default;
+  }
+}
+
+.company .yellow, 
+.company-bar-graph .yellow {
+  background-color: inherit;
+  border: 1px solid $yellow;
+  color: $yellow;
+  &:hover {
+    background-color: rgba($yellow, 1);
+    color: #fff;
+  }
+}
+
+.company .pink, 
+.company-bar-graph .pink {
+  background-color: inherit;
+  border: 1px solid $pink;
+  color: $pink;
+  &:hover {
+    background-color: rgba($pink, 1);
+    color: #fff;
+  }
+}
+
+.company .btn {
+  float: left;
+}
+
+/**************************************
+ CompanyPageのLineChart
+ **************************************/
+
+.company-bar-graph-p button {
+  width: auto;
+  margin: 20px 10px 20px 10px;
+}
+
+.company-p .black, 
+.company-bar-graph-p .black {
+  background-color: inherit;
+  border: 1px solid $black;
+  color: $black;
+  width: auto;
+  margin: 20px 10px 20px 10px;
+  &:hover {
+    color: $black!important;
+    opacity: 1;
+    cursor: default;
+  }
+}
+
+.company-bar-graph-p .compare {
+  background-color: inherit;
+  border: 1px solid $compare;
+  color: $compare;
+  width: auto;
+  margin: 20px 10px 20px 10px;
+  &:hover {
+    color: $compare!important;
+    opacity: 1;
+    cursor: default;
+  }
+}
+
+.company-line-graph-p .compare {
+  background-color: inherit;
+  border: 1px solid $compare;
+  color: $compare;
+  width: auto;
+  margin: 20px 10px 20px 10px;
+  &:hover {
+    color: $compare!important;
+    opacity: 1;
+    cursor: default;
+  }
+}
+
+.company-p .yellow, 
+.company-bar-graph-p .yellow {
+  border: 1px solid $yellow;
+  background-color: inherit;
+  color: $yellow;
+  &:hover {
+    background-color: rgba($yellow, 1);
+    color: #fff;
+  }
+}
+.company-p .pink, 
+.company-bar-graph-p .pink {
+  background-color: inherit;
+  border: 1px solid $pink;
+  color: $pink;
+  &:hover {
+    background-color: rgba($pink, 1);
+    color: #fff;
+  }
+}
+
+.company-p .btn {
+  float: left;
+}

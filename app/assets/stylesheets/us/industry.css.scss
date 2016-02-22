@@ -1,0 +1,35 @@
+@import  'color';
+
+.graph-area-wide {
+  margin-left: -110px;
+}
+
+#next-rank {
+  margin: 0 auto;
+  nav {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  .us-all-list--element {
+    display: inline-block;
+    padding: 6px;
+    color: $black;
+  }
+  h2,
+  h3 {
+    color: $black;
+    display: block;
+    font-family: "Futura", serif;
+    font-size: 17px;
+    margin: 0;
+    padding: 0 0 5px;
+  }
+  table {
+    color: #666;
+    font-size: 14px;
+    border-spacing: 10px;
+    border-collapse: separate;
+  }
+}

@@ -1,0 +1,66 @@
+== javascript_include_tag 'vendor/scroll'
+== render 'layouts/mobile/navbar'
+
+#home-m.all-wrapper
+  .iphone-grid
+    .graph-area#index
+      #chart
+        canvas#DemoChart width="320" height="240"
+    .title-wrapper
+      == image_tag("posi-thin.png", :class => "posi-m image")
+      p = t('common.sub_title')
+      br
+      - if logged_in?
+        #after-login
+          a.scroll href="#reco1" = t('home.index.recommendation.jpn')
+          a.scroll href="#reco2" = t('home.index.recommendation.us')
+          a.scroll href="#{jpn_industries_path}" = t('home.index.industry.jpn')
+          a.scroll href="#{us_industries_path}" = t('home.index.industry.us')
+      - else
+        #before-login
+          a.scroll href="#reco1" = t('home.index.recommendation.jpn')
+          a.scroll href="#reco2" = t('home.index.recommendation.us')
+          a.home-login href="/auth/twitter" #{image_tag("twitter-g.png", class: 'icon')}#{t('common.actions.login')}
+          a.scroll href="#{jpn_industries_path}" = t('home.index.industry.jpn')
+          a.scroll href="#{us_industries_path}" = t('home.index.industry.us')
+          a.home-login href="/auth/facebook" #{image_tag("facebook-g.png", class: 'icon')}#{t('common.actions.login')}
+  .reco-box
+    .reco-box-item#reco1
+      h2 = t('home.index.recommendation.jpn')
+      a href="/jpn/companies/9983" ファーストリテイリング
+      a href="/jpn/companies/4502" 武田薬品工業
+      a href="/jpn/companies/2371" カカクコム
+      a href="/jpn/companies/4911" 資生堂
+      a href="/jpn/companies/6758" ソニー
+      a href="/jpn/companies/2193" クックパッド
+      a href="/jpn/companies/2502" アサヒグループホールディングス
+      a href="/jpn/companies/2768" 双日
+      a href="/jpn/companies/4751" サイバーエージェント
+      a href="/jpn/companies/9104" 商船三井
+      a href="/jpn/companies/6752" パナソニック
+      a href="/jpn/companies/2170" リンクアンドモチベーション
+      a href="/jpn/companies/6054" リブセンス
+      a href="/jpn/companies/2440" ぐるなび
+    .reco-box-item#reco2
+      h2 = t('home.index.recommendation.us')
+      a href="/us/companies/FB" Facebook, Inc.
+      a href="/us/companies/GOOGL" Alphabet Inc.
+      a href="/us/companies/AAPL" Apple Inc.
+      a href="/us/companies/EBAY" eBay, Inc.
+      a href="/us/companies/BIDU" Baidu, Inc.
+      a href="/us/companies/JPM" J P Morgan Chase & Co
+      a href="/us/companies/DIS" Walt Disney Company
+      a href="/us/companies/AMZN" Amazon.com,  Inc.
+      a href="/us/companies/SBUX" Starbucks Corporation
+      a href="/us/companies/BAC" Bank of America Corporation
+      a href="/us/companies/T" AT&T Inc.
+      a href="/us/companies/COST" Costco Wholesale Corporation
+      a href="/us/companies/ACN" Accenture plc.
+      a href="/us/companies/KO" Coca-Cola Company
+      a href="/us/companies/NKE" Nike, Inc.
+      a href="/us/companies/TTM" Tata Motors Ltd
+
+== javascript_include_tag "graph/demo/demo_chart"
+== javascript_include_tag 'vendor/inview'
+== javascript_include_tag 'smart_phone/isinview'
+== javascript_include_tag "vendor/effect"

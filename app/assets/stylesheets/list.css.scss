@@ -1,0 +1,75 @@
+@import  'color';
+
+.heading--industry-list {
+  font-size: 16px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.heading__h2--industry-list {
+  font-size: 14px;
+  margin: 5px 0 0 10px;
+  text-align: center;
+}
+
+.btn-list {
+  width: 400px;
+  text-align: center;
+}
+
+.list-btn .dropdown-menu {
+  width: 420px!important;
+}
+
+.btn-group {
+  float: center!important;
+  button {
+    margin-left: 5px!important;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    position: relative;
+    top: 50px;
+  }
+  p {
+    float: left;
+    margin: 35px 0 0 420px;
+    .here {
+      color: #fff;
+    }
+  }
+}
+
+.list-btn li {
+  width: 200px;
+  float: left;
+}
+
+#list-wrapping {
+  margin-top: 40px;
+  nav {
+    display: inline-block;
+    width: 49%;
+  }
+  .list-wrapping--element {
+    width: 90%;
+    display: inline-block;
+    padding: 6px;
+    color: $black;
+  }
+  h2,
+  h3 {
+    color: $black;
+    display: block;
+    font-family: "Futura", serif;
+    font-size: 17px;
+    margin: 0;
+    padding: 0 0 5px;
+    border-bottom: 1px solid #ccc;
+  }
+  p {
+    color: #999;
+    font-size: 12px;
+  }
+}

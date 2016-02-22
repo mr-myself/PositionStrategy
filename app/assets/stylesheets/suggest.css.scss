@@ -1,0 +1,165 @@
+@import  'color';
+
+.search-box {
+  position: relative;
+  height: 100px;
+  width: auto;
+  text-align: center;
+  z-index: 10;
+  p {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  .search-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 15px;
+    line-height: 12px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -o-border-radius: 20px;
+    -ms-border-radius: 20px;
+  }
+  #suggest_form, #second_suggest_form {
+    width: 300px;
+    margin-right: 20px;
+    height: 43px;
+    padding: 10px 15px;
+    font-size: 16px;
+    line-height: 1.428571429;
+    vertical-align: middle;
+    border: 1px solid #dce4ec;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(#000, .075);
+    box-shadow: inset 0 1px 1px rgba(#000, .075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  }
+  #suggest, #second_suggest {
+    position: absolute;
+    top: 43px;
+    background-color: #fff;
+    border: 1px solid #ccf;
+    font-size: 90%;
+    width: 299px;
+    div {
+      display: block;
+      width: 299px;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 16px;
+      padding: 6px 12px;
+    }
+    div.select {
+      color: #fff;
+      background-color: $compare;
+    }
+    div.over {
+      background-color: $compare;
+    }
+  }
+}
+
+.search-suggest {
+  margin-top: 20px;
+  #suggest {
+    margin-left: 10px;
+  }
+  .search-btn {
+    background-color: #000;
+    margin-top: 20px;
+    letter-spacing: .05em;
+    font-weight: 200;
+  }
+}
+
+.home-suggest {
+  margin-top: 30px;
+  #suggest_form {
+    border: 1px solid #999;
+    margin-bottom: 30px;
+  }
+  #suggest {
+    margin-left: 315px;
+  }
+  .search-btn {
+    margin-right: 20px;
+    letter-spacing: .05em;
+    font-weight: 200;
+  }
+}
+
+.company-suggest {
+  margin-top: 30px;
+  #second_suggest_form {
+    width: 260px;
+  }
+  #second_suggest {
+    width: 260px;
+    div {
+      width: 260px;
+    }
+  }
+  .search-btn {
+    margin-top: 20px;
+  }
+}
+
+/*********************************
+ プロフィール編集モダル
+**********************************/
+
+#EditProfile #belong_suggest {
+  border: 1px solid $compare;
+  width: 210px;
+  margin-top: 5px;
+  div {
+    display: block;
+    width: 210px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+  div.select {
+    color: #fff;
+    background-color: $compare;
+  }
+  div.over {
+    background-color: $compare;
+  }
+}
+
+/*********************************
+ 新規登録画面
+**********************************/
+
+.signup-form {
+  #suggest {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid $compare;
+    font-size: 90%;
+    width: 210px;
+    margin-top: 1px;
+    div {
+      display: block;
+      width: 210px;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 6px 12px;
+    }
+    div.select {
+      color: #fff;
+      background-color: $compare;
+    }
+    div.over {
+      background-color: $compare;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+#login-form {
+  padding: 40px 0;
+  text-align: center;
+  > p {
+    font-size: 20px;
+    font-family: "Futura";
+    text-transform: uppercase;
+    margin: 20px 0 10px 0;
+  }
+  margin-bottom: 20px;
+  label, input {
+    margin: 5px 5px 5px 0px;
+  }
+  label {
+    width: 50px;
+    text-transform: uppercase;
+  }
+  .btn {
+    margin-top: 20px;
+  }
+}
+
+.current_company {
+  margin: 20px;
+}
+
+.back-to-mypage {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #ccc;
+  text-align: center;
+  a {
+    color: #fff;
+  }
+}

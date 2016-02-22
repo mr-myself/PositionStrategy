@@ -1,0 +1,82 @@
+@import  "color";
+
+.navbar-m-absolute {
+  position: absolute!important;
+  top: 0px!important;
+}
+
+.button_open-absolute, .button_close-absolute {
+  position: absolute!important;
+  top: 3px!important;
+  right: 3px!important;
+}
+
+.button_open-left-absolute, .button_close-left-absolute {
+  position: absolute!important;
+  top: 3px!important;
+  left: 3px!important;
+}
+
+.mypage-menu {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  background-color: rgba(#fff, .95);
+  text-align: center;
+  margin-top: 60px;
+  > div {
+    height: 30px;
+    line-height: 13px;
+    border: 1px solid $green;
+    border-radius: 4px;
+    width: 28.3%;
+    display: inline-block;
+    margin: 5px 2%;
+    z-index: 80;
+  }
+  a {
+    color: $green;
+    font-size: 14px;
+    position: relative;
+    bottom: 12px;
+  }
+  > div:hover {
+    background-color: $green;
+  }
+  a:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+  .list-image {
+    margin-right: 0.5em;
+  }
+}
+
+.no_my_company {
+  min-height: 50px;
+  font-size: 14px;
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 120px;
+  margin-bottom: 100px;
+  .list-image {
+    margin-right: 0.5em;
+  }
+  p, a {
+    font-size: 14px;
+    margin: 0px;
+    line-height: 1.2em;
+  }
+}
+
+.company-title {
+  a {
+    color: $darkblue;
+    text-decoration: underline;
+  }
+}
+
+#MyCompany, #MyFavorite {
+  padding-top: 50px;
+}

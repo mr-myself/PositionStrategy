@@ -1,0 +1,19 @@
+== render 'layouts/mobile/navbar'
+
+.all-wrapper
+  .iphone-grid
+    #login-form
+      p log in
+      = form_tag sessions_path do
+        label name
+        input type="name" name="name"
+        br
+        label pass
+        input type="password" name="password"
+        br
+        input.btn.btn-lg.black-bg type="submit" value="LOG IN"
+  .iphone-grid
+    #social-login
+      a.home-login href="/auth/twitter" = image_tag("twitter.png", class: "icon-mini")
+      span |
+      a.home-login href="/auth/facebook" = image_tag("facebook.png", class: "icon-mini")

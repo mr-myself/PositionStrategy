@@ -1,0 +1,23 @@
+== render 'layouts/navbar'
+.container-mini
+  ol.breadcrumb.breadcrumb--all-company-list
+    li: a href="#{root_path}" #{t('jpn.companies.common.menu.top')}
+    li: a href="#{search_index_path}" #{t('jpn.companies.common.menu.search')}
+    li: a href="#{jpn_industries_path}" #{t('jpn.companies.common.menu.industry_list')}
+    li: a href="#{jpn_industry_path(id: params[:id])}" #{t('jpn_industries.ja')[params[:id].to_i]}
+    li.active = t('jpn.industries.companies.list', industry: t('jpn_industries.ja')[params[:id].to_i])
+
+  h1.rank-title = t('jpn.industries.companies.all', industry: t('jpn_industries.ja')[params[:id].to_i])
+  #all-list
+    - @companies.each do |company|
+      nav.cl-effect-12
+        = link_to jpn_path(number: company.company_number) do
+          .all-list--element
+            p = company.name
+  = paginate @companies, window: 10
+  .list-back-wrapper
+    li: a href="#{jpn_industry_path(id: params[:id])}" #{t('jpn.industries.companies.back_to_industry', industry: t('jpn_industries.ja')[params[:id].to_i])}
+    li ｜
+    li: a href="#{jpn_industries_path}" #{t('jpn.industries.companies.back_to_list')}
+
+== include_gon

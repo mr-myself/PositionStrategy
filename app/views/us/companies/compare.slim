@@ -1,0 +1,165 @@
+== include_gon
+== javascript_include_tag "vendor/suggest"
+== javascript_include_tag "common/search_us"
+== javascript_include_tag "common/favorite"
+== javascript_include_tag "us/company/circlechart"
+== javascript_include_tag "us/company/barchart"
+== javascript_include_tag "us/company/linechart"
+== render 'layouts/navbar'
+
+.container
+  == render 'breadcrumb'
+  .row
+    .col-xs-9
+      .company-welcome.us
+        - if @favorite
+          p #{image_tag "heart.png", class: "list-image js-heart"} #{@company_repository.company.name}
+        - else
+          p #{image_tag "heart.png", class: "list-image js-heart", style: "display:none;"} #{@company_repository.company.name}
+        span  ／ #{@compare_company.company.name}
+        br
+        a.back-list href="#{us_industry_path(id: @company_repository.company.sector_id)}" （#{t('us_industries.ja')[@company_repository.company.sector_id]}）
+
+      == render 'layouts/social', url: request.original_url
+
+      .company-p
+        .company-info-p
+          p #{image_tag "bar-chart.png", class: "list-image"} #{t('us.companies.compare.latest_period')}
+        .company-bar-graph
+          .btn.black #{@company_repository.company.name}（#{@company_repository.latest_period}）
+          .btn.compare #{@compare_company.company.name}（#{@compare_company.latest_period}）
+          .graph-area-p
+            p （#{t('common.unit.million')}）
+            #chart.js-barchart
+              canvas#myChart width="825" height="300"
+      table.bar-spread-sheet
+        tr
+          th
+          th = t('common.bases.sale')
+          th = t('common.bases.operating_profit')
+          th = t('common.bases.ordinary_profit')
+          th = t('common.bases.market_value')
+        tr.company-first
+          td = @company_repository.company.name
+          td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(@company_repository.achievements.last.sale)))
+          td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(@company_repository.achievements.last.operating_profit)))
+          td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(@company_repository.achievements.last.net_income)))
+          td = @company_repository.company.market_value
+        tr.company-second
+          td = @compare_company.company.name
+          td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(@compare_company.achievements.last.sale)))
+          td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(@compare_company.achievements.last.operating_profit)))
+          td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(@compare_company.achievements.last.net_income)))
+          td = @compare_company.company.market_value
+      br
+      .circle-chart--block
+        .circle-chart--wrapper__compared
+          .operating-profit-margin--chart.circle-chart
+            canvas#canvas--operating-profit-margin width="100" height="100"
+            .count
+              em = @company_repository.achievements.last.operating_profit_margin
+              span.caption %
+              span.label-name = t('us.companies.common.unit.operating_profit_rate')
+          .roe--chart.circle-chart
+            canvas#canvas--roe width="100" height="100"
+            .count
+              em = @company_repository.achievements.last.roe
+              span.caption %
+              span.label-name roe
+          .roa--chart.circle-chart
+            canvas#canvas--roa width="100" height="100"
+            .count
+              em = @company_repository.achievements.last.roa
+              span.caption %
+              span.label-name roa
+        .circle-chart--wrapper__compared
+          .operating-profit-margin--chart.circle-chart
+            canvas#canvas--operating-profit-margin__compare width="100" height="100"
+            .count
+              em = @compare_company.achievements.last.operating_profit_margin
+              span.caption %
+              span.label-name = t('us.companies.common.unit.operating_profit_rate')
+          .roe--chart.circle-chart
+            canvas#canvas--roe__compare width="100" height="100"
+            .count
+              em = @compare_company.achievements.last.roe
+              span.caption %
+              span.label-name roe
+          .roa--chart.circle-chart
+            canvas#canvas--roa__compare width="100" height="100"
+            .count
+              em = @compare_company.achievements.last.roa
+              span.caption %
+              span.label-name roa
+
+      #blank
+      ul.dot-separater.dot-separater--us-company
+        li
+        li
+        li
+      .company-p
+        .company-info-p
+          p #{image_tag "line-chart.png", class: "list-image"} #{t('us.companies.compare.transition')}
+        .company-menu
+          .company-menu-item
+            .company-menu-name
+              a class="js-sale" = t('common.bases.sale')
+          .company-menu-item
+            .company-menu-name
+              a class="js-operating_profit" = t('common.bases.operating_profit')
+          .company-menu-item
+            .company-menu-name
+              a class="js-net_income" = t('common.bases.net_income')
+          .company-menu-item
+            .company-menu-name
+        .company-line-graph
+          .btn.black = @company_repository.company.name
+          .btn.compare = @compare_company.company.name
+          .graph-area-p
+            #chart.js-linechart
+              p （#{t('common.unit.million')}）
+              canvas#myChart2 width="825" height="300"
+
+      br
+      span.black-sp = @company_repository.company.name
+      br
+      table.bar-spread-sheet
+        tr
+          th
+          th = t('common.bases.sale')
+          th = t('common.bases.operating_profit')
+          th = t('common.bases.net_income')
+        - @company_repository.achievements.each do |achievement|
+          tr
+            td.publish_day = achievement.publish_day
+            td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(achievement.sale)))
+            td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(achievement.operating_profit)))
+            td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(achievement.net_income)))
+
+      br
+      span.compare-sp #{@compare_company.company.name}
+      br
+      table.bar-spread-sheet
+        tr
+          th
+          th = t('common.bases.sale')
+          th = t('common.bases.operating_profit')
+          th = t('common.bases.net_income')
+        - @compare_company.achievements.each do |achievement|
+          tr
+            td.publish_day = achievement.publish_day
+            td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(achievement.sale)))
+            td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(achievement.operating_profit)))
+            td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(achievement.net_income)))
+
+      br
+      .copy-right
+        p = t('common.confidential.name')
+        p.sub = t('common.confidential.explanation')
+
+    == render 'sidebar'
+  == render 'footer'
+
+javascript:
+  PS.COMPANY_SYMBOL = "#{params[:symbol]}"
+  PS.COMPARE_SYMBOL = "#{params[:compare]}"

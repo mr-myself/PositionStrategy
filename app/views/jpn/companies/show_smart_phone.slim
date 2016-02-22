@@ -1,0 +1,135 @@
+== javascript_include_tag "vendor/scroll"
+== render 'layouts/mobile/navbar'
+.all-wrapper
+  .industry-nav
+    a.scroll href="#Company_area" = t('jpn.companies.show_smart_phone.all_performance')
+    a.scroll href="#Company_sale_area" = t('common.bases.sale')
+    a.scroll href="#Company_operating_profit_area" = t('common.bases.operating_profit')
+    a.scroll href="#Company_ordinary_profit_area" = t('common.bases.ordinary_profit')
+    a.scroll href="#Company_net_income_area" = t('common.bases.net_income')
+    a.scroll href="#Recomend-area" = t('jpn.companies.show_smart_phone.recommendation_company')
+  .company-welcome
+    - if logged_in?
+      - if @has_favorites_flag
+        p #{image_tag "heart.png", class: "list-image js-heart"}#{@company_repository.company.name}
+      - else
+        p #{image_tag "heart.png", class: "list-image js-heart", style: "display:none;"} #{@company_repository.company.name}
+      a.back-list href="#{jpn_industry_path(id: @company_repository.detail.industry_id)}" （#{t('jpn_industries.ja')[@company_repository.detail.industry_id]}）
+      br
+      #Company_area
+      - if @has_favorites_flag
+        button.btn.favorite.remove.pink-bg data-id="#{params[:number]}" = t('jpn.companies.common.favorite.remove')
+      - else
+        button.btn.favorite.add.pink-bg data-id="#{params[:number]}" = t('jpn.companies.common.favorite.add')
+      .favorite_message
+        .success style="display:none;"
+          p = t('jpn.companies.common.favorite.done_add')
+        .error style="display:none;"
+          p
+    - else
+      p #{@company_repository.company.name}
+      a.back-list href="#{jpn_industry_path(id: @company_repository.detail.industry_id)}" (#{t('jpn_industries.ja')[@company_repository.detail.industry_id]})
+      br
+      #Company_area
+      a.before-login href="#{new_user_path}" = t('jpn.companies.common.favorite.explanation')
+  .company
+    .company-title
+      p #{image_tag "bar-chart.png", class: "list-image"} #{@company_repository.latest_period}
+      .company-info-jpn
+        li
+          |#{t('jpn.companies.show.number_of_employees')}
+          br
+          |#{comma(@company_repository.detail.employee)}#{t('common.unit.people')}
+        li
+          |#{t('jpn.companies.show.market_value')}
+          br
+          |#{t('common.unit.million_with_value_html', value: comma(@company_repository.detail.market_value))}
+        li
+          |#{t('jpn.companies.show.average_age')}
+          br
+          |#{@company_repository.detail.age}#{t('common.unit.age')}
+        li
+          |#{t('jpn.companies.show.average_salary')}
+          br
+          |#{t('common.unit.thousand_with_value', value: comma(@company_repository.detail.annual_income))}
+      .company-bar-graph
+        .btn-wrapper
+          .btn.black-bg = t('jpn.companies.show_smart_phone.performance', period: @company_repository.latest_period)
+          .btn.yellow-bg = t('jpn.companies.show_smart_phone.industry_average')
+          br
+        .graph-area
+          p （#{t('common.unit.million')}）
+          #chart
+            canvas#myChart width="320" height="160"
+      .number-detail--wrapper
+        ul.number-detail
+          li #{t('common.bases.sale')}　#{t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.sale)))}
+          li #{t('common.bases.operating_profit')}　#{t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.operating_profit)))}
+          li #{t('common.bases.ordinary_profit')}　#{t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.ordinary_profit)))}
+          li #{t('common.bases.net_income')}　#{t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.net_income)))}
+  .company
+    .company-title
+      p
+        | #{image_tag "line-chart.png", class: "list-image"} #{@company_repository.oldest_period}〜#{@company_repository.latest_period}
+    .company-line-graph#Company_sale_area
+      p = t('common.bases.sale')
+      .graph-area
+        #ch160
+          p （#{t('common.unit.million')}）
+          canvas#Company_sale width="320" height="160"
+      .number-detail--wrapper
+        - @company_repository.achievements.each do |achievement|
+          ul.number-detail
+            li.publish-day = achievement.publish_day
+            li = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.sale)))
+    .company-line-graph#Company_operating_profit_area
+      p = t('common.bases.operating_profit')
+      .graph-area
+        #ch160
+          p （#{t('common.unit.million')}）
+          canvas#Company_operating_profit width="320" height="160"
+      .number-detail--wrapper
+        - @company_repository.achievements.each do |achievement|
+          ul.number-detail
+            li.publish-day = achievement.publish_day
+            li = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.operating_profit)))
+    .company-line-graph#Company_ordinary_profit_area
+      p = t('common.bases.ordinary_profit')
+      .graph-area
+        #ch160
+          p （#{t('common.unit.million')}）
+          canvas#Company_ordinary_profit width="320" height="160"
+      .number-detail--wrapper
+        - @company_repository.achievements.each do |achievement|
+          ul.number-detail
+            li.publish-day = achievement.publish_day
+            li = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.ordinary_profit)))
+    .company-line-graph#Company_net_income_area
+      p = t('common.bases.net_income')
+      .graph-area
+        #ch160
+          p （#{t('common.unit.million')}）
+          canvas#Company_net_income width="320" height="160"
+      .number-detail--wrapper
+        - @company_repository.achievements.each do |achievement|
+          ul.number-detail
+            li.publish-day = achievement.publish_day
+            li = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.net_income)))
+    ul.dot-separater.mobile-dot-separater#Recomend-area
+      li
+      li
+      li
+    .wrapper--company--reco-box
+      .reco-list
+        h2 = t('jpn.companies.show_smart_phone.recommendation_for_you', company: @company_repository.company.name)
+        - @similar_companies.each do |similar|
+          .reco-item
+            a.similar-name href="#{jpn_path(number: similar[:company_number])}" = similar[:name]
+
+== javascript_include_tag "common/favorite"
+== javascript_include_tag "smart_phone/company/barchart-m"
+== javascript_include_tag "smart_phone/company/linechart-m"
+
+javascript:
+  PS.COMPANY_NUMBER = "#{params[:number]}"
+  PS.INDUSTRY_ID = "#{@company_repository.detail.industry_id}"

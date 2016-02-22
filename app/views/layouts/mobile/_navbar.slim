@@ -1,0 +1,36 @@
+.navbar-m: a href="#{root_path}" #{image_tag("PositionStrategy-m.png", class: "nav-logo")}
+#slidemenu
+  input#open type="radio" name="text" value="1"
+  label#button_open for="open" #{image_tag("menu.fw.png", class: "menu-icon")}
+  input#close type="radio" name="text" value="1"
+  label#button_close for="close" #{image_tag("menu.fw.png", class: "menu-icon")}
+  #menu
+    ul
+      li: a href="#{root_path}" #{t('navbar.menu.top')}
+      li: a href="#{jpn_industries_path}" #{t('navbar.menu.jpn_industry')}
+      li: a href="#{us_industries_path}" #{t('navbar.menu.us_industry')}
+      - if logged_in?
+        li: a href="#{mypage_path}" #{t('navbar.menu.mypage')}
+        li: a href="#{logout_sessions_path}" #{t('navbar.menu.logout')}
+      - else
+        li: a href="#{new_session_path}" #{t('navbar.menu.login')}
+        li: a href="#{new_user_path}" #{t('navbar.menu.signup')}
+      li: a href="#{request.path}?lang=en" = image_tag 'flag_en.png', style: "height:30px;"
+      li: a href="#{request.path}?lang=ja" = image_tag 'flag_jp.png', style: "height:30px;"
+
+#slidemenu-left
+  input#open-left type="radio" name="text" value="1"
+  label#button_open-left for="open-left" #{image_tag("search-w.fw.png", class: "menu-icon")}
+  input#close-left type="radio" name="text" value="1"
+  label#button_close-left for="close-left" #{image_tag("search-w.fw.png", class: "menu-icon")}
+  #menu-left
+    = form_tag search_index_path do
+      input#mobile_suggest_form.form-controll type="text" name="name" autocomplete="off" placeholder="#{t('placeholder.company_name')}"
+      #mobile_suggest.suggest-home style="display:none;"
+      br
+      input.search-btn type="submit" class="confirm-button btn" value="#{t('placeholder.search.search')}"
+
+== include_gon
+== javascript_include_tag "vendor/suggest"
+== javascript_include_tag "common/search_jpn"
+== javascript_include_tag "smart_phone/blur"

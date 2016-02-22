@@ -1,0 +1,10 @@
+== render 'layouts/mobile/navbar'
+.all-wrapper
+  .btn-group.list-btn
+    p = t('jpn.industries.index_smart_phone.all_industries')
+  #list-wrapping
+    - t('jpn_industries.ja').each do |key, value|
+      .list-item: a href="#{jpn_industry_path(id: key)}"
+        p.jpn = value
+        p.en #{t('jpn_industries.en')[key]} Industry
+        p.round-button #{image_tag("arrow-right.png", class: "icon")}

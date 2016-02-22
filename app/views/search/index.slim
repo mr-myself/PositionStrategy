@@ -1,0 +1,85 @@
+== include_gon
+== javascript_include_tag "vendor/suggest"
+== javascript_include_tag "common/search_both"
+== render 'layouts/navbar'
+
+.container
+  ol.breadcrumb.breadcrumb--search
+    li: a href="#{root_path}" #{t('search.index.top')}
+    li.active = t('search.index.search')
+  .col-xs-4
+    h2.search__heading = t('search.actions.search')
+    .search-box.search-suggest
+      = form_tag search_index_path do
+        input#suggest_form.form-controll type="text" name="name" value="" autocomplete="off" placeholder="#{t('placeholder.search.company')}"
+        input.search-btn type="submit" class="confirm-button btn" value="SEARCH" onClick="_gaq.push(['_trackEvent', 'search', 'search_at_search', , 1, true]);"
+        #suggest.suggest-home style="display:none;"
+  .col-xs-4
+    .reco-box
+      .reco-box-item
+        h2.search__heading = t('search.index.jpn_companies')
+        br
+        nav.cl-effect-12
+          li: a href="jpn/companies/4502" 武田薬品工業
+          li: a href="jpn/companies/4307" 野村総合研究所
+          li: a href="jpn/companies/4911" 資生堂
+          li: a href="jpn/companies/9983" ファーストリテイリング
+          li: a href="jpn/companies/6758" ソニー
+          li: a href="jpn/companies/2931" ユーグレナ
+          li: a href="jpn/companies/2170" リンクアンドモチベーション
+          li: a href="jpn/companies/6054" リブセンス
+          li: a href="jpn/companies/3668" コロプラ
+          li: a href="jpn/companies/3656" KLab
+        ul.dot-separater
+          li
+          li
+          li
+        h2.search__heading = t('search.index.compare_jpn_companies')
+        br
+        nav.cl-effect-12
+          li: a href="jpn/companies/2440/2371" ぐるなび / カカクコム
+          li: a href="jpn/companies/6758/6752" ソニー / パナソニック
+          li: a href="jpn/companies/2768/8015" 双日 / 豊田通商
+          li: a href="jpn/companies/2432/3632" ディー・エヌ・エー / グリー
+          li: a href="jpn/companies/9104/2327" 商船三井 / 新日鉄住金ソリューションズ
+          li: a href="jpn/companies/2389/4751" オプト / サイバーエージェント
+          li: a href="jpn/companies/3182/2193" オイシックス /クックパッド
+          li: a href="jpn/companies/2503/2502" キリンホールディングス / アサヒグループホールディングス
+        br
+        nav.cl-effect-12
+  .col-xs-4
+    .reco-box
+      .reco-box-item
+        h2.search__heading = t('search.index.us_companies')
+        br
+        nav.cl-effect-12
+          li: a href="us/companies/GOOGL" Alphabet Inc.
+          li: a href="us/companies/FB" Facebook, Inc.
+          li: a href="us/companies/AAPL" Apple, Inc.
+          li: a href="us/companies/EBAY" eBay, Inc.
+          li: a href="us/companies/BIDU" Baidu, Inc.
+          li: a href="us/companies/SBUX" Starbucks Corporation
+          li: a href="us/companies/DIS" Walt Disney Company
+          li: a href="us/companies/COST" Costco Wholesale Corporation
+          li: a href="us/companies/KO" Coca-Cola Company
+          li: a href="us/companies/NKE" Nike, Inc.
+          li: a href="us/companies/BAC" Bank of Amarica Corporation
+          li: a href="us/companies/TTM" Tata Motors Ltd
+          li: a href="us/companies/ACN" Accenture plc.
+          li: a href="us/companies/T" AT&T, Inc.
+          li: a href="us/companies/MSI" Motorola Solutions, Inc.
+          li: a href="us/companies/DCM" NTT DOCOMO, Inc.
+          li: a href="us/companies/UBIC" UBIC, Inc.
+        ul.dot-separater
+          li
+          li
+          li
+        h2.search__heading = t('search.index.compare_us_companies')
+        br
+        nav.cl-effect-12
+          li: a href="us/companies/MSFT/AAPL" Microsoft Corporation / Apple, Inc.
+          li: a href="us/companies/CHL/S" China Mobile Ltd. / Sprint Corporation
+          li: a href="us/companies/TM/GM" Toyota Motor Corp Ltd Ord / Generail motors Company
+          li: a href="us/companies/PG/JNJ" Procter & Gamble Company / Johnson & Johnson
+          li: a href="us/companies/JPM/C" J P Morgan Chase & Co / Citigroup Inc.
+          li: a href="us/companies/GE/SI" Genaral Electronic Company / Siemens AG

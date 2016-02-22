@@ -1,0 +1,57 @@
+== render 'layouts/navbar'
+.container-mini.home-wrapper
+  .graph-area#index
+    #chart
+      canvas#DemoChart width="950" height="500"
+  .title-wrapper
+    .index-title.title-home
+      == image_tag "posi-thin.png"
+      h1 = t('common.sub_title')
+      h2 = t('common.sub_title_2')
+      .search-box.home-suggest
+        = form_tag search_index_path do
+          input#suggest_form.form-controll type="text" name="name" autocomplete="off" placeholder="#{t('placeholder.input_company_name')}"
+          #suggest.suggest-home style="display:none;"
+          br
+          input.search-btn type="submit" class="confirm-button btn" value="SEARCH" onClick="_gaq.push(['_trackEvent', 'search', 'search_home', , 1, true]);"
+  #loopslider
+    ul
+      li: a href="jpn/companies/4502" 武田薬品工業
+      li: a href="jpn/companies/4911" 資生堂
+      li: a href="jpn/companies/6758" ソニー
+      li: a href="jpn/companies/6752" パナソニック
+      li: a href="jpn/companies/2170" リンクアンドモチベーション
+      li: a href="jpn/companies/6054" リブセンス
+      li: a href="jpn/companies/2440" ぐるなび
+      li: a href="jpn/companies/2371" カカクコム
+      li: a href="jpn/companies/9983" ファーストリテイリング
+      li = t('home.index.recommendation.title')
+      li: a href="us/companies/GOOGL" Alphabet Inc.
+      li: a href="us/companies/FB" Facebook, Inc.
+      li: a href="us/companies/AAPL" Apple, Inc.
+      li: a href="us/companies/EBAY" eBay, Inc.
+      li: a href="us/companies/BIDU" Baidu, Inc.
+      li: a href="us/companies/SBUX" Starbucks Corporation
+      li: a href="us/companies/DIS" Walt Disney Company
+      li: a href="us/companies/KO" Coca-Cola Company
+      li: a href="us/companies/NKE" Nike, Inc.
+      li: a href="us/companies/BAC" Bank of Amarica Corporation
+      li: a href="us/companies/TTM" Tata Motors Ltd
+      li: a href="us/companies/ACN" Accenture plc.
+      li: a href="us/companies/T" AT&T, Inc.
+      li: a href="us/companies/MSI" Motorola Solutions, Inc.
+      li: a href="us/companies/DCM" NTT DOCOMO, Inc.
+      li: a href="us/companies/UBIC" UBIC, Inc.
+
+== render 'layouts/social', url: PSConfig.host
+
+== include_gon
+== javascript_include_tag "vendor/suggest"
+== javascript_include_tag "common/search_both"
+== javascript_include_tag "graph/demo/demo_chart"
+== javascript_include_tag "vendor/inview"
+== javascript_include_tag "home/isinview"
+== javascript_include_tag "vendor/effect"
+
+javascript:
+  PS.COMPANY_ID = 1

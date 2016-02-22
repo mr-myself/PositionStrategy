@@ -1,0 +1,56 @@
+.modal.fade#HowToUse tabindex="-1" role="dialog" aria-labelledby="HowToUseLabel" area-hidden="ture"
+  .modal-dialog.how-to-use-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-hidden="ture" &times;
+        h3.modal-title HOW TO USE
+        .modal-body
+          .item
+            .item-left
+              span = image_tag "how-to-search.png", class: "how-to-image"
+            .item-right
+              h2 #{image_tag "info.png", class: "list-image"}#{t('how_to_use_modal.search_company.title')}
+              p
+                |
+                  #{t('how_to_use_modal.search_company.description')}
+              = link_to t('how_to_use_modal.search_company.search'), search_index_path
+
+          .item
+            .item-left
+              span = image_tag "how-to-list.png", class: "how-to-image"
+            .item-right
+              h2 #{image_tag "info.png", class: "list-image"}#{t('how_to_use_modal.search_from_industry.title')}
+              p
+                |
+                  #{t('how_to_use_modal.search_from_industry.description')}
+              = link_to t('how_to_use_modal.search_from_industry.search'), jpn_industries_path
+
+          .item
+            .item-left
+              span = image_tag "how-to-graph.png", class: "how-to-image"
+            .item-right
+              h2 #{image_tag "info.png", class: "list-image"}#{t('how_to_use_modal.graph.title')}
+              p
+                |
+                  #{t('how_to_use_modal.graph.description')}
+              = link_to t('how_to_use_modal.graph.see'), "#{root_path}#home-demo"
+
+          .item
+            .item-left
+              span = image_tag "how-to-my.png", class: "how-to-image"
+            .item-right
+              h2 #{image_tag "info.png", class: "list-image"}#{t('how_to_use_modal.my_company.title')}
+              p
+                |
+                  #{t('how_to_use_modal.my_company.description')}
+              - unless logged_in?
+                = link_to t('how_to_use_modal.my_company.signup'), new_user_path
+
+          .item
+            .item-left
+              span = image_tag "how-to-favorite.png", class: "how-to-image"
+            .item-right
+              h2 #{image_tag "info.png", class: "list-image"}#{t('how_to_use_modal.favorite.title')}
+              p
+                |
+                  #{t('how_to_use_modal.favorite.description')}

@@ -1,0 +1,12 @@
+<%= t('mail.password_reset.send_mail.hello') %>
+
+<%= t('mail.password_reset.send_mail.password_link') %>
+<%= @host %>/reset_password?token=<%= @token %>
+
+<%= t('mail.password_reset.send_mail.thanks') %>
+<%= PSConfig.host %>
+
+---------------------------------------------------
+
+
+<%= t('mail.password_reset.send_mail.throw_away') %>

@@ -1,0 +1,11 @@
+== render 'layouts/navbar'
+
+.container
+  .password-forgot
+    h2 = t('reset_password.forgot_form.title')
+    = form_tag forgot_password_path do
+      label email
+      input type="email" name="email"
+      br
+      input.confirm-button.btn type="submit" value="send email"
+    p = t('reset_password.forgot_form.please_confirm')

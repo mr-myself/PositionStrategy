@@ -1,0 +1,61 @@
+@import 'color';
+
+#belong_suggest div {
+  font-size: 16px;
+  margin: 1em 0;
+}
+
+#signup-form {
+  text-align: center;
+  > p {
+    color: $darkblue;
+    font-size: 20px;
+    font-family: "Futura";
+    text-transform: uppercase;
+    margin: 20px 0 10px 1.5%;
+    width: 97%;
+    border-bottom: 1px solid $darkblue;
+  }
+  margin-bottom: 20px;
+  label, input {
+    margin: 5px 0 5px 0px;
+  }
+  label {
+    width: 50px;
+    margin-right: 5px;
+    text-transform: uppercase;
+  }
+  .checkbox {
+    padding: 0px;
+    margin-left: 30%;
+    a, span {
+      position: relative;
+      right: 10%;
+      top: 2.5px;
+    }
+  }
+  #signup_suggest_box {
+    margin-left: 0px;
+  }
+  .btn {
+    margin-left: 0%;
+    margin-bottom: 40px;
+  }
+}
+
+#acceptModal {
+  p {
+    font-size: 10px;
+  }
+  h3 {
+    font-size: 14px;
+  }
+}
+
+.modal {
+  top: 60px;
+}
+
+.modal-footer {
+  padding: 5px;
+}

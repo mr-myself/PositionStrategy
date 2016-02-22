@@ -1,0 +1,20 @@
+.col-xs-3#sidebar
+  .wrapper--company--reco-box
+    .reco-list
+      h2 = t('jpn.companies.common.recommendation_company', company: @company_repository.company.name)
+      - @similar_companies.each do |similar|
+        .reco-item
+          h3.similar-name #{similar[:name]}
+          a.go-new href="#{jpn_path(number: similar[:company_number])}" = t('jpn.companies.common.show_graph')
+          a.go-compare href="#{jpn_compare_path(number: params[:number], compare: similar[:company_number])}" = t('jpn.companies.common.compare')
+    ul.dot-separater
+      li
+      li
+      li
+    .search-box.company-suggest
+      = form_tag jpn_search_for_compare_path do
+        input#second_suggest_form.form-controll type="text" name="name" value="" autocomplete="off" placeholder="#{t('placeholder.search.compare')}"
+        input.search-btn type="submit" class="confirm-button btn" value="SEARCH"
+        br
+        input type="hidden" name="number" value="#{params[:number]}"
+        #second_suggest.suggest-home style="display:none;"

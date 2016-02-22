@@ -1,0 +1,110 @@
+== include_gon
+== javascript_include_tag "common/favorite"
+== javascript_include_tag "company/barchart"
+== javascript_include_tag "company/linechart"
+== render 'layouts/navbar'
+
+.container
+  == render 'breadcrumb'
+  .row
+    .col-xs-9
+      .company-welcome.jpn
+        - if logged_in?
+          - if @has_favorites_flag
+            h1 #{image_tag "heart.png", class: "list-image js-heart"} #{@company_repository.company.name}
+          - else
+            h1 #{image_tag "heart.png", class: "list-image js-heart", style: "display:none;"} #{@company_repository.company.name}
+          br
+          a.back-list href="#{jpn_industry_path(id: @company_repository.detail.industry_id)}" （#{t('jpn_industries.ja')[@company_repository.detail.industry_id]}）
+          br
+          - if @has_favorites_flag
+            button.btn.favorite.remove data-id="#{params[:number]}" = t('jpn.companies.common.favorite.remove')
+          - else
+            button.btn.favorite.add data-id="#{params[:number]}" = t('jpn.companies.common.favorite.add')
+          .favorite_message
+            .success style="display:none;"
+              p = t('jpn.companies.common.favorite.done_add')
+            .error style="display:none;"
+              p
+        - else
+          h1 #{@company_repository.company.name}
+          br
+          a.back-list href="#{jpn_industry_path(id: @company_repository.detail.industry_id)}" （#{t('jpn_industries.ja')[@company_repository.detail.industry_id]}）
+          br
+          a.before-login href="#loginModal" data-toggle="modal" = t('jpn.companies.common.favorite.explanation')
+
+      == render 'layouts/social', url: request.original_url
+
+      .company-p
+        .company-info-p
+          p #{image_tag "bar-chart.png", class: "list-image"} #{@company_repository.latest_period}
+        .company-info-p
+          ul
+            li #{t('jpn.companies.show.number_of_employees')}: #{comma(@company_repository.detail.employee)}#{t('common.unit.people')}
+            li #{t('jpn.companies.show.settling_day')}: #{@company_repository.detail.settling_day}
+            li #{t('jpn.companies.show.market_value')}: #{t('common.unit.million_with_value_html', value: comma(@company_repository.detail.market_value))}
+            li #{t('jpn.companies.show.average_age')}: #{zero_to_hyphen @company_repository.detail.age}#{t('common.unit.age')}
+            li #{t('jpn.companies.show.average_age')}: #{t('common.unit.thousand_with_value', value: comma(zero_to_hyphen @company_repository.detail.annual_income))}
+
+        .company-bar-graph
+          .btn.black #{@company_repository.company.name}（#{@company_repository.latest_period}）
+          button.btn.yellow = t('jpn.companies.show.compare_with_average')
+          - if logged_in? and current_user.my_company
+            button.btn.pink = t('jpn.companies.show.compare_with_company', company: @my_company.company.name)
+          .graph-area-p
+            p （#{t('common.unit.million')}）
+            #chart.js-barchart
+              canvas#myChart width="825" height="300"
+
+      table.bar-spread-sheet-before
+        tr.company-first
+          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.sale)))
+          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.operating_profit)))
+          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.ordinary_profit)))
+          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.net_income)))
+
+      #blank
+      ul.dot-separater
+        li
+        li
+        li
+      .company-p
+        .company-info-p
+          p #{image_tag "line-chart.png", class: "list-image"} #{@company_repository.oldest_period}〜#{@company_repository.latest_period}　#{t('jpn.companies.show.transition')}
+        .company-menu
+          - indexes.each do |key, value|
+            .company-menu-item
+              .company-menu-name
+                a class="js-#{key}" = value
+        .company-line-graph
+          .btn.black #{@company_repository.company.name}
+          button.btn.yellow = t('jpn.companies.show.compare_with_average')
+          - if logged_in? and current_user.my_company
+            button.btn.pink = t('jpn.companies.show.compare_with_company', company: @my_company.company.name)
+          .graph-area-p
+            #chart.js-linechart
+              p （#{t('common.unit.million')}）
+              canvas#myChart2 width="825" height="300"
+
+      table.bar-spread-sheet.line-spread-sheet-before
+        tr
+          th
+          - indexes.each do |key, value|
+            th = value
+        - @company_repository.achievements.each do |achievement|
+          tr
+            td.publish_day = achievement.publish_day
+            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.sale)))
+            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.operating_profit)))
+            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.ordinary_profit)))
+            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.net_income)))
+
+    == render 'sidebar'
+  == render 'footer'
+
+javascript:
+  PS.INDUSTRY_ID = "#{@company_repository.detail.industry_id}"
+  PS.COMPANY_NUMBER = "#{@company_repository.detail.company_number}"
+
+== javascript_include_tag "vendor/suggest"
+== javascript_include_tag "common/search_jpn"

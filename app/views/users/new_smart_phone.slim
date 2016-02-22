@@ -1,0 +1,73 @@
+.navbar-m.navbar-m-absolute: a href="#{root_path}" #{image_tag("PositionStrategy-m.png", class: "nav-logo")}
+#slidemenu
+    input#open type="radio" name="text" value="1"
+    label#button_open.button_open-absolute for="open" #{image_tag("menu.png", class: "menu-icon")}
+    input#close type="radio" name="text" value="1"
+    label#button_close.button_close-absolute for="close" #{image_tag("menu.png", class: "menu-icon")}
+    #menu
+      ul
+        li: a href="#{root_path}" #{t('users.new_smart_phone.label.home')}
+        li: a href="#{jpn_industries_path}" #{t('users.new_smart_phone.label.industry')}
+        - if logged_in?
+          li: a href="#{mypage_path}" #{t('users.new_smart_phone.label.mypage')}
+          li: a href="#{logout_sessions_path}" #{t('users.new_smart_phone.label.logout')}
+        - else
+          li: a href="#{new_session_path}" #{t('users.new_smart_phone.label.login')}
+          li: a href="#{new_user_path}" #{t('users.new_smart_phone.label.signup')}
+#slidemenu-left
+    input#open-left type="radio" name="text" value="1"
+    label#button_open-left.button_open-left-absolute for="open-left" #{image_tag("search.png", class: "menu-icon")}
+    input#close-left type="radio" name="text" value="1"
+    label#button_close-left.button_close-left-absolute for="close-left" #{image_tag("search.png", class: "menu-icon")}
+    #menu-left
+      = form_tag search_index_path do
+        input#suggest_form.form-controll type="text" name="name" autocomplete="off" placeholder="#{t('placeholder.company_name')}"
+        #suggest.suggest-home style="display:none;"
+        br
+        input.search-btn type="submit" class="confirm-button btn" value="#{t('placeholder.search.search')}"
+.all-wrapper
+  #signup-form
+    p = t('users.new_smart_phone.create')
+    = form_tag users_path do
+      label name
+      input type="text" name="name" value==flash[:login_name]
+      br
+      label pass
+      input type="password" name="password" placeholder="#{t('placeholder.password_text_length')}"
+      br
+      label pass*
+      input type="password" name="password_confirmation" placeholder="#{t('placeholder.password_confirmation')}"
+      br
+      label email
+      input type="email" name="email" value==flash[:login_email]
+      br
+      label = t('users.new.my_company')
+      input#belong_suggest_form.form-controll type="text" name="my_company" autocomplete="off" placeholder="#{t('placeholder.company_name')}"
+      #belong_suggest.suggest-signup style="display:none;"
+      .checkbox
+        label
+          input type="checkbox" name="accept"
+          a data-toggle="modal" href="#acceptModal" = t('users.new.terms.title')
+          span = t('users.new.terms.accept')
+      br
+      input.confirm-button.btn.btn-lg.black-bg type="submit" value="#{t('users.new_smart_phone.actions.signup')}"
+
+    #social-login
+      a.home-login href="/auth/twitter" = image_tag("twitter.png", class: "icon-mini")
+      span |
+      a.home-login href="/auth/facebook" = image_tag("facebook.png", class: "icon-mini")
+  .modal.fade#acceptModal tabindex="-1" role="dialog" area-hidden="ture"
+    .modal-dialog.accept-modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+          h3.modal-tile = t('users.new.terms.title')
+          .modal-body
+            p = t('users.new.terms.content_html')
+          .modal-footer
+            button.btn.pull-right data-dismiss="modal" = t('users.new_smart_phone.actions.close')
+
+== include_gon
+== javascript_include_tag "vendor/suggest"
+== javascript_include_tag "common/search_jpn"
+== javascript_include_tag "smart_phone/blur"

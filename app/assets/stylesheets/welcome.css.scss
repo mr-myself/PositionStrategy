@@ -1,0 +1,72 @@
+@import  'color'; 
+
+.welcome-logo {
+  width: 400px;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -999;
+  width: 100%;
+  height: auto;
+  min-width: 1024px;
+  min-height: 100%;
+}
+
+h2.search__heading {
+    font-size: 16px;
+    font-family: 'Futura', hiragino mincho pro;
+    margin-right: 15px;
+    padding: 10px 20px;
+    display: inline-block;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid $green;
+    border-radius: 5px;
+    color: $green;
+}
+
+.reco-box {
+  width: 100%;
+  padding: 0 5%;
+  .reco-box-item {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  li {
+    list-style: none;
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 20px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 5px;
+    text-align: left;
+    font-family: 'Helvetica Neue', 'hiragino mincho pro', meirio ;
+    &:hover {
+      background-color: #fff;
+      text-decoration: none;
+      transition: all 1s ease;
+    }
+  }
+  a {
+    color: #000;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.dot-separater {
+  li {
+    background-color: $green!important;
+    width: 12px!important;
+    margin-bottom: 40px!important;
+    margin-top: 40px!important;
+  }
+}

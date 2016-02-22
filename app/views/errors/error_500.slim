@@ -1,0 +1,11 @@
+= render 'layouts/navbar'
+
+#internal_error
+  h2 = t('error_500.title_1')
+  h2 = t('error_500.title_2')
+
+  .title-image
+    .image-space
+      == image_tag "posi-thin.png"
+    p = t('common.sub_title')
+    p = t('common.sub_title_2')

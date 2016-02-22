@@ -1,0 +1,14 @@
+.row
+  .col-xs-12
+    ul.dot-separater
+      li
+      li
+      li
+  .wrapper--company--reco-box
+    .reco-list
+      h2 = t('jpn.companies.common.recommendation_company', company: @company_repository.company.name)
+      - @similar_companies.each do |similar|
+        .reco-item
+          h3.similar-name #{similar[:name]}
+          a.go-new href="#{jpn_path(number: similar[:company_number])}" = t('jpn.companies.common.show_graph')
+          a.go-compare href="#{jpn_compare_path(number: params[:number], compare: similar[:company_number])}" = t('jpn.companies.common.compare')

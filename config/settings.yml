@@ -1,0 +1,16 @@
+contact: 'contact[at]ffab0.com'
+
+market:
+  tosho_first: 1
+  tosho_second: 2
+  mothers: 3
+
+url:
+  company:
+    detail: "http://stocks.finance.yahoo.co.jp/stocks/detail/?code="
+    fundamental: "http://profile.yahoo.co.jp/fundamental"
+    achievement: "http://profile.yahoo.co.jp/independent"
+
+company_type:
+  favorite: 0
+  my_company: 1

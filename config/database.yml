@@ -1,0 +1,23 @@
+development:
+  adapter: mysql2
+  database: position_strategy_dev
+  pool: 5
+  timeout: 5000
+
+staging:
+  adapter: mysql2
+  database: position_strategy_stg
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: mysql2
+  database: position_strategy_test
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: mysql2
+  database: position_strategy
+  pool: 5
+  timeout: 5000

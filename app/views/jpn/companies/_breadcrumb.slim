@@ -1,0 +1,6 @@
+ol.breadcrumb.breadcrumb--company
+  li: a href="#{root_path}" = t('jpn.companies.common.menu.top')
+  li: a href="#{search_index_path}" = t('jpn.companies.common.menu.search')
+  li: a href="#{jpn_industries_path}" = t('jpn.companies.common.menu.industry_list')
+  li: a href="#{jpn_industry_path(id: @company_repository.detail.industry_id)}" #{t('jpn_industries.ja')[@company_repository.detail.industry_id]}
+  li.active #{@company_repository.company.name}

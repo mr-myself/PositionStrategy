@@ -1,0 +1,11 @@
+= render 'layouts/navbar'
+
+#not_found
+  h2 = t('error_404.title_1')
+  h2 = t('error_404.title_2')
+
+  .title-image
+    .image-space
+      == image_tag "posi-thin.png"
+    p = t('common.sub_title')
+    p = t('common.sub_title_2')
