@@ -55,11 +55,11 @@ module Parser
 
         sector_id, industry_id = Parser::Us::SectorAndIndustry.get(row[0])
         t << UsCompany.new(
-          symbol:       row[0],
-          name:         row[1],
+          symbol:       row[0].strip,
+          name:         row[1].strip,
           sector_id:    sector_id,
           industry_id:  industry_id,
-          market_value: row[3],
+          market_value: row[3].strip,
           market_type:  1
         )
       end
@@ -72,13 +72,13 @@ module Parser
       records.each.with_index(0) do |row, i|
         next if i == 0
 
-        sector_id, industry_id = Parser::Us::SectorAndIndustry.get(row[0])
+        sector_id, industry_id = Parser::Us::SectorAndIndustry.get(row[0].strip)
         t << UsCompany.new(
-          symbol:       row[0],
-          name:         row[1],
+          symbol:       row[0].strip,
+          name:         row[1].strip,
           sector_id:    sector_id,
           industry_id:  industry_id,
-          market_value: row[3],
+          market_value: row[3].strip,
           market_type:  2
         )
       end

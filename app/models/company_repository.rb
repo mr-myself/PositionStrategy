@@ -43,7 +43,7 @@ class CompanyRepository
       @company = UsCompany.find_by(symbol: symbol)
       @achievements = UsAchievement
         .where(symbol: symbol)
-        .order('period_type DESC')
+        .order('period_type ASC')
     end
 
     def lookup_competitors

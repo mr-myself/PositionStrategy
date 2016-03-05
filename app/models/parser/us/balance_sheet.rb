@@ -50,7 +50,7 @@ module Parser::Us
 
     def build_roa(html)
       return false unless html.css('td').text.include?("Total Assets")
-      total_assets = FormatAchievement.format(html)
+      total_assets = Parser::Us::FormatAchievement.format(html)
       {
         first:  @pl[:operating_profit][:first].to_f / total_assets[:first].to_f * 100,
         second: @pl[:operating_profit][:second].to_f / total_assets[:second].to_f * 100,
@@ -60,7 +60,7 @@ module Parser::Us
 
     def build_roe(html)
       return false unless html.css('td').text.include?("Total Stockholder Equity")
-      total_equity = FormatAchievement.format(html)
+      total_equity = Parser::Us::FormatAchievement.format(html)
       {
         first:  @pl[:net_income][:first].to_f / total_equity[:first].to_f * 100,
         second: @pl[:net_income][:second].to_f / total_equity[:second].to_f * 100,

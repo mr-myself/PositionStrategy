@@ -58,11 +58,11 @@ module Parser::Us
     end
 
     def build_sale(html)
-      FormatAchievement.format(html) if html.css('td').text.include?("Total Revenue")
+      Parser::Us::FormatAchievement.format(html) if html.css('td').text.include?("Total Revenue")
     end
 
     def build_operating_profit(html)
-      FormatAchievement.format(html) if html.css('td').text.include?("Operating Income or Loss")
+      Parser::Us::FormatAchievement.format(html) if html.css('td').text.include?("Operating Income or Loss")
     end
 
     def build_operating_profit_margin(html)
