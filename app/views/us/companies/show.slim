@@ -36,9 +36,9 @@
               canvas#myChart width="825" height="300"
       table.bar-spread-sheet-before
         tr.company-first.us-company-first
-          td = t('common.unit.million_with_value_html', value: dollar_to_yen(check_minus(@company_repository.achievements.last.sale)))
-          td = t('common.unit.million_with_value_html', value: dollar_to_yen(check_minus(@company_repository.achievements.last.operating_profit)))
-          td = t('common.unit.million_with_value_html', value: dollar_to_yen(check_minus(@company_repository.achievements.last.net_income)))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen(dollar_to_yen(check_minus(@company_repository.achievements.last.sale))))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen(dollar_to_yen(check_minus(@company_repository.achievements.last.operating_profit))))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen(dollar_to_yen(check_minus(@company_repository.achievements.last.net_income))))
       .circle-chart--wrapper
         .operating-profit-margin--chart.circle-chart
           canvas#canvas--operating-profit-margin width="150" height="150"
@@ -96,12 +96,14 @@
         - @company_repository.achievements.each do |achievement|
           tr
             td.publish_day = achievement.publish_day
-            td = t('common.unit.million_with_value_html',  value: check_minus(dollar_to_yen(achievement.sale)))
-            td = t('common.unit.million_with_value_html',  value: check_minus(dollar_to_yen(achievement.operating_profit)))
-            td = t('common.unit.million_with_value_html',  value: check_minus(dollar_to_yen(achievement.net_income)))
+            td = t('common.unit.million_with_value_html',  value: zero_to_hyphen(check_minus(dollar_to_yen(achievement.sale))))
+            td = t('common.unit.million_with_value_html',  value: zero_to_hyphen(check_minus(dollar_to_yen(achievement.operating_profit))))
+            td = t('common.unit.million_with_value_html',  value: zero_to_hyphen(check_minus(dollar_to_yen(achievement.net_income))))
     == render 'sidebar'
   == render 'footer'
+  == render 'search_in_company'
 
 javascript:
   PS.COMPANY_SYMBOL = "#{params[:symbol]}"
   PS.COMPARE_SYMBOL = "#{params[:compare]}"
+  PS.LOCALE = "#{I18n.locale.to_s}"

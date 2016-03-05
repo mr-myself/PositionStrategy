@@ -4,6 +4,13 @@ $ ->
   barChartData = null
   data = null
 
+  if PS.LOCALE == "ja"
+    rate = 120
+    labelName = ["売上高", "営業利益", "当期利益"]
+  else
+    rate = 1
+    labelName = ["Sale", "Operating Profit", "Net Income"]
+
   if gon.average
     data = {
       datasets : [
@@ -12,9 +19,9 @@ $ ->
           fillColor: "#ffd800",
           strokeColor: "#fff",
           data : [
-            gon.average['sale'],
-            gon.average['operating_profit'],
-            gon.average['net_income']
+            gon.average['sale']/1000000*rate,
+            gon.average['operating_profit']/1000000*rate,
+            gon.average['net_income']/1000000*rate
           ]
         }
       ]
@@ -23,12 +30,12 @@ $ ->
   drawCompanyGraph = ->
     achievementLastCount = gon.company_repository.achievements.length - 1
     scores = [
-      gon.company_repository.achievements[achievementLastCount]['sale'],
-      gon.company_repository.achievements[achievementLastCount]['operating_profit'],
-      gon.company_repository.achievements[achievementLastCount]['net_income']
+      gon.company_repository.achievements[achievementLastCount]['sale']/1000000*rate,
+      gon.company_repository.achievements[achievementLastCount]['operating_profit']/1000000*rate,
+      gon.company_repository.achievements[achievementLastCount]['net_income']/1000000*rate
     ]
     barChartData = {
-      labels : ["売上高","営業利益","当期利益"],
+      labels : labelName,
       datasets : [
         {
           fillColor: "#1a243f",
@@ -43,9 +50,9 @@ $ ->
         fillColor: "#57bede",
         strokeColor: "#fff",
         data : [
-          gon.compare['sale'],
-          gon.compare['operating_profit'],
-          gon.compare['net_income']
+          gon.compare['sale']/1000000*rate,
+          gon.compare['operating_profit']/1000000*rate,
+          gon.compare['net_income']/1000000*rate
         ]
       }
     adjustFrame()

@@ -15,12 +15,20 @@ module ApplicationHelper
     end
   end
 
+  def yen_to_dollar(number)
+    if I18n.locale == :ja
+      number.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,' ).reverse
+    else
+      (number / 120).to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,' ).reverse
+    end
+  end
+
   def comma(number)
     number.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,' ).reverse
   end
 
   def zero_to_hyphen(number)
-    number == 0 ? '---' : number
+    number == '0' ? '---' : number
   end
 
   def last_year

@@ -1,5 +1,11 @@
 $ ->
   $ctx = document.getElementById("myChart").getContext("2d")
+  if PS.LOCALE == "ja"
+    rate = 1
+    labelName = ["売上高", "営業利益", "経常利益", "当期利益"]
+  else
+    rate = 120
+    labelName = ["Sale", "Operating Profit", "Ordinary Profit", "Net Income"]
 
   barChartData = null
   data = null
@@ -13,10 +19,10 @@ $ ->
             fillColor: "#ffd800",
             strokeColor: "#fff",
             data : [
-              result.resources['avg_sale'],
-              result.resources['avg_operating_profit'],
-              result.resources['avg_ordinary_profit'],
-              result.resources['avg_net_income']
+              result.resources['avg_sale']/rate,
+              result.resources['avg_operating_profit']/rate,
+              result.resources['avg_ordinary_profit']/rate,
+              result.resources['avg_net_income']/rate
             ]
           }
         ]
@@ -27,10 +33,10 @@ $ ->
           fillColor: "#ea005a",
           strokeColor: "#fff",
           data: [
-            gon.my_company[lastCount]['sale'],
-            gon.my_company[lastCount]['operating_profit'],
-            gon.my_company[lastCount]['ordinary_profit'],
-            gon.my_company[lastCount]['net_income']
+            gon.my_company[lastCount]['sale']/rate,
+            gon.my_company[lastCount]['operating_profit']/rate,
+            gon.my_company[lastCount]['ordinary_profit']/rate,
+            gon.my_company[lastCount]['net_income']/rate
           ]
         }
     )
@@ -43,13 +49,13 @@ $ ->
   drawCompanyGraph = ->
     lastCount = (gon.achievement.length)-1
     scores = [
-      gon.achievement[lastCount]['sale'],
-      gon.achievement[lastCount]['operating_profit'],
-      gon.achievement[lastCount]['ordinary_profit'],
-      gon.achievement[lastCount]['net_income']
+      gon.achievement[lastCount]['sale']/rate,
+      gon.achievement[lastCount]['operating_profit']/rate,
+      gon.achievement[lastCount]['ordinary_profit']/rate,
+      gon.achievement[lastCount]['net_income']/rate
     ]
     barChartData = {
-      labels : ["売上高","営業利益","経常利益","当期利益"],
+      labels : labelName,
       datasets : [
         {
           fillColor: "#1a243f",
@@ -64,10 +70,10 @@ $ ->
         fillColor: "#57bede",
         strokeColor: "#fff",
         data : [
-          gon.compare['sale'],
-          gon.compare['operating_profit'],
-          gon.compare['ordinary_profit'],
-          gon.compare['net_income']
+          gon.compare['sale']/rate,
+          gon.compare['operating_profit']/rate,
+          gon.compare['ordinary_profit']/rate,
+          gon.compare['net_income']/rate
         ]
       }
 

@@ -35,7 +35,7 @@
       .graph-area.graph-area-wide
         .chart.js-barchart
           p.js-barchart-unit （#{t('common.unit.million')}）
-          canvas#Industry width="1140" height="300"
+          canvas#Industry width="940" height="300"
 
   ul.dot-separater.dot-separater--wide
     li
@@ -60,3 +60,4 @@
 
 javascript:
   PS.INDUSTRY_ID = "#{params[:id]}"
+  PS.LOCALE = "#{I18n.locale.to_s}"

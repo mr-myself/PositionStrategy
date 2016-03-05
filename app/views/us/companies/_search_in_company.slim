@@ -1,0 +1,6 @@
+.col-xs-12
+  .search-box-in-company
+    = form_tag search_index_path do
+      input#suggest_form.form-controll type="text" name="name" autocomplete="off" placeholder="#{t('placeholder.input_company_name')}"
+      #suggest style="display:none;"
+      input.search-btn type="submit" class="confirm-button btn" value="SEARCH" onClick="_gaq.push(['_trackEvent', 'search', 'search_home', , 1, true]);"

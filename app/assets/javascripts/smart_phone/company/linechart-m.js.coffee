@@ -1,20 +1,15 @@
 $ ->
-
   if PS.LOCALE == "ja"
-    rate = 120
-  else
     rate = 1
+  else
+    rate = 120
 
-  adjustFrame = ->
-    $('.js-linechart > canvas').attr('width', $(document).width()+"px")
-    $('.js-linechart > canvas').attr('height', $(document).width()/2+"px")
-
-  _.each( ['sale', 'operating_profit', 'net_income'], (basis) =>
+  getAchievements = (basis)->
     labels = []
     scores = []
-    _.each( gon.company_repository.achievements, (value) =>
+    _.each( gon.achievement, (value) =>
       labels.push value.publish_day
-      scores.push value["#{basis}"]/1000000*rate
+      scores.push value["#{basis}"]/rate
     )
     lineChartData = {
       labels : labels,
@@ -30,4 +25,12 @@ $ ->
     }
     adjustFrame()
     PS.graph.lineChart(document.getElementById("Company_#{basis}").getContext("2d"), lineChartData)
-  )
+
+  adjustFrame = ->
+    $('.js-linechart > canvas').attr('width', $(document).width()+"px")
+    $('.js-linechart > canvas').attr('height', $(document).width()/2+"px")
+
+  getAchievements("sale")
+  getAchievements("operating_profit")
+  getAchievements("ordinary_profit")
+  getAchievements("net_income")

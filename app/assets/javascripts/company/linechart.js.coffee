@@ -1,6 +1,10 @@
 $ ->
   $ctx = document.getElementById("myChart2").getContext("2d")
   industry_averages = null
+  if PS.LOCALE == "ja"
+    rate = 1
+  else
+    rate = 120
 
   data = {
     datasets : [
@@ -72,10 +76,10 @@ $ ->
       ordinaryProfitData.labels.push value.publish_day
       netIncomeData.labels.push value.publish_day
 
-      saleData.data.push value.sale
-      operatingProfitData.data.push value.operating_profit
-      ordinaryProfitData.data.push value.ordinary_profit
-      netIncomeData.data.push value.net_income
+      saleData.data.push value.sale/rate
+      operatingProfitData.data.push value.operating_profit/rate
+      ordinaryProfitData.data.push value.ordinary_profit/rate
+      netIncomeData.data.push value.net_income/rate
     )
     lineChartData.labels = saleData.labels
     lineChartData.datasets[0].data = saleData.data
@@ -88,19 +92,23 @@ $ ->
   getCompanyPeriod = (basis) ->
     scores = []
     _.each( gon.my_company, (value) =>
-      scores.push value[basis]
+      scores.push value[basis]/rate
     )
     data.datasets[1].data = scores
 
   getAveragePeriod = (basis) ->
     scores = []
     _.each( industry_averages, (average) =>
-      scores.push average['avg_' + basis]
+      scores.push average['avg_' + basis]/rate
     )
     data.datasets[0].data = scores
 
   getComparePeriod = (basis) ->
-    compare_data.data = gon.compare_periods[basis]
+    rated = []
+    _.each( gon.compare_periods[basis], (value) =>
+      rated.push value/rate
+    )
+    compare_data.data = rated
     lineChartData.datasets[1] = compare_data
 
   order = null

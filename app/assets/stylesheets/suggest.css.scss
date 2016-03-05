@@ -6,6 +6,20 @@
   width: auto;
   text-align: center;
   z-index: 10;
+}
+
+.search-box-in-company {
+  position: relative;
+  width: auto;
+  text-align: center;
+  margin-top: 70px;
+  z-index: 10;
+  #suggest {
+    margin-left: 332px;
+  }
+}
+
+.search-box, .search-box-in-company {
   p {
     font-size: 12px;
     margin-top: 4px;

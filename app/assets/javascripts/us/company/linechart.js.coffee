@@ -1,5 +1,9 @@
 $ ->
   $ctx = document.getElementById("myChart2").getContext("2d")
+  if PS.LOCALE == "ja"
+    rate = 120
+  else
+    rate = 1
 
   data = {
     datasets : [
@@ -61,9 +65,9 @@ $ ->
           operatingProfitData.labels.push value.publish_day
           netIncomeData.labels.push value.publish_day
 
-          saleData.data.push value.sale
-          operatingProfitData.data.push value.operating_profit
-          netIncomeData.data.push value.net_income
+          saleData.data.push value.sale/1000000*rate
+          operatingProfitData.data.push value.operating_profit/1000000*rate
+          netIncomeData.data.push value.net_income/1000000*rate
         )
         lineChartData.labels = saleData.labels
         lineChartData.datasets[0].data = saleData.data
@@ -77,11 +81,17 @@ $ ->
     $.getJSON(
       "/us/industries/#{gon.company_repository.company.sector_id}/#{basis}/each_year_averages",
       (values)=>
-        data.datasets[0].data = values
+        data.datasets[0].data = []
+        _.each( values, (value) =>
+          data.datasets[0].data.push value/1000000*rate
+        )
     )
 
   getComparePeriod = (basis) ->
-    compare_data.data = gon.compare_periods[basis]
+    compare_data.data = []
+    _.each(gon.compare_periods[basis], (value) =>
+      compare_data.data.push value/1000000*rate
+    )
     lineChartData.datasets[1] = compare_data
 
   order = [1]

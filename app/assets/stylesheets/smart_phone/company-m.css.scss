@@ -32,10 +32,8 @@
       li {
         display: inline-block;
         list-style: none;
-        font-size: 11px;
         text-align: center;
         width: 100%;
-        height: 50px;
         vertical-align: middle;
       }
     }
@@ -70,7 +68,7 @@
     height: auto;
     margin-top: 30px;
     p {
-      float: left;
+      text-align: left;
     }
   }
   .company-line-graph {

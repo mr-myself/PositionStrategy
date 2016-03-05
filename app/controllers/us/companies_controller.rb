@@ -11,7 +11,7 @@ class Us::CompaniesController < ApplicationController
   end
 
   def compare
-    return if request.smart_phone?
+    redirect_to root_path and return if request.smart_phone?
 
     @company_repository = CompanyRepository::Us.find(params[:symbol])
     @compare_company = CompanyRepository::Us.find(params[:compare])

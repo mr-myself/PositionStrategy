@@ -63,14 +63,15 @@
           h3 = company.name
           table
             tr
-              td #{t('common.bases.sale')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(zero_to_hyphen company.sale)))}
-              td #{t('common.bases.operating_profit')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(zero_to_hyphen company.operating_profit)))}
+              td #{t('common.bases.sale')}: #{t('common.unit.million_with_value_html', value: zero_to_hyphen((check_minus(yen_to_dollar(company.sale)))))}
+              td #{t('common.bases.operating_profit')}: #{t('common.unit.million_with_value_html', value: zero_to_hyphen((check_minus(yen_to_dollar(company.operating_profit)))))}
             tr
-              td #{t('common.bases.ordinary_profit')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(zero_to_hyphen company.ordinary_profit)))}
-              td #{t('common.bases.net_income')}: #{t('common.unit.million_with_value_html', value: comma(check_minus(zero_to_hyphen company.net_income)))}
+              td #{t('common.bases.ordinary_profit')}: #{t('common.unit.million_with_value_html', value: zero_to_hyphen((check_minus(yen_to_dollar(company.ordinary_profit)))))}
+              td #{t('common.bases.net_income')}: #{t('common.unit.million_with_value_html', value: zero_to_hyphen((check_minus(yen_to_dollar(company.net_income)))))}
 
   a.to-all-companies.pull-right href = "#{companies_jpn_industry_path(id: params[:id])}" = t('jpn.industries.show.to_list')
 
 
 javascript:
   PS.INDUSTRY_ID = "#{params[:id]}"
+  PS.LOCALE = "#{I18n.locale.to_s}"

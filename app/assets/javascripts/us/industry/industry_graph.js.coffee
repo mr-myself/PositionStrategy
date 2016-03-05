@@ -1,5 +1,11 @@
 $ ->
   $ctx = document.getElementById("Industry").getContext("2d")
+  if PS.LOCALE == "ja"
+    rate = 120
+    million = "（百万円）"
+  else
+    rate = 1
+    million = "(million)"
 
   data = {
     datasets : [
@@ -8,11 +14,11 @@ $ ->
         fillColor: "#ffd800",
         strokeColor: "#fff",
         data: [
-          gon.industry_average['sale'] * 100 / 1000000,
-          gon.industry_average['sale'] * 100 / 1000000,
-          gon.industry_average['sale'] * 100 / 1000000,
-          gon.industry_average['sale'] * 100 / 1000000,
-          gon.industry_average['sale'] * 100 / 1000000,
+          gon.industry_average['sale']/1000000*rate,
+          gon.industry_average['sale']/1000000*rate,
+          gon.industry_average['sale']/1000000*rate,
+          gon.industry_average['sale']/1000000*rate,
+          gon.industry_average['sale']/1000000*rate,
         ]
       }
     ]
@@ -46,7 +52,7 @@ $ ->
         scores = []
         _.each( values, (value) =>
           labels.push shortenName(value.name)
-          scores.push value["#{basis}"] * 100 / 1000000
+          scores.push value["#{basis}"]/1000000*rate
         )
         barChartData = {
           labels: labels,
@@ -63,7 +69,7 @@ $ ->
     $(".company-graph button").removeClass("on")
     removeClass()
     $(".js-#{basis}").addClass("active")
-    avg = gon.industry_average["#{basis}"] * 100 / 1000000
+    avg = gon.industry_average["#{basis}"]/1000000*rate
     data.datasets[0].data = [avg, avg, avg, avg, avg]
 
   removeClass = ->
@@ -86,52 +92,22 @@ $ ->
   $(".js-sale").on("click", ->
     drawChart("sale")
     changeAverage("sale")
-    $(".js-barchart-unit").text("（百万円）")
+    $(".js-barchart-unit").text(million)
   )
 
   $(".js-operating_profit").on("click", ->
     drawChart("operating_profit")
     changeAverage("operating_profit")
-    $(".js-barchart-unit").text("（百万円）")
-  )
-
-  $(".js-ordinary_profit").on("click", ->
-    drawChart("ordinary_profit")
-    changeAverage("ordinary_profit")
-    $(".js-barchart-unit").text("（百万円）")
+    $(".js-barchart-unit").text(million)
   )
 
   $(".js-net_income").on("click", ->
     drawChart("net_income")
     changeAverage("net_income")
-    $(".js-barchart-unit").text("（百万円）")
-  )
-
-  $(".js-market_value").on("click", ->
-    drawChart("market_value")
-    changeAverage("market_value")
-    $(".js-barchart-unit").text("（百万円）")
-  )
-
-  $(".js-employee").on("click", ->
-    drawChart("employee")
-    changeAverage("employee")
-    $(".js-barchart-unit").text(" （人）")
-  )
-
-  $(".js-annual_income").on("click", ->
-    drawChart("annual_income")
-    changeAverage("annual_income")
-    $(".js-barchart-unit").text("（千円）")
-  )
-
-  $(".js-age").on("click", ->
-    drawChart("age")
-    changeAverage("age")
-    $(".js-barchart-unit").text("（歳）")
+    $(".js-barchart-unit").text(million)
   )
 
   # 初期グラフ描画
   drawChart("sale")
   $(".js-sale").addClass("active")
-  $(".js-barchart-unit").text("（百万円）")
+  $(".js-barchart-unit").text(million)

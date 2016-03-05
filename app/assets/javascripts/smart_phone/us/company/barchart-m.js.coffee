@@ -1,5 +1,9 @@
 $ ->
   $ctx = document.getElementById("myChart").getContext("2d")
+  if PS.LOCALE == "ja"
+    rate = 120
+  else
+    rate = 1
 
   data = {
     datasets : [
@@ -8,9 +12,9 @@ $ ->
         fillColor: "#ffd800",
         strokeColor: "#fff",
         data : [
-          gon.average['sale'] * 100 / 1000000,
-          gon.average['operating_profit'] * 100 / 1000000,
-          gon.average['net_income'] * 100 / 1000000
+          gon.average['sale']/1000000*rate,
+          gon.average['operating_profit']/1000000*rate,
+          gon.average['net_income']/1000000*rate
         ]
       }
     ]
@@ -25,9 +29,9 @@ $ ->
           fillColor: "#1a243f",
           strokeColor: "#fff",
           data: [
-            gon.company_repository.achievements[lastAchievementCount]['sale'] * 100 / 1000000,
-            gon.company_repository.achievements[lastAchievementCount]['operating_profit'] * 100 / 1000000,
-            gon.company_repository.achievements[lastAchievementCount]['net_income'] * 100 / 1000000
+            gon.company_repository.achievements[lastAchievementCount]['sale']/1000000*rate,
+            gon.company_repository.achievements[lastAchievementCount]['operating_profit']/1000000*rate,
+            gon.company_repository.achievements[lastAchievementCount]['net_income']/1000000*rate
           ]
         },
         {
@@ -39,4 +43,9 @@ $ ->
     }
     PS.graph.barChart($ctx, barChartData)
 
+  adjustFrame = ->
+    $('.js-barchart > canvas').attr('width', $(document).width()+"px")
+    $('.js-barchart > canvas').attr('height', $(document).width()/2+"px")
+
+  adjustFrame()
   drawCompanyGraph()

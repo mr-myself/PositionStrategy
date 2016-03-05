@@ -42,7 +42,7 @@
           ul
             li #{t('jpn.companies.show.number_of_employees')}: #{comma(@company_repository.detail.employee)}#{t('common.unit.people')}
             li #{t('jpn.companies.show.settling_day')}: #{@company_repository.detail.settling_day}
-            li #{t('jpn.companies.show.market_value')}: #{t('common.unit.million_with_value_html', value: comma(@company_repository.detail.market_value))}
+            li #{t('jpn.companies.show.market_value')}: #{t('common.unit.million_with_value_html', value: yen_to_dollar(@company_repository.detail.market_value))}
             li #{t('jpn.companies.show.average_age')}: #{zero_to_hyphen @company_repository.detail.age}#{t('common.unit.age')}
             li #{t('jpn.companies.show.average_age')}: #{t('common.unit.thousand_with_value', value: comma(zero_to_hyphen @company_repository.detail.annual_income))}
 
@@ -58,10 +58,10 @@
 
       table.bar-spread-sheet-before
         tr.company-first
-          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.sale)))
-          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.operating_profit)))
-          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.ordinary_profit)))
-          td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen @company_repository.achievements.last.net_income)))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen((check_minus(yen_to_dollar(@company_repository.achievements.last.sale)))))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen((check_minus(yen_to_dollar(@company_repository.achievements.last.operating_profit)))))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen((check_minus(yen_to_dollar(@company_repository.achievements.last.ordinary_profit)))))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen((check_minus(yen_to_dollar(@company_repository.achievements.last.net_income)))))
 
       #blank
       ul.dot-separater
@@ -94,17 +94,19 @@
         - @company_repository.achievements.each do |achievement|
           tr
             td.publish_day = achievement.publish_day
-            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.sale)))
-            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.operating_profit)))
-            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.ordinary_profit)))
-            td = t('common.unit.million_with_value_html', value: check_minus(comma(zero_to_hyphen achievement.net_income)))
+            td = t('common.unit.million_with_value_html', value: zero_to_hyphen((check_minus(yen_to_dollar(achievement.sale)))))
+            td = t('common.unit.million_with_value_html', value: zero_to_hyphen((check_minus(yen_to_dollar(achievement.operating_profit)))))
+            td = t('common.unit.million_with_value_html', value: zero_to_hyphen((check_minus(yen_to_dollar(achievement.ordinary_profit)))))
+            td = t('common.unit.million_with_value_html', value: zero_to_hyphen((check_minus(yen_to_dollar(achievement.net_income)))))
 
     == render 'sidebar'
   == render 'footer'
+  == render 'search_in_company'
 
 javascript:
   PS.INDUSTRY_ID = "#{@company_repository.detail.industry_id}"
   PS.COMPANY_NUMBER = "#{@company_repository.detail.company_number}"
+  PS.LOCALE = "#{I18n.locale.to_s}"
 
 == javascript_include_tag "vendor/suggest"
 == javascript_include_tag "common/search_jpn"

@@ -27,13 +27,13 @@
           br
         .graph-area
           p （#{t('common.unit.million')}）
-          #chart
-            canvas#myChart width="320" height="160"
+          #chart.js-barchart
+            canvas#myChart
       .number-detail--wrapper
         ul.number-detail#Company_margin_area
-          li #{t('common.bases.sale')}　#{t('common.bases.million_with_value_html', value: check_minus(comma(@company_repository.achievements.last.sale)))}
-          li #{t('common.bases.operating_profit')}　#{t('common.bases.million_with_value_html', value: check_minus(comma(@company_repository.achievements.last.operating_profit)))}
-          li #{t('common.bases.net_income')}　#{t('common.bases.million_with_value_html', value: check_minus(comma(@company_repository.achievements.last.net_income)))}
+          li #{t('common.bases.sale')}　#{t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(@company_repository.achievements.last.sale))))}
+          li #{t('common.bases.operating_profit')}　#{t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(@company_repository.achievements.last.operating_profit))))}
+          li #{t('common.bases.net_income')}　#{t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(@company_repository.achievements.last.net_income))))}
   .circle-chart--wrapper--smart-phone
     .operating-profit-margin--chart.circle-chart
       canvas#canvas--operating-profit-margin width="90" height="90" z-index="1"
@@ -60,38 +60,38 @@
     .company-line-graph#Company_sale_area
       p = t('common.bases.sale')
       .graph-area
-        #ch160
+        #ch160.js-linechart
           p （#{t('common.unit.million')}）
-          canvas#Company_sale width="320" height="160"
+          canvas#Company_sale
       .number-detail--wrapper
         - @company_repository.achievements.each do |achievement|
           ul.number-detail
             li.publish-day #{achievement.publish_day}
-            li = t('common.unit.million_with_value_html', value: check_minus(comma(achievement.sale)))
+            li = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(achievement.sale))))
     .company-line-graph#Company_operating_profit_area
       p = t('common.bases.operating_profit')
       .graph-area
       .graph-area
-        #ch160
+        #ch160.js-linechart
           p （#{t('common.unit.million')}）
-          canvas#Company_operating_profit width="320" height="160"
+          canvas#Company_operating_profit
       .number-detail--wrapper
         - @company_repository.achievements.each do |achievement|
           ul.number-detail
             li.publish-day #{achievement.publish_day}
-            li = t('common.unit.million_with_value_html', value: check_minus(comma(achievement.operating_profit)))
+            li = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(achievement.operating_profit))))
     .company-line-graph#Company_net_income_area
       p = t('common.bases.net_income')
       .graph-area
       .graph-area
-        #ch160
+        #ch160.js-linechart
           p （#{t('common.unit.million')}）
-          canvas#Company_net_income width="320" height="160"
+          canvas#Company_net_income
       .number-detail--wrapper
         - @company_repository.achievements.each do |achievement|
           ul.number-detail
             li.publish-day #{achievement.publish_day}
-            li = t('common.unit.million_with_value_html', value: check_minus(comma(achievement.net_income)))
+            li = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(achievement.net_income))))
     ul.dot-separater.mobile-dot-separater#Recomend-area
       li
       li
@@ -119,3 +119,4 @@
 == javascript_include_tag "us/company/circlechart"
 javascript:
   PS.COMPANY_SYMBOL = "#{params[:symbol]}"
+  PS.LOCALE = "#{I18n.locale.to_s}"

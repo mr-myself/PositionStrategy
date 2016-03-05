@@ -13,10 +13,13 @@
     .col-xs-9
       .company-welcome.us
         - if @favorite
-          p #{image_tag "heart.png", class: "list-image js-heart"} #{@company_repository.company.name}
+          p #{image_tag "heart.png", class: "list-image js-heart"}
+          p = link_to @company_repository.company.name, us_path(symbol: @company_repository.company.symbol)
         - else
-          p #{image_tag "heart.png", class: "list-image js-heart", style: "display:none;"} #{@company_repository.company.name}
-        span  ／ #{@compare_company.company.name}
+          p #{image_tag "heart.png", class: "list-image js-heart", style: "display:none;"}
+          p = link_to @company_repository.company.name, us_path(symbol: @company_repository.company.symbol)
+        span  ／
+        p = link_to @compare_company.company.name, us_path(symbol: @compare_company.company.symbol)
         br
         a.back-list href="#{us_industry_path(id: @company_repository.company.sector_id)}" （#{t('us_industries.ja')[@company_repository.company.sector_id]}）
 
@@ -41,15 +44,15 @@
           th = t('common.bases.market_value')
         tr.company-first
           td = @company_repository.company.name
-          td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(@company_repository.achievements.last.sale)))
-          td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(@company_repository.achievements.last.operating_profit)))
-          td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(@company_repository.achievements.last.net_income)))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(@company_repository.achievements.last.sale))))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(@company_repository.achievements.last.operating_profit))))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(@company_repository.achievements.last.net_income))))
           td = @company_repository.company.market_value
         tr.company-second
           td = @compare_company.company.name
-          td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(@compare_company.achievements.last.sale)))
-          td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(@compare_company.achievements.last.operating_profit)))
-          td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(@compare_company.achievements.last.net_income)))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(@compare_company.achievements.last.sale))))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(@compare_company.achievements.last.operating_profit))))
+          td = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(@compare_company.achievements.last.net_income))))
           td = @compare_company.company.market_value
       br
       .circle-chart--block
@@ -132,9 +135,9 @@
         - @company_repository.achievements.each do |achievement|
           tr
             td.publish_day = achievement.publish_day
-            td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(achievement.sale)))
-            td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(achievement.operating_profit)))
-            td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(achievement.net_income)))
+            td = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(achievement.sale))))
+            td = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(achievement.operating_profit))))
+            td = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(achievement.net_income))))
 
       br
       span.compare-sp #{@compare_company.company.name}
@@ -148,9 +151,9 @@
         - @compare_company.achievements.each do |achievement|
           tr
             td.publish_day = achievement.publish_day
-            td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(achievement.sale)))
-            td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(achievement.operating_profit)))
-            td = t('common.unit.million_with_value_html', value: check_minus(dollar_to_yen(achievement.net_income)))
+            td = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(achievement.sale))))
+            td = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(achievement.operating_profit))))
+            td = t('common.unit.million_with_value_html', value: zero_to_hyphen(check_minus(dollar_to_yen(achievement.net_income))))
 
       br
       .copy-right
@@ -159,6 +162,7 @@
 
     == render 'sidebar'
   == render 'footer'
+  == render 'search_in_company'
 
 javascript:
   PS.COMPANY_SYMBOL = "#{params[:symbol]}"
