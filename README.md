@@ -1,4 +1,4 @@
-# PositionStrategy - http://position-strategy.ffab0.com
+# PositionStrategy
 
 ![PositionStrategy](https://github.com/mr-myself/PositionStrategy/wiki/images/position_strategy.png 'PositionStrategy')
 
